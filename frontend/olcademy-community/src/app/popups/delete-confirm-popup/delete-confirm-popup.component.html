@@ -1,0 +1,11 @@
+<div class="container">
+    <i class="far fa-times-circle" (click)="onNoClick()"></i>
+    <div mat-dialog-content class="confirmation" >
+        <h1>Delete</h1>
+        <p>Are you sure you want to delete the Thread?</p>
+      </div>
+      <div mat-dialog-actions>
+        <button class="yesBtn" mat-button (click)="confirmDelete(data.postId)" >Yes</button>
+        <button class="cancelBtn" mat-button (click)="onNoClick()">Cancel</button>
+      </div>
+</div>

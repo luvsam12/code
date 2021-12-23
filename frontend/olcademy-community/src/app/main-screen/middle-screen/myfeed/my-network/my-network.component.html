@@ -1,0 +1,129 @@
+<mat-card class="card">
+  <h2 class="title">My Network</h2>
+  <div class="fields">
+    <button id="suggestions-btn" class="active" (click)="showSuggestions()">
+      Suggestions
+    </button>
+    <button id="request-received-btn" (click)="showRequestsReceived()">
+      Requests Received
+    </button>
+    <button id="request-sent-btn" (click)="showRequestsSent()">
+      Requests Sent
+    </button>
+    <button id="connections-btn" (click)="showConnections()">
+      Connections
+    </button>
+  </div>
+</mat-card>
+
+<!-- suggestions section-->
+
+<mat-card class="suggestions">
+  <!-- <mat-card
+    class="suggestions"
+   
+  ></mat-card> -->
+  <mat-card
+    class="suggestions"
+    *ngIf="currentNetwork == 'suggestions'"
+  >
+  <!-- <mat-card
+    class="user-card"
+    *ngFor="let user of [1, 2, 3, 4, 5, 6, 7, 8,9,20,11]; let i = index"
+  > -->
+    <mat-card class="user-card" *ngFor="let user of network_data; let i = index">
+    <img
+      class="user-image"
+      src="https://www.adeptstaffing.ca/wp-content/uploads/2017/01/businessman-1.png"
+      alt=""
+    />
+    <h3 class="user-name">User Name</h3>
+    <h5 class="user-type">User Type</h5>
+    <p class="mutual-connections">N mutual connections</p>
+    <button class="blue-btn">Connect</button>
+
+    <button
+      class="grey-btn"
+      id="following-{{ i }}"
+      *ngIf="user.following"
+      (click)="following_user(user.id, i)"
+    >
+      Unfollow
+    </button>
+    <button
+      class="blue-btn"
+      id="following-{{ i }}"
+      *ngIf="!user.following"
+      (click)="following_user(user.id, i)"
+    >
+      Follow
+    </button>
+  </mat-card>
+  </mat-card>
+</mat-card>
+
+<!-- requests received section -->
+
+
+<mat-card class="parent-card" *ngIf="currentNetwork != 'suggestions'">
+  
+
+    <!-- <div
+      class="single-user-card"
+      *ngFor="let user of [1, 2, 3, 4, 5, 6]; let i = index"
+    > -->
+      <div
+    class="single-user-card"
+    *ngFor="let user of network_data; let i = index"
+  >
+      <img class="user-image" [src]="user_image[i]" alt="user image" />
+      <h4 class="user-name">{{ user.name }}</h4>
+      <h5 class="user-type">{{ user.type }}</h5>
+      <h5 class="mutual-connections">
+        {{ user.mutual.length }} mutual connections
+      </h5>
+      
+
+     
+        <div class="btn-groups" *ngIf="currentNetwork == 'requestsReceived'">
+        <button class="blue-btn" (click)="accept_request(user.id, i)">
+          Accept
+        </button>
+        <button
+          class="grey-btn"
+          (click)="reject_connection_request(user.id, i)"
+        >
+          Reject
+        </button>
+      </div>
+    
+
+      <div class="btn-groups" *ngIf="currentNetwork == 'requestsSent'">
+        <button
+          class="grey-btn"
+          (click)="withdraw_connection_request(user.id, i)"
+        >
+          Withdraw
+        </button>
+      </div>
+
+      <div class="btn-groups" *ngIf="currentNetwork == 'connections'">
+        <button class="grey-btn" (click)="remove_user(user.id, i)">
+          Remove
+        </button>
+        <button
+          class="grey-btn"
+          id="following-{{ i }}"
+          *ngIf="user.following"
+          (click)="following_user(user.id, i)"
+        >Unfollow</button>
+        <button
+          class="blue-btn"
+          id="following-{{ i }}"
+          *ngIf="!user.following"
+          (click)="following_user(user.id, i)"
+        >Follow</button>
+      </div>
+    </div>
+  <!-- </mat-card> -->
+</mat-card>

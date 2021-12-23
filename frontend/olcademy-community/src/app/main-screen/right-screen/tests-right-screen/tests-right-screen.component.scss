@@ -1,0 +1,108 @@
+@import "../../../../assets/css/default_styles.scss";
+
+.btn-grp {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    margin: 1.5rem 0;
+    // .attempts-btn {
+    //     // background-color: rgb(0, 169, 242);
+    //     background-color:$olcademy-community-medium-blue ;
+    //     border: none;
+    //     border-radius: 20px;
+    //     color:$olcademy-community-white;
+    //     padding: 0.5em 2em;
+    //     cursor: pointer;
+    // }
+    .attempts-btn:focus {
+        outline: none;
+    }
+}
+
+.my-attempts-right {
+    width: 74%;
+    .my-attempts-heading {
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+    }
+    .my-attempts-stats {
+        font-family: microsoft jhenghei;
+        .each-stat {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0.6em 0;
+            padding: 0;
+    
+            .img-sec {
+                width: 15%;
+                display: grid;
+                place-items: center;
+    
+                img {
+                    width: 100%;
+                    border-radius: 50%;
+                }
+            }
+            .description {
+                width: 58%;
+                
+                p {
+                    margin: 0;
+                    line-height: 16px;
+                    font-size: 12px;
+                    color: #6F6F6F;
+                }
+            }
+            .stat {
+                width: 20%;
+                font-size: 25px;
+                p {
+                    margin: 0;
+                    color: #6F6F6F;
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+
+    hr {
+        border: none;
+        border-top: 1px solid #dfdfdf;
+    }
+}
+
+// upload questions section
+
+.upload-solve-questions-right {
+    width: 74%;
+    font-family: microsoft jhenghei;
+    margin-top: 1.5rem;
+
+    .upload-que-text, .solve-que-text {
+        width: 60%;
+        color: #6E6E6E;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        margin: auto;
+    }
+    .solve-que-text {
+        width: 90%;
+    }
+    .img-sec {
+        width: 100%;
+        display: grid;
+        place-items: center;
+        margin-top: 1rem;
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}

@@ -1,0 +1,8 @@
+<mat-list class="category-list-container">
+    <mat-list-item *ngFor="let category of categoryList;let i=index"
+        id="{{i}}" (click)="selectedCategory(i,category._id)" class="list" >
+        <span id="category-icon-div"><i class="{{category.icon}}" id="category-icon-{{i}}">
+        </i></span>
+           <p id="category-name"> {{category.name}} </p>
+    </mat-list-item>
+</mat-list>

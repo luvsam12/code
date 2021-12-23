@@ -1,0 +1,54 @@
+<div class="user-div">
+    <mat-grid-list cols="2">
+        <mat-grid-tile
+            [colspan]="1"
+            [rowspan]="1">
+                <img class="user-image" src="{{userimage}}" />
+        </mat-grid-tile>
+        <mat-grid-tile
+            [colspan]="1"
+            [rowspan]="1">
+                <div class="details">
+                    <div class="username">{{user_data.full_name.split(" ")[0] | titlecase}}</div>
+                    <div class="usertitle">Instructor</div>
+                    <div class="count">
+                        <div>1256<br>
+                            600
+                        </div>
+                        <div>Kudos<br>
+                            Followers
+                        </div>
+                    </div>
+                </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="1" rowHeight="30px">
+        <mat-grid-tile
+            [colspan]="1"
+            [rowspan]="1">
+            <div class="desc">
+                12 Years of Teaching Experience in ABC <br>School || Alum of IIT BHU || Writer
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-list class="all-list">
+        <mat-list-item class="list" id="1"  (click)="selectedCategory(1)">
+            <span id="icon-div"><i class="far fa-edit" id="icon"></i></span>
+            <p id="icon-label"> My Posts <p>
+        </mat-list-item>
+        <mat-list-item class="list" id="2"  (click)="selectedCategory(2)">
+            <span id="icon-div"><i class="fas fa-users" id="icon"></i></span>
+            <p id="icon-label"> My Network <p>
+        </mat-list-item>
+        <mat-list-item class="list" id="3"  (click)="selectedCategory(3)">
+            <span id="icon-div"><i class="far fa-bookmark" id="icon"></i></span>
+            <p id="icon-label"> Bookmarked <p>
+        </mat-list-item>
+        <mat-list-item class="list" id="4"  (click)="selectedCategory(4)" >
+            <span id="icon-div"><i class="far fa-heart" id="icon"></i></span>
+            <p id="icon-label"> Interest <p>
+        </mat-list-item>
+    </mat-list>
+</div>

@@ -1,0 +1,17 @@
+<div class="container">
+    <h1>Report</h1>
+    <p>Please select the reason for reporting the {{data.type}} :</p>
+    <mat-radio-group class="radio-group" aria-label="Select an option" [(ngModel)]="selected_report">
+        <mat-radio-button *ngFor="let category of categories" class="radio-buttons" [value]="category" >{{category}}</mat-radio-button>
+        <!-- <mat-radio-button class="radio-buttons" value="Inappropriate Content">Inappropriate Content</mat-radio-button>
+        <mat-radio-button class="radio-buttons" value="Harassment">Harassment</mat-radio-button>
+        <mat-radio-button class="radio-buttons" value="Copyright Issue">Copyright Issue</mat-radio-button>
+        <mat-radio-button class="radio-buttons" value="Other">Other</mat-radio-button> -->
+    </mat-radio-group>
+    <textarea id="comment" class="comment" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" placeholder="Comment" ></textarea>
+    <div class="button-group">
+        <button mat-raised-button mat-dialog-close class="mat-focus-indicator mat-raised-button mat-button-base mat-primary final_submit_btn" (click)="reportSubmit()">Report</button>
+        <button mat-raised-button mat-dialog-close class="mat-focus-indicator mat-raised-button mat-button-base mat-primary discard_btn" (click)="onNoClick()">Cancel</button>
+    </div>
+    <i class="far fa-times-circle" (click)="onNoClick()" ></i>
+</div>

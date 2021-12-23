@@ -1,0 +1,71 @@
+.container-popup
+{
+    width: 600px;
+}
+
+.cross
+{
+    float: right;
+    margin: -20px -10px 0px 0px;
+}
+
+.cross-icon
+{
+    zoom: 2;
+}
+
+.heading
+{
+    margin: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.button {
+    text-align: center;
+}
+
+
+.list_items{
+    background-color: #e5f6fe;
+    border-radius: 100px;
+    font-size: 11px;
+    margin-bottom: 5px;
+    list-style: none;
+    padding: 2px 10px;
+    margin-left: -12%;
+}
+
+//common button for upload and ok
+
+
+.final_submit_btn {
+    box-sizing: border-box;
+    position: relative;
+    font-family: microsoft jhenghei;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    min-width: 64px;
+    line-height: 30px;
+    padding: 0 16px;
+    border-radius: 100px;
+    width: 160px;
+    overflow: visible;
+    margin: 0px 0px 10px;
+    transform: translate3d(0, 0, 0);
+    background-color: #00ABF3;
+    color: white;
+    transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1),box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  }

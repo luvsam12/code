@@ -1,0 +1,174 @@
+
+<div id="show-blog">
+         <div *ngIf="is_data_available"class="container">
+                <div>
+                    <span class="material-icons arrow" (click)="go_back()">
+                        arrow_back
+                    </span>
+                </div>
+
+                <div class="thread-card-show-blog">
+                    <div class="profile-picture">
+                        <img [src]=author_profile_path (click)="go_to_profile()"/>
+                    </div>
+                    <div class="thread-details">
+                        <div class="thread-title">
+                            <h1 style="text-align: center;">{{blog_data.post_title}}</h1>
+                        </div>
+                        <hr style="background-color: grey;">
+                        <div class="thread-content">
+                            <div class="thread-author" (click)="go_to_profile()">
+                                <h3>{{blog_data.author_name | titlecase}}
+                                    <span class="thread-date">
+                                    {{blog_life(blog_data.published_on)}}
+                                </span>
+                            </h3>
+                            </div>
+                            <quill-editor [styles]="{border: '0px'}" [readOnly]  = "true"
+                            [modules]   = "{ toolbar: false }" [(ngModel)]="blog_data.post_content"  disabled>
+                            </quill-editor>
+                            <div class="thread-tags">
+                                <div class="tag">   #{{ blog_data.category.name }}   </div>
+                                <div *ngFor="let tag of blog_data.hashtags">
+                                    <div class="tag"> #{{tag}} </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div >
+                                    <i [ngClass]="thumsUp(blog_data.likes,blog_data)" (click)="kudos($event,blog_data._id,blog_data.likes,blog_data.likes.length)"></i> <span id="{{blog_data._id}}"> {{check_number(blog_data.likes.length)}}  Like</span>
+                                </div>
+                                <div (click)="commentDisplay()">
+                                    <i class="fas fa-comment"></i> {{check_number(blog_data.comments)}} Comment
+                                </div>
+                                <div>
+                                    <i class="fas fa-share-alt"></i> Share
+                                </div>
+                                <div >
+                                    <i [ngClass]="bookmarkCheck(blog_data.bookmarks)" (click)="bookmark($event,blog_data._id,blog_data.bookmarks,blog_data.bookmarks.length)" id="bookmark-icon"></i><span id="bookmark"> Bookmark</span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-eye"></i> {{check_number(blog_data.num_of_views)}} Views
+                                </div>
+                            </div>
+
+
+                            <div class="comment-profile-picture">
+                                <img [src]=user_profile_path  routerLink="/user-page"/>
+                                <input id="post-comment" type="text" placeholder="Type your comment">
+                                <i class="fa fa-link fa-1x"></i>
+                                <button class="publish"  (click)="postComment(blog_data._id)">Post</button>
+                            </div>
+                            <div id="comment-holder">
+                                <div *ngIf="is_comment_available" >
+                                    <div  *ngFor="let comment of blog_data.comment.comments | slice:0:displayComment" class="comment">
+                                         <div  >
+                                        <div class="blog-comments" >
+                                            <div style="display: flex;">
+                                                <div class="blog-comment-img">
+                                                    <img [src]=user_profile_path routerLink="/user-page"/>
+                                                </div>
+                                                <div class="comment-user">
+                                                    {{comment.full_name}} | {{comment.user_type}}  <span class="comment-time">{{blog_life(comment.published_on)}}</span>
+                                                    <br>
+                                                    <div >
+                                                        <div >
+                                                           <span class="comment-content" id="expand{{comment._id}}" (click)="expand(comment._id)" >{{comment.comment}}</span>
+                                                           <span id="expandS{{comment._id}}" *ngIf="checkShow(comment._id)" (click)="expand(comment._id)" class="show-more">Show more</span>
+                                                         </div>
+
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                            <div *ngIf="is_reply_available">
+                                            <div *ngFor="let reply of comment.reply.replyComments" class="blog-comments-reply" style="display: flex;">
+                                                <div class="blog-comment-img">
+                                                    <img [src]=user_profile_path routerLink="/user-page"/>
+                                                </div>
+                                                <div class="comment-user">
+                                                    {{reply.full_name}} | {{reply.user_type}} <span class="comment-time">{{blog_life(reply.published_on)}}</span>
+                                                    <br>
+                                                    <div class="comment-content">
+                                                        {{reply.comment}}
+                                                        <span class="exclamation-reply">
+                                                            <span id="c{{reply._id}}"> {{check_number(reply.likes.length)}}</span>
+                                                            <span><i (click)="commentLike($event,reply._id,reply.likes,reply.likes.length)"  [ngClass]="thumsUp(reply.likes,reply)"></i></span>
+                                                            <span><i class="fas fa-exclamation reply-exc" (click)="reportReply(reply._id,'reply',blog_data._id)"></i></span>
+                                                        </span>
+                                                   </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="comment-profile-picture" class="comment-reply" id="comment-reply{{comment._id}}">
+                                                <img [src]=user_profile_path  routerLink="/user-page"/>
+                                                <input id="post-comment{{comment._id}}" type="text" placeholder="Type your reply">
+                                                <i class="fa fa-link fa-1x"></i>
+                                                <button class="publish" (click)="postReply(comment._id,blog_data._id)" >Post</button>
+                                            </div>
+                                        </div>
+                                        <div class="blog-section">
+                                            <div>
+                                                <div (click)="commentLike($event,comment._id,comment.likes,comment.likes.length)" style="float: left;">
+                                                    <span id="c{{comment._id}}"> {{check_number(comment.likes.length)}}</span>    <i  [ngClass]="thumsUp(comment.likes,comment)"></i>
+                                                </div>
+                                                <div (click)="commentInput(comment._id)" >
+                                                    {{check_number(comment.num_of_replies)}}
+                                                    <i class="fas fa-comment"></i>
+                                                </div>
+                                            </div>
+                                            <span class="exclamation">
+                                                <i class="fas fa-exclamation" (click)="reportComment(comment._id,'comment',blog_data._id)"></i>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                    <div class="view-more" *ngIf="blog_data.comment.comments.length > displayComment"  (click)=increaseComment(blog_data.comment.comments.length)>
+                                        View More
+                                    </div>
+                                   </div>
+                            </div>
+                    </div>
+
+                    </div>
+                </div>
+                <div>
+                  <div class="more_option">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" class="mat-menu-button">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                  </div>
+
+                    <mat-menu #menu="matMenu">
+                        <div *ngIf="!Issame(blog_data.user_id)">
+                            <button mat-menu-item  value="{{category}}" *ngFor="let category of category2" (click)="option_function(category,blog_data._id,'Blog')">
+                                <span>{{category}}</span>
+                            </button>
+                            
+                        </div>
+                        <div *ngIf="Issame(blog_data.user_id)">
+                            <button mat-menu-item value="{{category}}"  *ngFor="let category of category1" (click)="option_function(category,blog_data._id,'Blog')">
+                                <span>{{category}}</span>
+                            </button>
+                        </div>
+                    </mat-menu>
+                </div>
+</div>
+
+</div>
+<!-- similar blog  -->
+<div class="similar-blogs" >
+  <div >
+      Similar Blogs:
+      <br>
+      <a routerLink="/blogs">How to Increase Conversion Rates with Effective Squeeze Pages</a><span class="label-a">by Katie Terrel</span>l
+      <br>
+      <a routerLink="/blogs">Top 5 ways to get Inbound Links </a><span class="label-a">by Andre Youkhna</span>l
+  </div>
+</div>
+

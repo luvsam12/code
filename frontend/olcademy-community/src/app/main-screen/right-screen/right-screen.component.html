@@ -1,0 +1,18 @@
+<div class="right-container" *ngIf="rightScreenState == 0">
+    <div class="title">
+        Related Items:
+    </div>
+
+    <ul class="links" *ngFor="let blog of blogs | slice:0:start">
+        <li>
+            <div class="link" (click)="go_to_blog(blog._id)">{{blog.post_title | titlecase}}</div>
+            <div class="link_username" (click)="go_to_blog(blog._id)">{{blog.author_name | titlecase}} |
+                {{blog_life(blog.published_on)}}</div>
+        </li>
+    </ul>
+    <div (click)="show_more()" *ngIf="showMore_visibility()" id="check_more" class="show_more">show more</div>
+</div>
+
+<div class="right-container" *ngIf="rightScreenState == 1">
+    <app-tests-right-screen></app-tests-right-screen>
+</div>

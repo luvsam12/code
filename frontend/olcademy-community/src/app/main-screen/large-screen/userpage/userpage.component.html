@@ -1,0 +1,719 @@
+
+<div class="main-div">
+  <div>
+    <span class="material-icons arrow" (click)="go_back()">
+      arrow_back
+    </span>
+  </div>
+  <!-- left-side div -->
+  <div class="left-div">
+    <!-- profile image section -->
+    <div class="profile-image-section">
+      <div class="profile-image-div">
+        <div class="image-attributes">
+          <button class="edit-btn" (click)="openProfileImagePopup()">View</button>
+        </div>
+        <img [src]="profileImageUrl" class="profile-image" alt="">
+      </div>
+    </div>
+
+    <!-- profile category section -->
+    <div class="profile-category-list">
+      <div class="each-category" *ngFor="let element of profileCategoryList; let i=index"
+        [class.activecategory]="selectedIndex === i" (click)="setIndex(i)">
+        <a [class.activecategory-onlink]="selectedIndex === i" (click)="scroll(element.tag)">
+          {{element.name}}
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- middle-div -->
+  <div class="middle-div">
+    <div *ngIf="isDetails" class="Details">
+      <div class="user-data">
+        <div class="username">
+          <span *ngIf="iseditUser">{{User.full_name | titlecase}}</span>
+          <input *ngIf="!iseditUser" id="name-user" value="{{User.full_name | titlecase}}">
+        </div>
+        <div class="usertype">Student</div>
+        <div> 11 - Kudos</div>
+        <div> {{User.followers.length}} - Followers</div>
+        <div> {{User.connections.length}} - Connections</div>
+        <div class="tagline">
+          <span *ngIf="iseditUser">{{User.about_user}}</span>
+          <input id="tag" placeholder="Tagline" *ngIf="!iseditUser" value="{{User.about_user}}">
+        </div>
+      </div>
+      <div class="connection" >
+        <!-- <button class="blue-btn" *ngIf="!isUser&&iseditUser">
+          Follow
+        </button>
+        <button class="blue-btn" *ngIf="!isUser&&iseditUser">
+          Connect
+        </button> -->
+        <button *ngIf="!isMe()&&!isConnected()&&!isPending()&&!isRequested()" class="blue-btn" (click)="remove_user(User._id)" id="connect-">Connect</button>
+        <button  *ngIf="!isMe()&&isConnected()" class="grey-btn" (click)="remove_user(User._id)" id="connect-">Remove</button>
+        <button *ngIf="!isMe()&&!isConnected()&&isRequested()" class="blue-btn" routerLink="/network/received_request" id="connect-">Respond</button>
+        <button  *ngIf="!isMe()&&isPending()" class="grey-btn"  id="connect-">Request Pending</button>
+        <button *ngIf="!isMe()&&!isFollowing()" class="blue-btn" id="following-" (click)="following_user(User._id)">Follow</button>
+        <button *ngIf="!isMe()&&isFollowing()" class="grey-btn" id="following-" (click)="following_user(User._id)">Unfollow</button>
+
+      </div>
+      <div class="edit-name-icons">
+        <div class="right-icons">
+
+          <span *ngIf="!iseditUser" class="material-icons float-left add" (click)="editUserName('name-user','tag')">
+            check_circle_outline
+          </span>
+
+          <span *ngIf="!iseditUser" class="material-icons float-left add" (click)="editUser()">
+            cancel
+          </span>
+
+
+          <div class="more_option" *ngIf="isUser&&iseditUser">
+            <button mat-icon-button class="mat-menu-button">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+          <span *ngIf="isUser&&iseditUser" class="material-icons share-icon">
+            share
+          </span>
+          <span *ngIf="isUser&&iseditUser&&isMe()" class="material-icons edit" (click)="editUser()">
+            create
+          </span>
+
+
+        </div>
+      </div>
+
+
+    </div>
+    <!-- abour user -->
+    <div *ngIf="isAbout" id="ABOUT-ME" class="Common-style">
+      <div class="heading">
+        <span class="about-me"> About Me </span>
+        <span *ngIf="!editBio&&isMe()" class="material-icons float-left edit" (click)="editbio()">
+          create
+        </span>
+        <span *ngIf="editBio" (click)="editAbout('address','country','date','bio-about')"
+          class="material-icons float-left add">
+          check_circle_outline
+        </span>
+        <span *ngIf="editBio" class="material-icons float-left add" (click)="editbio()">
+          cancel
+        </span>
+
+      </div>
+      <hr>
+
+      <div class="content-divs">
+        <div class="about-me-left">
+          <span class="email">Email Address</span> : <span>{{User.user_email_id}}</span>
+          <br>
+          <span class="value-name">Phone Number</span> : <span *ngIf="!editBio">999999999</span> <input #number
+            *ngIf="editBio" Value="999999999">
+          <br>
+          <span class="place">Place</span>: <span *ngIf="!editBio">{{User.user_address}}, {{User.user_country}}</span>
+          <input id="address" *ngIf="editBio" value="{{User.user_address}}" placeholder="City"> <input id="country"
+            class="Country" placeholder="Country" *ngIf="editBio" value="{{User.user_country}}">
+
+        </div>
+        <div>
+          <span class="dob">D.O.B</span>: <span *ngIf="!editBio">{{User.date_of_birth}}</span> <input id="date"
+            type="date" *ngIf="editBio" value="{{User.date_of_birth}}">
+          <br>
+          <span class="gender">Gender</span>: <span *ngIf="!editBio">Male</span>
+        </div>
+      </div>
+      <div>
+        <div class="bio">Bio</div>
+        <div class="bio-data" *ngIf="!editBio">
+          {{User.user_bio}}
+        </div>
+        <div class="bio-edit" *ngIf="editBio">
+          <textarea id="bio-about" cols="75" rows="10">{{User.user_bio}}</textarea>
+        </div>
+      </div>
+    </div>
+    <!-- Experience -->
+    <div *ngIf="isExperience" id="EXPERIENCE" class="Common-style">
+      <div class="heading">
+        <span> Experience </span>
+        <span *ngIf="isMe()" (click)="addData('experience-input')" class="material-icons float-left add">
+          add_circle_outline
+        </span>
+      </div>
+      <hr>
+
+      <div id="experience-input" class="content-divs display-none">
+        <div class="data-img">
+          <img
+            src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+            class="profile-image" alt="">
+        </div>
+        <div class="data-middle">
+          <input #company placeholder="Company Name">
+          <input #role placeholder="Position">
+          <br>
+          <input #ab (click)="checkbo($event)" class="checkbox" type="checkbox"> <label>Currently Working</label>
+          <br>
+          <input class="dates" #start type="date" placeholder="Start-Date">
+          <input *ngIf="!ab.checked" class="dates" #end type="date" placeholder="End-Date">
+        </div>
+        <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+          <div class="iconsEdit">
+            <span class="material-icons" (click)="addData('experience-input')">
+              cancel
+            </span>
+          </div>
+          <div class="iconsEdit">
+            <span class="material-icons" (click)="addData('experience-input')">
+              delete
+            </span>
+          </div>
+          <div class="iconsEdit" *ngIf="!ab.checked"
+            (click)="newExperience(company.value,role.value,start.value,end.value)">
+            <span class="material-icons">
+              check_circle_outline
+            </span>
+          </div>
+          <div class="iconsEdit" *ngIf="ab.checked"
+            (click)="newExperience(company.value,role.value,start.value,'Present')">
+            <span class="material-icons">
+              check_circle
+            </span>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let data of experience.data; let i=index">
+        <hr *ngIf="i!=0" class="hr">
+        <div class="contents-divs ">
+          <div class="data-img">
+            <img
+              src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+              class="profile-image" alt="">
+          </div>
+          <div class="data-middle black">
+            <div *ngIf="!data.isEdit" class="fllowUser">{{data.company_name}}</div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-company" value="{{data.company_name}}"
+              placeholder="Company Name">
+            <div *ngIf="!data.isEdit"> {{data.designation_title}} </div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-title" value="{{data.designation_title}}"
+              placeholder="Company Name">
+            <div *ngIf="!data.isEdit">{{data.job_start_date}}-{{data.job_end_date}} || {{data.job_start_date -
+              data.job_end_date}}</div>
+            <input *ngIf="data.isEdit" type="date" class="dates" id="{{data._id}}-start"
+              value="{{data.job_start_date}}">
+            <input *ngIf="data.isEdit" id="{{data._id}}-end" class="dates" #EndDate type="date" placeholder="End-Date">
+          </div>
+          <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+            <div *ngIf="data.isEdit" class="iconsEdit">
+              <span class="material-icons" (click)="editInfo('exp',i)">
+                cancel
+              </span>
+            </div>
+            <div *ngIf="data.isEdit" class="iconsEdit">
+              <span class="material-icons" (click)="deleteData(data._id,'exp')">
+                delete
+              </span>
+            </div>
+            <div *ngIf="data.isEdit" class="iconsEdit" (click)="editExperience(data._id)">
+              <span class="material-icons">
+                check_circle
+              </span>
+            </div>
+            <div *ngIf="!data.isEdit" class="editData">
+              <span class="material-icons float-left edit" (click)="editInfo('exp',i)">
+                create
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Education -->
+    <div *ngIf="isEducation" id="EDUCATION" class="Common-style">
+      <div class="heading">
+        <span> Education </span>
+        <span *ngIf="isMe()" (click)="addData('education-input')" class="material-icons float-left add">
+          add_circle_outline
+        </span>
+      </div>
+      <hr>
+      <div id="education-input" class="contents-divs display-none">
+        <div class="data-img">
+          <img
+            src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+            class="profile-image" alt="">
+        </div>
+        <div class="data-middle">
+          <input #Institute placeholder="Institute Name">
+          <input #Topic placeholder="Topic">
+          <input #grade placeholder="grade">
+          <br>
+          <input #abc (click)="checkbo($event)" class="checkbox" type="checkbox"> <label>Currently Studying</label>
+          <br>
+          <input #sdate class="dates" type="date" placeholder="Published On">
+          <input *ngIf="!abc.checked" #edate class="dates" type="date" placeholder="Published On">
+        </div>
+        <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+          <div class="iconsEdit">
+            <span class="material-icons" (click)="addData('education-input')">
+              cancel
+            </span>
+          </div>
+          <div class="iconsEdit">
+            <span class="material-icons" (click)="addData('education-input')">
+              delete
+            </span>
+          </div>
+          <div class="iconsEdit" *ngIf="!abc.checked"
+            (click)="NewEducation(Institute.value,Topic.value,sdate.value,edate.value,grade.value)">
+            <span class="material-icons">
+              check_circle_outline
+            </span>
+          </div>
+          <div *ngIf="abc.checked" class="iconsEdit"
+            (click)="NewEducation(Institute.value,Topic.value,sdate.value,'Present',grade.value)">
+            <span class="material-icons">
+              check_circle_outline
+            </span>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let data of education.data; let i=index">
+        <hr *ngIf="i!=0" class="hr">
+        <div class="contents-divs ">
+          <div class="data-img">
+            <img
+              src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+              class="profile-image" alt="">
+          </div>
+          <div class="data-middle black">
+            <div *ngIf="!data.isEdit" class="fllowUser">{{data.institution_name}}</div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-company" value="{{data.institution_name}}"
+              placeholder="Company Name">
+            <div *ngIf="!data.isEdit"> {{data.degree_title}} </div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-title" value="{{data.degree_title}}" placeholder="Company Name">
+            <div *ngIf="!data.isEdit"> {{data.degree_grade}} </div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-degree" value="{{data.degree_grade}}"
+              placeholder="Company Name">
+            <div *ngIf="!data.isEdit">{{data.degree_start_date}}-{{data.degree_end_date}} || {{data.degree_start_date -
+              data.degree_end_date}}</div>
+            <input *ngIf="data.isEdit" type="date" class="dates" id="{{data._id}}-start"
+              value="{{data.degree_start_date}}">
+            <input *ngIf="data.isEdit" class="dates" id="{{data._id}}-end" #EndDate type="date" placeholder="End-Date">
+          </div>
+          <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+            <div *ngIf="data.isEdit" class="iconsEdit">
+              <span class="material-icons" (click)="editInfo('edu',i)">
+                cancel
+              </span>
+            </div>
+            <div *ngIf="data.isEdit" class="iconsEdit">
+              <span class="material-icons" (click)="deleteData(data._id,'edu')">
+                delete
+              </span>
+            </div>
+            <div *ngIf="data.isEdit" class="iconsEdit" (click)="editEducation(data._id)">
+              <span class="material-icons">
+                check_circle
+              </span>
+            </div>
+            <div *ngIf="!data.isEdit" class="editData">
+              <span class="material-icons float-left edit" (click)="editInfo('edu',i)">
+                create
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Research -->
+    <div *ngIf="isResearch" id="RESEARCH" class="Common-style">
+      <div class="heading">
+        <span> Research </span>
+        <span *ngIf="isMe()" (click)="addData('research-input')" class="material-icons float-left add">
+          add_circle_outline
+        </span>
+      </div>
+      <hr>
+
+      <div id="research-input" class="contents-divs display-none">
+        <div class="data-img">
+          <img
+            src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+            class="profile-image" alt="">
+        </div>
+        <div class="data-middle">
+          <input #Top placeholder="Topic">
+          <br>
+          <input #Pubdate type="date" placeholder="Published On">
+        </div>
+        <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+          <div class="iconsEdit">
+            <span class="material-icons" (click)="addData('research-input')">
+              cancel
+            </span>
+          </div>
+          <div class="iconsEdit">
+            <span class="material-icons" (click)="addData('research-input')">
+              delete
+            </span>
+          </div>
+          <div class="iconsEdit" (click)="NewResearch(Top.value,Pubdate.value)">
+            <span class="material-icons">
+              check_circle_outline
+            </span>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let data of research.data; let i=index">
+        <hr *ngIf="i!=0" class="hr">
+        <div class="contents-divs ">
+          <div class="data-img">
+            <img
+              src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+              class="profile-image" alt="">
+          </div>
+          <div class="data-middle black">
+            <div *ngIf="!data.isEdit" class="fllowUser">{{data.research_topic}}</div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-company" value="{{data.research_topic}}"
+              placeholder="Company Name">
+            <div *ngIf="!data.isEdit">{{data.publication_date}}</div>
+            <input *ngIf="data.isEdit" type="date" class="dates" id="{{data._id}}-title"
+              value="{{data.publication_date}}">
+          </div>
+          <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+            <div *ngIf="data.isEdit" class="iconsEdit">
+              <span class="material-icons" (click)="editInfo('res',i)">
+                cancel
+              </span>
+            </div>
+            <div *ngIf="data.isEdit" class="iconsEdit">
+              <span class="material-icons" (click)="deleteData(data._id,'res')">
+                delete
+              </span>
+            </div>
+            <div *ngIf="data.isEdit" class="iconsEdit" (click)="editResearch(data._id)">
+              <span class="material-icons">
+                check_circle
+              </span>
+            </div>
+            <div *ngIf="!data.isEdit" class="editData">
+              <span class="material-icons float-left edit" (click)="editInfo('res',i)">
+                create
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Certification research -->
+    <div *ngIf="isCertificate" id="CERTIFICATE" class="Common-style">
+      <div class="heading">
+        <span> Certifications </span>
+        <span *ngIf="isMe()" (click)="addData('certifications-input')" class="material-icons float-left add">
+          add_circle_outline
+        </span>
+      </div>
+      <hr>
+
+      <div id="certifications-input" class="contents-divs display-none">
+        <div class="data-img">
+          <img
+            src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+            class="profile-image" alt="">
+        </div>
+        <div class="data-middle">
+          <input #Firm placeholder="Certifying Firm">
+          <input #tpic placeholder="Topic">
+          <br>
+          <input #datex type="date" placeholder="Recieved On">
+        </div>
+        <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+          <div class="iconsEdit">
+            <span class="material-icons" (click)="addData('certifications-input')">
+              cancel
+            </span>
+          </div>
+          <div class="iconsEdit">
+            <span class="material-icons" (click)="addData('certifications-input')">
+              delete
+            </span>
+          </div>
+          <div class="iconsEdit" (click)="NewCertificate(Firm.value,tpic.value,datex.value)">
+            <span class="material-icons">
+              check_circle_outline
+            </span>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let data of certificate.data; let i=index">
+        <hr *ngIf="i!=0" class="hr">
+        <div class="contents-divs ">
+          <div class="data-img">
+            <img
+              src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+              class="profile-image" alt="">
+          </div>
+          <div class="data-middle black">
+            <div *ngIf="!data.isEdit" class="fllowUser">{{data.certifying_firm}}</div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-company" value="{{data.certifying_firm}}"
+              placeholder="Company Name">
+            <div *ngIf="!data.isEdit">{{data.name_of_certification}}</div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-title" value="{{data.name_of_certification}}" placeholder="">
+            <div *ngIf="!data.isEdit">{{data.date_of_completion}}</div>
+            <input *ngIf="data.isEdit" type="date" class="dates" id="{{data._id}}-start"
+              value="{{data.date_of_completion}}">
+          </div>
+          <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+            <div *ngIf="data.isEdit" class="iconsEdit">
+              <span class="material-icons" (click)="editInfo('cer',i)">
+                cancel
+              </span>
+            </div>
+            <div *ngIf="data.isEdit" class="iconsEdit">
+              <span class="material-icons" (click)="deleteData(data._id,'cer')">
+                delete
+              </span>
+            </div>
+            <div *ngIf="data.isEdit" class="iconsEdit" (click)="editCertificate(data._id)">
+              <span class="material-icons">
+                check_circle
+              </span>
+            </div>
+            <div *ngIf="!data.isEdit" class="editData">
+              <span class="material-icons float-left edit" (click)="editInfo('cer',i)">
+                create
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Social Profile -->
+    <div *ngIf="isSocial" id="SOCIAL" class="Common-style">
+      <div class="heading">
+        <span> Social Profiles </span>
+        <span *ngIf="isMe()" (click)="addData('social-input')" class="material-icons float-left add">
+          add_circle_outline
+        </span>
+      </div>
+      <hr>
+
+      <div id="social-input" class="contents-divs display-none">
+        <div class="data-img">
+          <img
+            src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+            class="profile-image" alt="">
+        </div>
+        <div class="data-middle">
+          <input #Website placeholder="Website">
+          <input #userName placeholder="username">
+          <br>
+          <input #link placeholder="Recieved On">
+        </div>
+        <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+          <div class="iconsEdit">
+            <span class="material-icons" (click)="addData('social-input')">
+              cancel
+            </span>
+          </div>
+          <div class="iconsEdit">
+            <span class="material-icons" (click)="addData('social-input')">
+              delete
+            </span>
+          </div>
+          <div class="iconsEdit" (click)="NewSocial(Website.value,userName.value,link.value)">
+            <span class="material-icons">
+              check_circle_outline
+            </span>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let data of social.data; let i=index">
+        <hr *ngIf="i!=0" class="hr">
+        <div class="contents-divs ">
+          <div class="data-img">
+            <img
+              src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+              class="profile-image" alt="">
+          </div>
+          <div class="data-middle black">
+            <div *ngIf="!data.isEdit" class="fllowUser">{{data.website}}</div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-company" value="{{data.website}}" placeholder="Company Name">
+            <div *ngIf="!data.isEdit">{{data.username}}</div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-title" value="{{data.username}}">
+            <div *ngIf="!data.isEdit"><a href="{{data._link}}">Link</a></div>
+            <input *ngIf="data.isEdit" id="{{data._id}}-start" value="{{data.link}}">
+          </div>
+          <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+            <div *ngIf="data.isEdit" class="iconsEdit">
+              <span class="material-icons" (click)="editInfo('soc',i)">
+                cancel
+              </span>
+            </div>
+            <div *ngIf="data.isEdit" class="iconsEdit">
+              <span class="material-icons" (click)="deleteData(data._id,'soc')">
+                delete
+              </span>
+            </div>
+            <div *ngIf="data.isEdit" class="iconsEdit" (click)="editSocial(data._id)">
+              <span class="material-icons">
+                check_circle
+              </span>
+            </div>
+            <div *ngIf="!data.isEdit" class="editData">
+              <span class="material-icons float-left edit" (click)="editInfo('soc',i)">
+                create
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Skills -->
+    <div *ngIf="isSkill" id="SKILL" class="Common-style">
+      <div class="heading">
+        <span> Skills </span>
+        <span *ngIf="isMe()" (click)="addData('skill-input')" class="material-icons float-left add">
+          add_circle_outline
+        </span>
+      </div>
+      <div class="interest-divs">
+        <span *ngFor="let skill of skill.data" class="interest">
+          {{skill.user_skill}}
+          <span (click)="deleteSkill(skill._id)" class="material-icons delete-icon">
+            highlight_off
+          </span>
+        </span>
+        <span id="skill-input" class="display-none">
+          <input id="skilled" class="skill-input">
+          <span (click)="NewSkill()" class="material-icons icon-skill">
+            check_circle_outline
+          </span>
+          <span (click)="addData('skill-input')" class="material-icons icon-skill">
+            highlight_off
+          </span>
+
+        </span>
+
+      </div>
+
+    </div>
+    <!-- Interest -->
+    <div *ngIf="isInterest" id="INTEREST" class="Common-style">
+      <div class="heading">
+        <span> Interests </span>
+        <span *ngIf="isMe()" (click)="addData('interest-input')" class="material-icons float-left add">
+          add_circle_outline
+        </span>
+      </div>
+      <div class="interest-divs">
+        <span *ngFor="let skill of interestsUser;let i = index" class="interest">
+          {{skill}}
+          <span (click)="deleteInterest(skill)" class="material-icons delete-icon">
+            highlight_off
+          </span>
+        </span>
+
+        <div id="interest-input" class="display-none">
+          <input id="interest-new" list="int" class="skill-input">
+          <datalist id="int">
+            <option *ngFor="let data of Categories" value="{{data.name}}">
+          </datalist>
+          <span (click)="NewInterest('interest-new')" class="material-icons icon-skill">
+            check_circle_outline
+          </span>
+          <span (click)="addData('interest-input')" class="material-icons icon-skill">
+            highlight_off
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Following -->
+    <div id="FOLLOW" class="Common-style">
+      <div class="heading follow-head">
+        <span> Following </span>
+      </div>
+    </div>
+    <div class="heading follow-head">
+      <span> Follow Suggestions </span>
+    </div>
+    <div *ngIf="isfollow" class="content-divs">
+      <div class="arrow arrow-left" (click)="swipe('minus')">
+        <span class="material-icons">
+          arrow_back_ios
+        </span>
+      </div>
+      <div *ngFor="let user of followList | slice:fY:fX; let i=index " class="user-card">
+        <div class="data-img">
+          <img
+            src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+            class="profile-image" alt="">
+        </div>
+        <div class="fllowUser">
+          {{user.name}}
+        </div>
+        <div>
+          {{user.type}}
+        </div>
+        <div class="followData">
+          {{user.no}} mutual
+          <br>
+          connections
+        </div>
+        <button class=" md-btn-profile md-btn-profile-usercard">
+          Follow
+        </button>
+        <br>
+        <button class=" md-btn-profile md-btn-profile-usercard">
+          Connect
+        </button>
+      </div>
+      <div class="arrow arrow-right" (click)="swipe('plus')">
+        <span class="material-icons">
+          arrow_forward_ios
+        </span>
+      </div>
+    </div>
+    <!-- Connections -->
+    <div class="heading follow-head">
+      <span> Your Connections </span>
+    </div>
+    <div class="Common-style">
+      <div class="content-divs">
+        <div class="data-img">
+          <img
+            src="https://images.unsplash.com/photo-1612699853852-c40b23cf4402?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80"
+            class="profile-image" alt="">
+        </div>
+        <div class="connect-user fllowUser">
+          Naman
+        </div>
+        <div class="connect-user followData">
+          Student
+        </div>
+        <div class="connect-user followData">
+          15 mutual connections
+        </div>
+        <div class="connect-user">
+          <button class=" md-btn-profile md-btn-profile-connectuser">
+            Remove
+          </button>
+        </div>
+        <div class="connect-user">
+          <button class=" md-btn-profile md-btn-profile-connectuser">
+            Unfollow
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

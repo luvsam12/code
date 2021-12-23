@@ -1,0 +1,173 @@
+<div id="container">
+
+    <h1><strong>WELCOME TO OLCADEMY COMMUNITY</strong></h1>
+    <div class="signupHead">
+        <div id="signup" (click)="selectedCategory('signup')" [ngClass]="pageSignup()">
+            <div> Sign Up </div>
+        </div>
+        <div id="login" (click)="selectedCategory('login')" [ngClass]="pageLogin()">
+            <div> Log In </div>
+        </div>
+    </div>
+    <div *ngIf="product.page==='signup'" class="signupBody">
+        <mat-form-field appearance="outline" class="example-full-width">
+            <input type="text" #name matInput [formControl]="firstnameFormControl" placeholder="Full Name">
+            <mat-error *ngIf="firstnameFormControl.hasError('required')">
+                Please Enter Full Name
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <input type="email" #email matInput [formControl]="emailFormControl" placeholder="Email Address">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter valid Email Addres
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                Please enter Email Addres
+            </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="example-full-width passHold">
+            <input id="password1" (click)="check(message.value.length)" appConfirmEqualValidator="password"
+                [ngClass]="error(true)" placeholder="Password" matInput #message [type]="hide ? 'password' : 'text'"
+                [formControl]="passFormControl">
+
+            <div *ngIf="show||passFormControl.hasError('pattern')||passFormControl.hasError('required')"
+                (click)="openGuidelinesDialogue()" class="info" mat-icon-button matSuffix>
+                <mat-icon class="infos">info</mat-icon>
+            </div>
+            <div *ngIf="!show&&!passFormControl.hasError('pattern')&&!passFormControl.hasError('required')" class="info"
+                mat-icon-button matSuffix>
+                <mat-icon class="check_circle">check_circle</mat-icon>
+                <!-- <mat-icon class="infos">info</mat-icon> //<i class="fas fa-check-circle"></i> -->
+            </div>
+            <div mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon class="btn btns">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </div>
+            <mat-error *ngIf="!passFormControl.hasError('required')&&passFormControl.hasError('pattern')">
+                Password should include {{errorPass(message.value)}}
+            </mat-error>
+            <mat-error *ngIf="passFormControl.hasError('required')">
+                Password should be atleast 8 characters long
+            </mat-error>
+            <mat-hint [ngClass]="check(message.value.length)">
+
+            </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width passHold">
+            <input (change)=errorMessage(message.value,confirm.value) class="password" placeholder="Password" matInput
+                #confirm [type]="hides ? 'password' : 'text'" [formControl]="passConFormControl">
+            <div class="info"
+                *ngIf="(message.value===confirm.value)&&!passConFormControl.hasError('required')&&!passConFormControl.hasError('pattern')"
+                class="info" mat-icon-button matSuffix>
+                <mat-icon class="check_circle">check_circle</mat-icon>
+            </div>
+            <div mat-icon-button matSuffix (click)="hides = !hides" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hides">
+                <mat-icon
+                    [ngClass]="iconClass((message.value===confirm.value)&&!passConFormControl.hasError('required')&&!passConFormControl.hasError('pattern'))">
+                    {{hides ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </div>
+            <mat-error
+                *ngIf="passConFormControl.hasError('pattern')||!(message.value===confirm.value)&&!passConFormControl.hasError('required')">
+                Password Must Match
+            </mat-error>
+            <mat-error *ngIf="passConFormControl.hasError('required')">
+                Passwords Must Match
+            </mat-error>
+            <!-- <mat-hint [ngClass]="check(message.value.length)">{{strength(message.value.length)}}</mat-hint> -->
+        </mat-form-field>
+
+
+
+        <p>
+            By signing up, you agree to our <span class="underline">Terms of Use</span> and <span
+                class="underline">Privacy Policy</span>
+        </p>
+        <!-- <button class="button">
+          Join for free
+      </button> -->
+        <button mat-raised-button
+            (click)="register((message.value===confirm.value)&&!passFormControl.hasError('pattern')&&!emailFormControl.hasError('email')&&!firstnameFormControl.hasError('required'),message.value,email.value,name.value )"
+            style="margin-top: 8px;"
+            class="mat-focus-indicator mat-raised-button mat-button-base mat-primary button authentication-btn common-btn">
+            Join for free
+        </button>
+
+        <p>
+            OR
+        </p>
+        <p class="options">
+            Sign Up with
+        </p>
+        <div id="icons">
+            <i class="fab fa-google fa-2x" (click)="google_login()"></i>
+            <i class="fab fa-facebook fa-2x"></i>
+            <i class="fab fa-linkedin fa-2x"></i>
+        </div>
+    </div>
+</div>
+
+<!------------------------------------- login page------------------------------------------------------------->
+
+<div *ngIf="product.page==='login'" class="signupBodyL">
+
+    <mat-form-field appearance="outline" class="example-full-width">
+        <input type="email" #user_email matInput placeholder="Email Address">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="example-full-width">
+        <input placeholder="Password" matInput #message [type]="hide ? 'password' : 'text'"
+            [formControl]="passFormControl">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon class="grey">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-hint *ngIf="login_check" style="color: red;font-size: 11px;">Incorrect Email Address or Password</mat-hint>
+    </mat-form-field>
+
+
+    <div routerLink="/forget-password"><p class="forgot">
+        Forgot Password?
+     </p></div>
+    <!-- <button class="button">
+          Log In
+      </button> -->
+    <button mat-raised-button (click)="login(user_email.value,message.value)" style="margin-top: 8px;"
+        class="mat-focus-indicator mat-raised-button mat-button-base mat-primary button authentication-btn common-btn">Log
+        In</button>
+
+    <p>
+        OR
+    </p>
+    <p class="options">
+        Sign Up with
+    </p>
+    <div id="icons">
+        <i class="fab fa-google fa-2x"></i>
+        <i class="fab fa-facebook fa-2x"></i>
+        <i class="fab fa-linkedin fa-2x"></i>
+    </div>
+    <p class="options">
+        New to Olcademy ?
+    </p>
+    <!-- <button class="button">
+          Join for free
+      </button> -->
+    <button mat-raised-button (click)="go_to_signup()" style="margin-top: 8px;"
+        class="mat-focus-indicator mat-raised-button mat-button-base mat-primary button authentication-btn common-btn">Join
+        for free</button>
+
+</div>
+
+<div id="header">
+    <div class="logo">
+        <div id="logo-image">
+            <img src={{logoPath}} class="logos">
+        </div>
+    </div>
+</div>

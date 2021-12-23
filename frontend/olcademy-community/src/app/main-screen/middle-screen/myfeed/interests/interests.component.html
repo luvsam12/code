@@ -1,0 +1,158 @@
+<div id="card-interest">
+    <mat-grid-list cols="5" rowHeight="200px" id="myFeed-grid">
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="itsoftware-img"></div>
+                <div class="interest-name">IT & Software</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[0]" id="interest-Follow-0"
+                    (click)="follow_click(0)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[0]" id="interest-Unollow-0"
+                    (click)="unfollow_click(0)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="business-img"></div>
+                <div class="interest-name">Business</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[1]" id="interest-Follow-1"
+                    (click)="follow_click(1)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[1]" id="interest-Unollow-1"
+                    (click)="unfollow_click(1)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="personality-development-img"></div>
+                <div class="interest-name-first">Personality</div>
+                <div class="interest-name-second">Development</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[2]" id="interest-Follow-2"
+                    (click)="follow_click(2)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[2]" id="interest-Unollow-2"
+                    (click)="unfollow_click(2)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="design-img"></div>
+                <div class="interest-name">Design</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[3]" id="interest-Follow-3"
+                    (click)="follow_click(3)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[3]" id="interest-Unollow-3"
+                    (click)="unfollow_click(3)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="marketing-img"></div>
+                <div class="interest-name">Marketing</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[4]" id="interest-Follow-4"
+                    (click)="follow_click(4)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[4]" id="interest-Unollow-4"
+                    (click)="unfollow_click(4)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+    <mat-grid-list cols="5" rowHeight="200px" id="myFeed-grid">
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="lifestyle-img"></div>
+                <div class="interest-name">Lifestyle</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[5]" id="interest-Follow-5"
+                    (click)="follow_click(5)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[5]" id="interest-Unollow-5"
+                    (click)="unfollow_click(5)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="photography-img"></div>
+                <div class="interest-name">Photography</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[6]" id="interest-Follow-6"
+                    (click)="follow_click(6)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[6]" id="interest-Unollow-6"
+                    (click)="unfollow_click(6)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="health-and-fitness-img"></div>
+                <div class="interest-name-first">Health &</div>
+                <div class="interest-name-second">Fitness</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[7]" id="interest-Follow-7"
+                    (click)="follow_click(7)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[7]" id="interest-Unollow-7"
+                    (click)="unfollow_click(7)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="teacher-training-img"></div>
+                <div class="interest-name-first">Teacher</div>
+                <div class="interest-name-second">Training</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[8]" id="interest-Follow-8"
+                    (click)="follow_click(8)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[8]" id="interest-Unollow-8"
+                    (click)="unfollow_click(8)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="music-img"></div>
+                <div class="interest-name">Music</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[9]" id="interest-Follow-9"
+                    (click)="follow_click(9)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[9]" id="interest-Unollow-9"
+                    (click)="unfollow_click(9)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+    <mat-grid-list cols="5" rowHeight="200px" id="myFeed-grid">
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="academics-img"></div>
+                <div class="interest-name">Academics</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[10]" id="interest-Follow-10"
+                    (click)="follow_click(10)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[10]" id="interest-Unollow-10"
+                    (click)="unfollow_click(10)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="language-img"></div>
+                <div class="interest-name">Language</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[11]" id="interest-Follow-11"
+                    (click)="follow_click(11)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[11]" id="interest-Unollow-11"
+                    (click)="unfollow_click(11)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="examination-img"></div>
+                <div class="interest-name">Examination</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[12]" id="interest-Follow-12"
+                    (click)="follow_click(12)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[12]" id="interest-Unollow-12"
+                    (click)="unfollow_click(12)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+            <div class="single-interest-box">
+                <div id="others-img"></div>
+                <div class="interest-name">Others</div>
+                <button class="interest-btn interest-follow-btn" *ngIf="!check_follow[13]" id="interest-Follow-13"
+                    (click)="follow_click(13)">Follow</button>
+                <button class="interest-btn interest-unfollow-btn" *ngIf="check_follow[13]" id="interest-Unollow-13"
+                    (click)="unfollow_click(13)">Unfollow</button>
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+</div>

@@ -1,0 +1,112 @@
+<div id="text-editor">
+
+    <div class="container">
+        <div>
+            <span class="material-icons arrow" (click)="go_back()">
+                arrow_back
+            </span>
+        </div>
+        <div class="editor">
+            <form [formGroup]="registerForm">
+                <div class="title_container" [formControl]="texteditor">
+                    <mat-form-field class="title">
+                        <input maxlength="80" formControlName="title" [formControl]="texteditor" type="text"
+                            style="text-align: center; font-weight: bold; " placeholder="Title" name="title"
+                            [(ngModel)]="post_title" matInput [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+                            id="title-counter">
+
+                    </mat-form-field>
+                </div>
+                <div class="counter" id="counter">{{title_counter()}}</div>
+                <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                    <div *ngIf="f.title.errors.required">
+                        *Title is mandatory
+                    </div>
+                </div>
+                <br>
+                <div class="blog-details">
+                    <p class="name" name="aurther-name" routerLink="/user-page"> {{author_name | titlecase}}
+                    </p>
+                    <p class="time-stamp" name="time"> {{Time_stamp}} </p>
+                </div>
+                <quill-editor id="editor" formControlName="editor_text" [readOnly]="check_editor()"
+                    [styles]="{height:'290px'}" class="quill-editor-container" [modules]="editorModules"
+                    name="editor-text" [(ngModel)]="editor_text" required
+                    [ngClass]="{ 'is-invalid-editor': submitted && f.editor_text.errors }">
+                </quill-editor>
+                <div id="editor-counter">{{editor_text_counter()}}</div>
+                <!-- <div id="counter"></div> -->
+                <div *ngIf="submitted && f.editor_text.errors" class="invalid-feedback">
+                    <div *ngIf="f.editor_text.errors.required">
+                        *Field is mandatory
+                    </div>
+                </div>
+                <div class="hash-tag">
+                    <div class="tag" *ngIf=(category_selected)>
+                        #{{category_selected}}
+                    </div>
+                    <div class="tag" *ngFor="let tag of tags; let i=index">
+                        #{{tag}}
+                        <i class="far fa-times-circle" (click)="delete_tag(i)"></i>
+                    </div>
+                </div>
+                <div class="media">
+                    <span style="margin-right: 20px;">Add Media:</span>
+                    <button mat-raised-button class="media_btn text-editor-btn text-editor-media-btn"
+                        (click)="openuploadDialogue('images')">Image</button>
+                    <!-- naman -->
+                    <!-- <button mat-raised-button class="media_btn" (click)="openuploadDialogue('videos')"> Video</button> -->
+                    <!-- naman -->
+                    <button mat-raised-button class="media_btn text-editor-btn text-editor-media-btn"
+                        (click)="showlink()"> Video</button>
+                    <div class="add-link" *ngIf=(show_link)>
+                        Link: <input type="text" [formControl]="texteditor" name="hash_tag" #add_link
+                            placeholder="Embedded link">
+                        <button mat-raised-button class="media_btn" (click)="addlink(add_link.value)">Add</button>
+                    </div>
+                    <!-- <button mat-raised-button class="media_btn" (click)="openuploadDialogue('documents')">Document</button> -->
+                </div>
+                <br>
+                <div>
+                    <p class="add_tags_container"> Add Tags: </p>
+                    <div class="add-tag">
+                        <input type="text" [formControl]="texteditor" name="hash_tag" #hash_tag id="hash-tag"
+                            placeholder="Write Tag">
+                        <button class="search-btn" (click)="addtag(hash_tag.value)">Add</button>
+                    </div>
+                    <p class="add_tags_category"> Category: </p>
+                    <mat-form-field class="select_category_list">
+                        <mat-select formControlName="category_selected" placeholder="select" name="category"
+                            [(ngModel)]="category_selected"
+                            [ngClass]="{ 'is-invalid': submitted && f.category_selected.errors }">
+                            <mat-option value="{{category.name}}" *ngFor="let category of categories">{{
+                                category.name
+                                }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="submitted && f.category_selected.errors" class="invalid-feedback">
+                    <div *ngIf="f.category_selected.errors.required">
+                        *Category is mandatory
+                    </div>
+                </div>
+                <div *ngIf="error_tag" class="error-tag invalid-feedback">
+                    *Enter a valid hashtag.
+                </div>
+                <div *ngIf="tags_limit" class="error-tag invalid-feedback">
+                    *Limit to 10 tags
+                </div>
+                <button mat-raised-button class="final_submit_btn text-editor-btn popup-btn text-editor-publish-btn"
+                    *ngIf="!Is_editable" (click)="post()">Publish</button>
+                <button mat-raised-button class="final_submit_btn" *ngIf="Is_editable"
+                    (click)="update()">Update</button>
+            </form>
+        </div>
+        <div class="options">
+            <div class="tooltip">
+                <i class="fas fa-info-circle i" (click)="openGuidelinesDialogue()"></i>
+                <span class="tooltiptext">View Guidelines</span>
+            </div>
+        </div>
+    </div>
+</div>

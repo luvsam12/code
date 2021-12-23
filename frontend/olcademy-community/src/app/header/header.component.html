@@ -1,0 +1,163 @@
+<div id="header-grid">
+    <div class="logo_container">
+        <div id="logo-image" (click)="home()">
+        </div>
+    </div>
+    <div style="width: 3.44%;">
+        <button class="option"><i class="fas fa-bars" id="option-icon"></i></button>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Search" (keyup)="enterKey($event)">
+        <button type="submit" class="search-btn"><i class="fas fa-search search_icon"></i></button>
+    </div>
+    <div class="tabs">
+        <div class="tab" (click)="navigate('courses')" id="courses">
+            <div id="courses-icon">
+            </div>
+            <div class="tab-label">
+                Courses
+            </div>
+        </div>
+
+        <div class="tab" (click)="navigate('myfeed')" id="myfeed" *ngIf="(login)">
+            <div id="myfeed-icon">
+            </div>
+            <div class="tab-label">
+                My Feed
+            </div>
+        </div>
+
+        <div class="tab" (click)="navigate('forum')" id="forum">
+            <div id="forum-icon">
+            </div>
+            <div class="tab-label">
+                Forum
+            </div>
+        </div>
+
+        <div class="tab" (click)="navigate('blogs')" id="blogs">
+            <div id="blogs-icon">
+            </div>
+            <div class="tab-label">
+                Blogs
+            </div>
+        </div>
+
+        <div class="tab" (click)="navigate('network')" id="network" *ngIf="(login)">
+            <div id="network-icon">
+            </div>
+            <div class="tab-label">
+                Network
+            </div>
+        </div>
+
+        <div class="tab" (click)="navigate('tests')" id="tests">
+            <div id="assessment-icon">
+            </div>
+            <div class="tab-label">
+                Tests
+            </div>
+        </div>
+
+    </div>
+    <div *ngIf="!(login)" style="width: 5.89%;"></div>
+    <div class="signup-login" *ngIf="!(login)">
+        <div class="sign-up" (click)="go_to_signup()">
+            <button class="md-btn md-btn-header" id="signup">Sign Up</button>
+            &nbsp;&nbsp;
+        </div>
+        <div class="login" (click)="go_to_login()">
+            <button class="md-btn md-btn-header" id="login">Log In</button>
+
+        </div>
+    </div>
+    <div style="width: 8.89%;" *ngIf="(login)"></div>
+    <div class="notification-and-user" *ngIf="(login)">
+
+        <div class="tab" id="notification">
+            <button mat-icon-button [matMenuTriggerFor]="menu1" class="mat-menu-button">
+                <mat-icon matBadge="{{unread_notification}}" matBadgeSize="small" matBadgeColor="warn">
+                    <div id="notification-icon">
+                    </div>
+                </mat-icon>
+
+                <!-- <div class="notification-label">
+                    Notification
+                </div> -->
+            </button>
+            <mat-menu class="mat-menu-panel-1" #menu1="matMenu">
+                <div>
+                    <h3 style="text-align:center; color:#00ABF3">Notifications</h3>
+                </div>
+                <mat-card [ngClass]="notificationBackground()"
+                    *ngFor="let notification of notification_array let i=index">
+                    <div class="thread-card">
+                        <div class="profile-picture">
+                            <img [src]="author_image_path[i]" />
+                        </div>
+                        <div class="thread-details">
+                            <div class="thread-title">
+                                <span>{{notification.notification_user_type}}</span>
+                                <span class="time_notif">{{notification.created_on | date:'hh:mm a'}}</span>
+                                <button class="togglebtn1">
+                                    <i class="fas fa-ellipsis-v" (click)="toggleDisplay('ul1')"></i>
+                                </button>
+                                <!--(click)="toggleDisplay()-->
+                            </div>
+                            <div class="options">
+                                <ul [hidden]="isShow" class="options-ul" id="ul1">
+                                    <li>
+                                        <div id="Bookmark_status" (click)="Bookmark('Bookmark_status')">
+                                            Bookmark this Post
+                                        </div>
+                                    </li>
+                                    <li id="Notify_status" (click)="Notify('Notify_status')">
+                                        Turn Off Notification
+                                    </li>
+                                    <!-- routerLink="/blogs"-->
+                                    <li id="Follow_status" (click)="Follow('Follow_status')">
+                                        Unfollow User
+                                    </li>
+                                    <li (click)="Remove('card1')">Remove Notification</li>
+                                </ul>
+                            </div>
+
+                            <div class="thread-desc">
+                                <p class="notify_text">
+                                    {{notification.notification_message}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+
+                <div>
+                    <h3 style="text-align:center; margin: 0; cursor: pointer;" (click)="navigate('notification')">
+                        <u>View All</u>
+                    </h3>
+                </div>
+            </mat-menu>
+        </div>
+
+        <div class="tab">
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="mat-menu-button"
+                style="margin-top: 3.3px !important;">
+                <div id="username-icon">
+                    <img style="border-radius: 100px;zoom: 0.9;" [src]=userimage alt="">
+                </div>
+                <div class="header-user-name">
+                    {{user_data.authdata.full_name.split(" ")[0] | titlecase}}
+                </div>
+            </button>
+            <mat-menu #menu="matMenu">
+                <div>
+                    <button mat-menu-item value="{{category}}" *ngFor="let category of categories"
+                        (click)="options(category)">
+                        <span>{{category}}</span>
+                    </button>
+                </div>
+            </mat-menu>
+
+        </div>
+    </div>
+</div>

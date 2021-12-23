@@ -1,0 +1,45 @@
+<div class="my-attempts-right">
+    <h2 class="my-attempts-heading">My Attempts</h2>
+    <div class="my-attempts-stats">
+        <div class="each-stat" *ngFor="let result of myAttempts">
+            <div class="img-sec">
+                <img *ngIf="result.type == 'mock-test'"
+                    src="https://freepikpsd.com/wp-content/uploads/2019/10/cronograma-png-9-Transparent-Images.png"
+                    alt="">
+                <img *ngIf="result.type == 'practice-que'"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGsbDvz2_wsOP59p533R9Su9SwmOrfILm7kMew5raphKa4JuB2VdP7nhdYPckl-vhieIdlBvTuJWXUo5zc4lKJ5YoGhuu26kx0bA&usqp=CAU&ec=45768321"
+                    alt="">
+            </div>
+            <div class="description">
+                <p>{{result.name}}</p>
+            </div>
+            <div class="stat">
+                <p>{{result.number}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-grp">
+        <button class="attempts-btn large-2-btn" (click)="goToMyAttempts()">Go To My Attempts</button>
+    </div>
+    <hr>
+</div>
+<div class="upload-solve-questions-right">
+    <p class="upload-que-text">Upload Questions, earn Kudos!</p>
+    <div class="img-sec">
+        <img src="https://i.ibb.co/SKCjB90/brp-research-paper-2x.png" alt="">
+    </div>
+    <div class="btn-grp">
+        <button class="attempts-btn large-2-btn" (click)="goToUploadQuestions()">Upload Questions</button>
+    </div>
+</div>
+
+<!-- <div class="upload-solve-questions-right">
+    <p class="solve-que-text">Want To Solve Questions?</p>
+    <div class="img-sec">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/001/260/853/small/online-education-materials-icon.jpg" alt="">
+    </div>
+    <div class="btn-grp">
+        <button class="attempts-btn" (click)="goToSolvedQuestions()" >Solve Questions</button>
+    </div>
+</div> -->

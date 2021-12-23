@@ -1,0 +1,138 @@
+<h2 mat-dialog-title style="text-align:center; color: grey">Choose your interest</h2>
+<div id="card-popup">
+
+    <mat-dialog-content class="mat-typography">
+        <mat-grid-list cols="5" rowHeight="200px" id="myFeed-grid">
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="itsoftware-img"></div>
+                    <div class="interest-name">IT & Software</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-0"
+                        (click)="follow_click(0)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="business-img"></div>
+                    <div class="interest-name">Business</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-1"
+                        (click)="follow_click(1)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="personality-development-img"></div>
+                    <div class="interest-name-first">Personality</div>
+                    <div class="interest-name-second">Development</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-2"
+                        (click)="follow_click(2)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="design-img"></div>
+                    <div class="interest-name">Design</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-3"
+                        (click)="follow_click(3)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="marketing-img"></div>
+                    <div class="interest-name">Marketing</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-4"
+                        (click)="follow_click(4)">Follow</button>
+                </div>
+            </mat-grid-tile>
+
+
+        </mat-grid-list>
+
+        <mat-grid-list cols="5" rowHeight="200px" id="myFeed-grid">
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="lifestyle-img"></div>
+                    <div class="interest-name">Lifestyle</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-5"
+                        (click)="follow_click(5)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="photography-img"></div>
+                    <div class="interest-name">Photography</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-6"
+                        (click)="follow_click(6)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="health-and-fitness-img"></div>
+                    <div class="interest-name-first">Health &</div>
+                    <div class="interest-name-second">Fitness</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-7"
+                        (click)="follow_click(7)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="teacher-training-img"></div>
+                    <div class="interest-name-first">Teacher</div>
+                    <div class="interest-name-second">Training</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-8"
+                        (click)="follow_click(8)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="music-img"></div>
+                    <div class="interest-name">Music</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-9"
+                        (click)="follow_click(9)">Follow</button>
+                </div>
+            </mat-grid-tile>
+
+
+        </mat-grid-list>
+        <mat-grid-list cols="5" rowHeight="200px" id="myFeed-grid">
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="academics-img"></div>
+                    <div class="interest-name">Academics</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-10"
+                        (click)="follow_click(10)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="language-img"></div>
+                    <div class="interest-name">Language</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-11"
+                        (click)="follow_click(11)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="examination-img"></div>
+                    <div class="interest-name">Examination</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-12"
+                        (click)="follow_click(12)">Follow</button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1" class="my-feed-tile">
+                <div class="single-interest-box">
+                    <div id="others-img"></div>
+                    <div class="interest-name">Others</div>
+                    <button class="interest-btn interest-follow-btn" id="interest-Follow-13"
+                        (click)="follow_click(13)">Follow</button>
+                </div>
+            </mat-grid-tile>
+
+
+        </mat-grid-list>
+    </mat-dialog-content>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button id="interest-skip" routerLink="/myfeed" mat-dialog-close>Skip for now</button>
+    <button mat-raised-button id="interest-apply" (click)="click_apply()" mat-dialog-close disabled>Apply</button>
+</mat-dialog-actions>

@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+$olcademy-community-body-grey: RGB(242,242,242);
+$olcademy-community-shadow-grey: #b6b5b5;
+$olcademy-community-light-blue: #d0edfa;
+$olcademy-community-medium-blue: #00ABF3;
+$olcademy-community-text-grey: #808080;
+$olcademy-community-text-light-black: rgb(75, 74, 74);;
+$olcademy-community-white: #FFFFFF;
+$olcademy-community-breadcrumb-blue: rgb(186, 230, 252);
+$olcademy-community-border-black: #000000;
+
+
+// font styling
+$olcademy-community-font-family: microsoft jhenghei;
+$olcademy-community-font-size-small: 11px;
+$olcademy-community-font-size-medium: 15px; 
+$olcademy-community-font-size-large: 18px;
+
+
+// box shadow should be strictly follow for every component.
+$olcademy-community-box-shadow:  7px 8px 5px -5px $olcademy-community-shadow-grey;
+
+// box-shadow: 5px 5px 20px;
+
+//for the icon background color in courses, forum, blogs, network.
+$bg_color: (#FFBD33, #0084C5 ,#FF5733 ,#A368FD , #FFF267,#ABFF85,#87D9FE,#FE5E59,#454544,#33B0FF,#C6F91F,#FECC48,#02DC61);
+
+//for the icon background color in assesment part. 
+$test_color: (#FFBD33, #0084C5 ,#FF5733 ,#A368FD );

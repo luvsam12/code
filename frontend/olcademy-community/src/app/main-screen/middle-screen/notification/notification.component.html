@@ -1,0 +1,42 @@
+<mat-card class="thread-topic-card " [ngClass]="notificationBackground()" id="card1"
+  *ngFor="let notification of notification_array let i=index">
+  <div class="thread-card">
+    <div class="profile-picture">
+      <img [src]="author_image_path[i]" />
+    </div>
+    <div class="thread-details">
+      <div class="thread-title" (click)="go_to_link(notification._id)">
+      <!-- <div class="thread-title"> -->
+        <span>Thread Title</span>
+        <span class="time_notif">{{notification.created_on | date:'hh:mm a'}}</span>
+        <button class="togglebtn1">
+          <i class="fas fa-ellipsis-v" (click)="toggleDisplay('ul1')"></i>
+        </button>
+        <!--(click)="toggleDisplay()-->
+      </div>
+      <div class="options">
+        <ul [hidden]="isShow" class="options-ul" id="ul1">
+          <li>
+            <div id="Bookmark_status" (click)="Bookmark('Bookmark_status')">
+              Bookmark this Post
+            </div>
+          </li>
+          <li id="Notify_status" (click)="Notify('Notify_status')">
+            Turn Off Notification
+          </li>
+          <!-- routerLink="/blogs"-->
+          <li id="Follow_status" (click)="Follow('Follow_status')">
+            Unfollow User
+          </li>
+          <li (click)="Remove('card1')">Remove Notification</li>
+        </ul>
+      </div>
+
+      <div class="thread-desc">
+        <p class="notify_text">
+          {{notification.notification_message}}
+        </p>
+      </div>
+    </div>
+  </div>
+</mat-card>

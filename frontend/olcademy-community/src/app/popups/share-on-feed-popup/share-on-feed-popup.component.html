@@ -1,0 +1,86 @@
+<div class="container">
+    <h2 class="heading">Share</h2>
+    <div class="header">
+        <div class="userImage">
+            <img src="https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png" alt="">
+        </div>
+        <div class="questionArea">
+            <input type="text" class="topicName" placeholder="Topic Name" >
+            <h4 class="userDetails" >24/12/2020 | By Ankit Biswal</h4>
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" class="query" placeholder="Ask Your Question" spellcheck="false"></textarea>
+        </div>
+    </div>
+    <div class="originalPost">
+        <mat-card class="example-card">
+            <i class="fas fa-ellipsis-v"></i>
+            <mat-card-header>
+                <div mat-card-avatar class="user-image">
+                    <img src="./../../../assets/icons/8. User Name.png" alt="">
+                </div>
+                <mat-card-title class="post-title" >{{post.postTitle}}</mat-card-title>
+                <mat-card-subtitle>{{post.date}} | BY {{post.postAuthor}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="card-content" >
+                <div class="thread-desc">
+                    <!-- <input type="checkbox" id="expanded"> -->
+                    <p>{{post.postDescription.substring(0, 150)}}...</p>
+                    <!-- <label for="expanded" role="button">more</label> -->
+                </div>
+                <mat-grid-list cols="2">
+                    <mat-grid-tile  class="ivd" *ngFor="let img of post.imgs; let i=index">
+                        <img src={{img}} alt="">
+                    </mat-grid-tile>
+                    <mat-grid-tile  class="ivd">
+                        <div>
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile  class="ivd" *ngIf="post.imgs.length > 4">
+                        <div>
+                            <span>+{{post.imgs.length - 3}}</span>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+    
+                <div class="thread-tags">
+                    <div class="tag" *ngFor="let tag of post.tags"># {{tag}}</div>
+                </div>
+    
+                <div class="section">
+                    <div>
+                        <i class="fas fa-thumbs-up"></i> 222 Kudos
+                    </div>
+                    <div>
+                        <i class="fas fa-comment"></i> 22 Comment
+                    </div>
+                    <div>
+                        <i class="fas fa-share-alt"></i> Share
+                    </div>
+                    <div>
+                        <i class="fas fa-bookmark"></i> Bookmark
+                    </div>
+                    <div>
+                        <i class="fas fa-eye"></i> 1222 Views
+                    </div>
+                </div>
+            </mat-card-content>
+          </mat-card>
+    </div>
+
+    <div class="attributes">
+        <div class="addingTag">
+            <input type="text" placeholder="Add Tag" class="addTagInput">
+            <button class="tagBtn">Add</button>
+        </div>
+        <div class="categorySelector">
+            <label for="selectCategory" class="category">Category:</label>
+            <div id="selectCategory" class="select">Select <i class="fas fa-caret-down"></i></div>
+        </div>
+    </div>
+
+    <div class="submit">
+        <button class="submitBtn">Share</button>
+    </div>
+
+    <i class="far fa-times-circle" (click)="onNoClick()"></i>
+</div>

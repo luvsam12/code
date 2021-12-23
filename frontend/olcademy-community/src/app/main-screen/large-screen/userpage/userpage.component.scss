@@ -1,0 +1,420 @@
+@import "./../../../../assets/css/default_styles.scss";
+
+
+.main-div{
+  // display: grid;
+  // grid-template-columns: 5fr 14fr;
+  width: 74%;
+  color: grey;
+  justify-content: space-between;
+}
+.right-icons{
+  float: right;
+  color: #808080;
+}
+.float-left button{
+  width: 100px;
+  position: relative;
+  margin: 0 10px;
+  top: -6px;
+  height: 25px;
+  color: #FFFFFF;
+  background-color: #00ABF3;
+  border: none;
+  border-radius: 20px;
+}
+.left-div{
+  margin-left: 40px;
+  position: fixed;
+}
+.contents-divs{
+  display: grid;
+  grid-template-columns: 0.7fr 5fr 1fr;
+}
+.middle-div{
+  width:75%;
+  margin-top: 30px;
+  margin-left: 25%;
+  background-color: transparent;
+}
+.Common-style{
+  width: 100%;
+  margin-bottom: 20px;
+  background-color:#FFFFFF;
+  box-shadow: 7px 8px 5px -3px #b6b5b5;
+}
+.email{
+  margin-right: 4px;
+}
+.about-me-left{
+  width: 50%;
+  margin-left: 2%;
+}
+.dob{
+  margin-right: 21px;
+}
+.bio-data{
+  padding: 5px 10px 5px 10px;
+  text-align: justify;
+}
+.bio-edit{
+  margin: 5px 10%;
+}
+.skill-input{
+  background-color:#FFFFFF;
+  border: 1px solid black;
+  border-radius: 40px;
+  margin: 5px;
+  height: 25px;
+  text-align: center;
+  font-size: 12px;
+  outline: none !important;
+
+}
+.interest-divs{
+  padding: 10px 15px;
+}
+.delete-icon {
+  font-size: 16px;
+  position: relative;
+  left: 4%;
+  top: 3px;
+}
+.icon-skill{
+  position: relative;
+  left: -39px;
+  top:11px;
+  font-size: 16px;
+}
+.interest{
+  background-color: #e4e2e2;
+  border-radius: 40px;
+  line-height: 30px;
+  width: 100px;
+  margin: 10px 6px;
+  padding: 9px 30px;
+  text-align: center;
+  font-size: 10px;
+  color:black;
+}
+.skill{
+  background-color: #b3b2b2;
+  border-radius: 40px;
+  line-height: 30px;
+  width: 23%;
+  margin: 5px 1%;
+  text-align: center;
+  font-size: 12px;
+  color:black;
+}
+.bio{
+  text-align: center;
+  margin: 20px 0px 10px;
+  text-decoration: underline;
+  font-weight: bold;
+  color: black;
+}
+.gender{
+  margin-right: 10px;
+}
+.place{
+  margin-right: 62px;
+}
+.about-me{
+  color: #00ABF3;
+}
+.content-divs{
+  display: flex;
+}
+.Country{
+  margin-left: 103.5px;
+}
+.data-middle{
+  width: 70%;
+  margin: 10px 0 20px 20px;
+
+}
+.user-card{
+  width: 18%;
+  height: 30%;
+  box-shadow: 7px 8px 5px -5px #b6b5b5;
+  background-color: #FFFFFF;
+  text-align: center;
+  margin-right: 0.5%;
+  margin-left: 0.5%;
+}
+// .user-card button{
+//   background-color: $olcademy-community-medium-blue;
+//   border: none;
+//   border-radius: 20px;
+//   width: 70%;
+//   color:$olcademy-community-white;
+//   padding-top: 5px;
+//   padding-bottom: 5px;
+//   margin-bottom: 5px;
+// }
+.arrow-left{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.arrow-right{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.connect-user{
+  margin:30px 3.7%
+}
+// .connect-user button{
+//   background-color: $olcademy-community-medium-blue;
+//   border: none;
+//   border-radius: 20px;
+//   width: 120%;
+//   color:$olcademy-community-white;
+//   padding-top: 5px;
+//   padding-bottom: 5px;
+// }
+.editData{
+  margin-left: 10%;
+  margin-top: 30px;
+}
+.black{
+  color:black;
+  font-size: 12px;
+}
+.hr{
+  width: 90%;
+}
+.fllowUser{
+  font-size: 18px;
+}
+.followData{
+  font-size: 12px;
+}
+.user-card img{
+    margin: 20px 20px 5px !important;
+}
+.iconsEdit{
+  margin-top: 30px;
+}
+.data-middle input{
+  width:70%;
+}
+.checkbox{
+  width: 20px !important;
+}
+.dates{
+  width: 30% !important;
+}
+.data-img img{
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  margin: 20px 20px
+}
+.display-none{
+  display: none;
+}
+.heading{
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 0;
+  margin-left: 6%;
+}
+.follow-head{
+  margin-left: 0 !important;
+}
+.edit{
+  zoom: 0.9;
+  margin-right: 10px;
+  border: 1px solid #808080;
+  border-radius: 20px;
+  cursor: pointer;
+  float: right;
+}
+.add{
+  margin-right: 10px;
+  font-size: 30px;
+  cursor: pointer;
+  float: right;
+}
+.share-icon{
+  cursor: pointer;
+  float: right;
+}
+
+.username{
+  font-size: 25px;
+  color: #00ABF3;
+}
+.usertype{
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color:  #00ABF3;
+}
+
+
+
+// profile-image-section
+
+.profile-image-section {
+  position: relative;
+  margin: -10px 18px;
+  margin-bottom: 10px;
+}
+
+.arrow
+{
+  zoom: 1.2;
+  border-radius: 100px;
+  border: 1px solid #888888;
+  margin-left: 10px;
+  margin-top: -10px;
+  position: fixed;
+}
+
+.arrow:hover
+{
+  cursor: pointer;
+}
+
+.arrow:focus
+{
+outline: none;
+}
+
+.profile-image-div {
+
+  .image-attributes {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+
+    .edit-btn {
+      display: none;
+      border-radius: 20px;
+      border: 1px solid #888888;
+      padding: 0.3em 2.7em;
+      font-size: 11px;
+      font-family: microsoft jhenghei;
+      color: rgb(89, 89, 89);
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+
+    .edit-btn:focus {
+      outline: none;
+    }
+  }
+  .image-attributes:hover {
+    background-color: #53687299;
+
+    .edit-btn {
+      display: block;
+    }
+  }
+
+  .profile-image {
+    height: 160px;
+    border-radius: 50%;
+  }
+}
+
+// each-category stylings
+.each-category {
+  font-size: 15px;
+  font-family: microsoft jhenghei;
+  font-weight: 500;
+  padding: 0.5rem 0.5rem 0.5rem 1.4rem;
+  color: grey;
+  border-left: 5px solid transparent;
+
+  cursor: pointer;
+  text-align: center;
+  margin-left: 16px;
+  margin-right: 40px;
+}
+
+// optional active class on each category list
+.activecategory {
+  border-left: 5px solid rgb(1, 169, 242);
+}
+.activecategory-onlink {
+  color: rgb(1, 169, 242) ;
+}
+
+
+.Details{
+  display: grid;
+  grid-template-columns: 4fr 4fr 2fr;
+}
+
+
+.user-data{
+  padding: 10px;
+  height: 145px;
+}
+
+
+.blue-btn {
+  background-color: rgb(1, 169, 242);
+  color: white;
+  margin-right: 5px;
+}
+
+.grey-btn {
+  background-color: rgb(242, 242, 242);
+  margin-right: 5px;
+}
+
+
+
+.blue-btn, .grey-btn {
+  border: none;
+  border-radius: 20px;
+  width: 125px;
+  height: 25px;
+  padding: 0.3em;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+.blue-btn:focus, .grey-btn:focus {
+  outline: none;
+}
+
+.connection{
+  padding: 0px 10px;
+
+}
+
+
+.mat-menu-button{
+  padding: 0;
+  min-width: 0;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  line-height: 0px;
+  border-radius: 50%;
+  border: none;
+  color: #808080;
+}
+
+
+
+.more_option{
+  float: right;
+  margin: -4px 0px 0px 0px;
+  zoom: 1.3;
+}
+
+
+.material-icons{
+  cursor: pointer;
+}
+

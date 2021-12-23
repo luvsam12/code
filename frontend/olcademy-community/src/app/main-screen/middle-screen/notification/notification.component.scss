@@ -1,0 +1,86 @@
+.profile-picture img {
+  
+    width: 55%;
+    height: 60%;
+    border-radius: 100px;
+  }
+
+  .thread-details{
+      margin-left:-1vw;
+  }
+
+  .togglebtn1{
+    float:right;
+    margin-left:20vw;
+  }
+
+  //mat-card basic css
+  .thread-card .thread-details .thread-title {
+      font-family:microsoft jhenghei;
+      button {
+        background: transparent;
+        outline: none;
+        border: none;
+        float: right;
+        color: grey;
+        margin-right: -2vw;
+        margin-top:1.2%;
+      }
+  }
+
+  // Card Text css
+  .time_notif{
+    margin-left:31vw;
+  }
+
+  .notify_text{
+    margin-bottom:-0.3vh;
+  }
+
+
+  //Unread-card css
+  .unreaad-card{
+      background-color:#e5f6fe;
+  }
+
+
+    /* Drop down menu*/
+  .options ul {
+    z-index:1;
+    padding: 0;
+    position: relative;
+    left: 110%;
+    background-color: white;
+    border: grey solid 1px;
+    width: 130px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    padding: 3px 0 3px 0;
+    border: 1px solid grey;
+    margin-bottom:-109.5px;
+  }
+  
+  .options ul li {
+    font-size: 11px;
+    font-family: microsoft jhenghei;
+  display: block; 
+  padding: 1.5px 5px 1.5px 5px;
+  
+  }
+
+  .options ul li:hover{
+    background: rgb(208, 246, 253);
+    border-top: 1px solid grey;
+    padding: 0.5px 5px 0.5px 5px;
+    border-bottom: 1px solid grey;
+  }
+  .options:hover ul{
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+

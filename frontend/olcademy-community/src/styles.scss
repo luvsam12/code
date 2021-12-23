@@ -1,0 +1,1729 @@
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+
+
+
+// to import the color file in this main style file.
+@import "assets/css/default_styles.scss";
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$olcademy-community-primary: mat-palette($mat-blue);
+$olcademy-community-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$olcademy-community-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$olcademy-community-theme: mat-light-theme((
+  color: (
+    primary: $olcademy-community-primary,
+    accent: $olcademy-community-accent,
+    warn: $olcademy-community-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($olcademy-community-theme);
+
+
+
+
+html, body { height: 100%; }
+body { margin: 70px  auto !important; font-family: $olcademy-community-font-family; background-color: rgb(242,242,242) !important; }
+
+header {
+  height: 49px;
+  width: 100%;
+  margin: 0;
+  margin-top: -70px;
+  background-color: $olcademy-community-white;
+  box-shadow: $olcademy-community-box-shadow;
+  position: fixed;
+  z-index: 5;
+  text-align: center;
+}
+#header{
+  position: fixed;
+  top:0px;
+  width: 100%;
+  background-color: white;
+  box-shadow: $olcademy-community-box-shadow;
+}
+#header{
+  position: fixed;
+  top:0px;
+  width: 100%;
+  background-color: white;
+  box-shadow: $olcademy-community-box-shadow;
+}
+body {
+  background-color: $olcademy-community-body-grey;
+  margin-top: 70px;
+}
+
+.body{
+  margin: auto;
+  width: 100%;
+  max-width: 1519px;
+  justify-content: center;
+  ;
+}
+
+
+#header-grid {
+  //margin-right: ;
+ max-width: 1519px;
+ margin-right:auto;
+ margin-left: auto;;
+  height: 50px;
+  display: flex;
+   flex-direction: row;
+   justify-content: left;
+
+}
+
+.logo_container{
+  width: 15.5%;
+  margin-left: 10px;
+  margin-top: 3px;
+}
+.logo {
+  height: 40px;
+  cursor: pointer;
+}
+.logos {
+  height: 40px;
+  cursor: pointer;
+  margin:1px 45%
+}
+
+.option {
+  border: none;
+  background: transparent;
+  outline: none;
+  height: 47px;
+  vertical-align: middle;
+}
+
+.option :hover{
+  cursor: pointer;
+}
+
+#option-icon {
+  font-size: 25px;
+  color: $olcademy-community-text-grey;
+}
+.search{
+  width: 20.68%;
+  line-height: 44px;
+}
+
+.search :hover{
+  cursor: pointer;
+}
+
+.search input {
+  width: 180px;
+  height: 25px;
+  border: 1px solid $olcademy-community-text-grey;
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-right: 50px;
+  outline: none;
+  background-color: $olcademy-community-body-grey;
+}
+::placeholder{
+  color: rgb(206, 203, 203);
+  font-family: $olcademy-community-font-family;
+}
+
+.search input:focus {
+  background-color: $olcademy-community-white;
+}
+
+.search button {
+  margin-left: -38.5px;
+  border: none;
+  height: 28px;
+  border-left: 1px solid $olcademy-community-text-grey;
+  background: transparent;
+  font-size: 18px;
+  width: 37px;
+  padding-bottom: 4px;
+  position: absolute;
+  margin-top: 8px;
+}
+
+.search button:focus {
+  background-color: $olcademy-community-medium-blue;
+  color: $olcademy-community-white;
+  // position:absolute;
+  margin-top: -5px;
+  border: none;
+  height: 28px;
+  border: 1px solid $olcademy-community-text-grey;
+  border-bottom: none;
+  border-radius: 0px 25px 25px 0px;
+  // background: transparent;
+  font-size: 18px;
+  width: 38px;
+  padding-bottom: 4px;
+  outline: none;
+  margin-top: 8px;
+}
+
+.search_icon{
+  margin-top: 3px;
+  line-height: 1.3;
+}
+
+.tabs {
+  width: 37.93%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding-top: 2px;
+}
+
+.tabs :hover{
+  cursor: pointer;
+}
+
+
+.tab {
+  text-align: center;
+  height: 42px;
+  font-size: $olcademy-community-font-size-small;
+  color: $olcademy-community-text-grey;
+  border-bottom: thick solid $olcademy-community-white;
+}
+
+.tab-label{
+  margin-top: -5px;
+  font-family: $olcademy-community-font-family;
+  font-weight: bold;
+}
+
+.notification-label{
+  font-family: $olcademy-community-font-family;
+  font-weight: bold;
+  margin-left: -12px;
+  margin-top: -15px;
+  font-size: 11px;
+}
+
+.header-user-name {
+  font-family: $olcademy-community-font-family;
+  font-weight: bold;
+  margin-top: -30px;
+  font-size: 11px;
+}
+
+.notification-and-user {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 12.34%;
+  padding-top: 2px;
+  height: 40px;
+  text-align: center;
+  font-size: 11px;
+  color: #808080;
+  border-bottom: thick solid #FFFFFF;
+}
+
+.notification-and-user :hover{
+  cursor: pointer;
+}
+
+.notification-and-user img {
+  height: 34px;
+  width: 34px;
+}
+
+
+
+
+.username{
+  overflow: hidden;
+}
+
+
+.signup-login {
+  width: 15.34%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  // margin-right: -30px;
+  text-align: center;
+  padding-top: 9px;
+}
+
+.signup-login :hover{
+  cursor: pointer;
+}
+
+// .signup-login button {
+//   border: none;
+//   outline: none;
+//   color: $olcademy-community-white;
+//   background-color: $olcademy-community-medium-blue;
+//   height: 30px;
+//   width: 80px;
+//   border-radius: 25px;
+// }
+.ask-question-card button {
+  border: none;
+  color: $olcademy-community-white;
+  background-color: $olcademy-community-medium-blue;
+  width: 150px;
+  font-size: $olcademy-community-font-size-medium;
+  font-family: $olcademy-community-font-family;
+}
+.md-btn {
+  outline: none;
+  height: 30px;
+  border-radius: 25px;
+}
+.interest-btn{
+ text-align: center;
+ outline: none;
+     height: 20px;
+  width: 80px;
+   border-radius: 25px;
+}
+.interest-follow-btn{
+ background-color:   $olcademy-community-medium-blue;
+  color: $olcademy-community-white;
+  border: none;
+}
+
+.interest-unfollow-btn{
+border: 1px solid #00ABF3;
+ background-color:  white;
+  color: black;
+}
+
+.text-editor-btn{
+  box-sizing: border-box;
+    font-family: microsoft jhenghei;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+    margin: 0;
+  min-width: 64px;
+  padding: 0 16px;
+border-radius: 100px !important;
+  overflow: visible;
+  transform: translate3d(0, 0, 0);
+  transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1),box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.popup-btn{
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+    user-select: none;
+  line-height: 30px;
+  width: 160px;
+  background-color: #00ABF3 !important;
+  color: white;
+}
+
+.text-editor-publish-btn{
+  margin: 14px 0px 14px 35% !important;
+}
+
+.text-editor-media-btn{
+font-size: 11px !important;
+background-color:  RGB(242,242,242);
+line-height: 20px !important;
+margin-right: 20px !important;
+width: 80px !important;
+}
+
+.popup-discard-btn{
+    font-size: 15px !important;
+    background-color:  RGB(242,242,242) !important;
+    color: gray !important;
+    line-height: 30px !important;
+    // margin-left: 20px;
+    width: 160px !important;
+}
+
+
+.common-btn{
+   background-color: $olcademy-community-medium-blue;
+   color:$olcademy-community-white;
+    border: none;
+    outline: none;
+    border-radius: 20px !important;
+}
+
+.authentication-btn{
+    width:30%;
+    height:5.5%;
+    margin:5px 0px;
+  line-height: 36px !important;
+}
+.md-btn-profile-usercard{
+   width: 70%;
+     padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.md-btn-profile-connectuser{
+width: 120%;
+ padding-top: 5px;
+  padding-bottom: 5px;
+}
+.md-btn-feeds{
+    color: $olcademy-community-white;
+  background-color: $olcademy-community-medium-blue; 
+line-height: 10px;
+    border: none;
+      font-size: 15px;
+  font-family: microsoft jhenghei;
+
+}
+
+.md-btn-feeds-post{
+    width: 200px;
+
+}
+
+.md-btn-feeds-other{
+ width: 80px;
+}
+.md-btn-blog-comment{
+    position: absolute;
+    border: none;
+    color: $olcademy-community-white;
+    background-color: $olcademy-community-medium-blue;
+    margin: 10px 5px 5px 15px;
+    margin-left:67.5%;
+    width: 8%;
+}
+.md-btn-header{
+  background-color: $olcademy-community-medium-blue;
+  width: 80px;
+  border: none;
+   color: $olcademy-community-white;
+}
+
+.md-btn-tests{
+  background-color: rgb(1, 169, 242);
+   margin-right: 0.3em;
+       padding: 0.85em 1.2em;
+    margin: 0;
+    border: none;
+    font-size: 11px;
+    border-radius: 20px;
+     color: $olcademy-community-white;
+    width: 115px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.md-btn-comment{
+  background-color: rgb(1, 169, 242);
+  border: none;
+  color: white;
+  width: 100%;
+}
+.md-btn-outline-tests{
+    padding: 0.85em 1.2em;
+    margin: 0;
+    font-size: 11px;
+    width: 115px;
+    margin-left: 0.3em;
+    color: rgb(1, 169, 242);
+    background-color: white;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 1px solid rgb(1, 169, 242);
+}
+.large-2-btn{
+        background-color:$olcademy-community-medium-blue ;
+        border: none;
+        border-radius: 20px;
+        color:$olcademy-community-white;
+        padding: 0.5em 2em;
+        cursor: pointer;
+        outline: none; 
+}
+
+.large-1-btn{
+
+}
+
+.small-btn{
+
+}
+
+//ending of header.
+
+// designing of breadcrumb.
+
+
+
+
+.total-bredcrumb{
+  padding-top: 5px;
+  // padding-bottom: 0px;
+  margin-top: -21px;
+  position: fixed;
+  z-index: 4;
+  width: 100%;
+  background-color: $olcademy-community-body-grey;
+  display: flex;
+  flex-direction: row;
+}
+
+.home-background {                                /*it is to make a new div that is under the home icon and with the background color
+                                                      so as it will give the curve th the first element to the right of home*/
+content: " ";
+margin-left:35px;
+border-radius: 100px;
+width: 45px;
+height: 45px;
+background-color:$olcademy-community-body-grey;
+text-align: center;
+z-index: 3;
+}
+
+.home-background i{                    /* it is to make the allignment of the home icon */
+  background-color: $olcademy-community-white;
+  margin-top: 5.5px;
+  padding: 10px;
+  border-radius: 100px;
+  color: $olcademy-community-breadcrumb-blue;
+}
+
+
+
+.breadcrumb {                     //It is to style the layout of the total list of breadcrumb/
+  list-style: none;
+  font: 13px;
+  padding: 0px !important;
+  margin: 0px;
+  margin-left: -5px;
+  margin-top: 10px;
+}
+
+a{
+  text-decoration: none;
+  color: $olcademy-community-text-light-black;
+  text-align: center;
+
+}
+.label-a{
+  color: $olcademy-community-text-grey;
+  font-style: italic;
+}
+
+.breadcrumb li {
+  float: left;
+  display: inline;
+
+}
+
+.breadcrumb li:last-child  {                 //to style each title of the breadcrumb/
+  color: $olcademy-community-text-light-black;
+  text-decoration: none;
+  padding: 2px 0 2px 0px;
+  background:  $olcademy-community-breadcrumb-blue; /* fallback color */
+  background: $olcademy-community-breadcrumb-blue;
+  float: left;
+  z-index: 0;
+  text-align: center;
+}
+
+.breadcrumb li  {                 //to style each title of the breadcrumb/
+  color: $olcademy-community-text-grey;
+  text-decoration: none;
+  padding: 2px 0 2px 0px;
+  background: white; /* fallback color */
+  background: white;
+  position: relative;
+  display: block;
+  float: left;
+  z-index: 0;
+  width:160px;
+  text-align: center;
+  margin-right: 15px;
+}
+
+.breadcrumb li a::after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent; /* Go big on the size, and let overflow hide */
+  border-bottom: 12px solid transparent;
+  border-left: 10px solid  white;
+  position: absolute;
+  top: 50%;
+  margin-top: -12px;
+  left: 100%;
+  z-index: 2;
+  color: $olcademy-community-text-grey;
+}
+.breadcrumb li a::before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 12px solid $olcademy-community-breadcrumb-blue;
+  border-bottom: 12px solid $olcademy-community-breadcrumb-blue;
+  border-left: 10px solid #f1f1ef;
+  position: absolute;
+  top: 50%;
+  margin-top: -12px;
+  margin-left: 5px;
+  left: 100%;
+  z-index:1;
+  color: $olcademy-community-text-grey;
+}
+
+.breadcrumb li:last-child  {
+  background:  $olcademy-community-breadcrumb-blue !important;
+  pointer-events: none;
+  cursor: default;
+}
+
+
+#last-child::after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent; /* Go big on the size, and let overflow hide */
+  border-bottom: 12px solid transparent;
+  border-left: 10px solid $olcademy-community-breadcrumb-blue;
+  position: absolute;
+  top: 50%;
+  margin-top: -12px;
+  left: 100%;
+  z-index: 2;
+  color: $olcademy-community-text-grey;
+}
+
+
+.breadcrumb li:last-child::before {
+  border: 0;
+  background-color:  $olcademy-community-breadcrumb-blue;
+}
+
+
+// designing of left screen starts here.
+
+// for category list only
+
+.category-list-container{
+  margin-left: 15px;
+  margin-top: 30px;
+  width: 23%;
+  zoom: 0.82;
+  position: fixed;
+  overflow: hidden;
+}
+
+.list {
+  margin-left: 20px;
+  padding: 0px;
+  border-left: thick solid transparent;
+}
+
+#category-icon-div {
+  margin-left: 0px;
+  margin-right: 20px;
+  text-align: center;
+}
+
+#category-icon-div:hover{
+  color: #02a9f2;
+cursor: pointer;
+}
+
+$i:0;
+ $index: (1,2,3,4,5,6,7,8,9,10,11,12);
+@each $color in $bg_color{
+   #category-icon-#{$i}{
+       background-color: #{$color};
+       color: $olcademy-community-white;
+       padding: 10px 0px 0px 0px;
+       border-radius: 100px;
+       height: 25px;
+       width: 35px;
+       position: relative;
+       text-align: center;
+       vertical-align: middle;
+
+   }
+
+   #icon-bgcolor-#{$i}{
+    background-color: #{$color};
+}
+ $i: $i +1;
+}
+
+#category-name {
+  color: $olcademy-community-text-grey;
+  padding-top: 11px;
+  font-size: $olcademy-community-font-size-large;
+}
+.signUplist{
+  color: $olcademy-community-text-grey;
+  padding-top: 5px;
+  margin:auto;
+  font-size: $olcademy-community-font-size-large;
+
+}
+
+#category-name:hover{
+  color: #02a9f2;
+cursor: pointer;
+}
+
+// sategory list ends here.
+
+//only for test list.
+
+.test-list-container{
+  margin-top: 40px;
+  margin-left: 45px;
+  position: fixed;
+}
+
+#test-title {
+  color: $olcademy-community-text-grey;
+  font-size: $olcademy-community-font-size-large;
+}
+
+#test-category-icon-div {
+  text-align: center;
+}
+
+#test-category-icon-div:hover{
+  color: #02a9f2;
+cursor: pointer;
+}
+
+
+.test-list{
+  border-left: thick solid transparent;
+  zoom: 0.77;
+}
+
+#test-category-name{
+  color: $olcademy-community-text-grey;
+  padding-top: 11px;
+  font-size: $olcademy-community-font-size-large;
+}
+
+#test-category-name:hover{
+  color: #02a9f2;
+cursor: pointer;
+}
+
+
+
+$j:0;
+
+@each $color in $test_color{
+  #test-icon-#{$j}{
+    background-color: #{$color};
+    color: $olcademy-community-white;
+    padding: 10px 0px 0px 0px;
+    border-radius: 100px;
+    height: 25px;
+    width: 35px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+
+  }
+  $j: $j +1;
+  }
+
+  //test list ends here.
+
+  //user info starts here.
+
+
+
+.user-div {
+    width:23%;
+    margin-top: 40px;
+    margin-left: 15px;
+    font-family: $olcademy-community-font-family;
+    position: fixed;
+  }
+
+.user-div img {
+  height: 120px;
+  width: 120px;
+}
+
+.user-div .details {
+  display: grid;
+  grid-template-rows: 1fr 1fr 2fr;
+  margin-left: -30px;
+  margin-top: 20px;
+}
+
+.user-div .username {
+  font-size: $olcademy-community-font-size-large;
+  color: $olcademy-community-medium-blue;
+}
+
+.user-div .usertitle {
+  margin-bottom: 10px;
+  font-size: $olcademy-community-font-size-medium;
+  color: $olcademy-community-medium-blue;
+}
+
+.user-div .count {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: $olcademy-community-font-size-small;
+  color: $olcademy-community-text-grey;
+}
+
+.user-div .desc {
+  color: $olcademy-community-text-grey;
+  font-size: $olcademy-community-font-size-small;
+  text-align: center;
+}
+
+.user-div .list {
+  height: 40px !important;
+  border-left: thick solid transparent;
+}
+
+.user-div .all-list {
+  margin-top: 30px !important;
+}
+
+.user-div #icon-div {
+  margin-right: 20px;
+  padding: auto;
+  text-align: center;
+  width: 40px;
+}
+
+.user-div #icon {
+  font-size: 25px;
+}
+
+.user-div #icon-label {
+  padding-top: 12px;
+  font-size: $olcademy-community-font-size-medium;
+}
+
+.user-div #icon-label:hover{
+  color: #02a9f2;
+cursor: pointer;
+}
+
+//user info ends here.
+
+//left screen ends here.
+
+//middle screen starts here.
+
+#card {
+  margin-top: 10px;
+  height:380px;
+  box-shadow: $olcademy-community-box-shadow;
+  background-color: white;
+  text-align: center;
+  font-family: $olcademy-community-font-family;
+  font-size: $olcademy-community-font-size-medium;
+
+
+}
+
+
+
+//only for interest screen.
+
+#card-interest {
+  // margin-top: -20px;
+  box-shadow: none !important;
+  z-index: 0;
+  overflow: auto;
+  background-color: transparent;
+}
+
+
+
+//forum
+.forum-container{
+  font-family: $olcademy-community-font-family;
+  margin-top: 10px;
+}
+.ask-question-card {
+  text-align: center;
+  color: $olcademy-community-text-grey;
+  box-shadow: $olcademy-community-box-shadow !important;
+  font-size: $olcademy-community-font-size-medium;
+  font-family: $olcademy-community-font-family;
+}
+
+
+
+.filter {
+  margin-top: 5px;
+  margin-bottom: -7px;
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  color: $olcademy-community-text-grey;
+}
+
+.filter hr {
+  margin: 10px;
+  width: 480px;
+}
+.sort-by{
+  z-index: 1;
+  font-size: $olcademy-community-font-size-small;
+  font-family: $olcademy-community-font-family;
+}
+.thread-topic-card{
+  margin-top: 10px;
+  font-family: $olcademy-community-font-family;
+  box-shadow: $olcademy-community-box-shadow !important;
+}
+.thread-card {
+  display: grid;
+  grid-template-columns: 2fr 20fr 1fr;
+
+}
+
+
+.thread-desc img {
+  margin-top: 5px;
+  height: 90px;
+  width: 180px;
+}
+.thread-desc video{
+  height: 265px;
+  width: 459px;
+}
+
+.thread-content img{
+  height: 265px;
+  width: 459px;
+}
+.thread-content video{
+  height: 265px;
+  width: 459px;
+}
+
+.thread-card .profile-picture img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+}
+
+.thread-title .options{
+  position: absolute;
+  top:10px;
+  //background-color: white;
+  font-size: 12px;
+  padding: 1px 0 1px 0;
+  left: 97.5%;
+  width:120px
+}
+.comment-content .exclamation{
+  color: $olcademy-community-text-grey;
+  font-size: $olcademy-community-font-size-small;
+  float: right;
+}
+.reply-exc{
+  margin-left: 4px;
+}
+
+.exclamation{
+  margin-left: 89%;
+}
+.exclamationComment{
+  margin-left: 15%;
+}
+
+.thread-title .options ul {
+  display: none;
+  visibility: hidden;
+  background-color: white;
+  border: 1px solid black;
+  opacity: 0;
+  padding-inline-start: 0px;
+  margin: 0 0 0 0;
+}
+
+.thread-title .options ul li:hover{
+  background: rgb(208, 246, 253);
+  border-top: 1px solid grey;
+  padding: 0.5px 5px 0.5px 5px;
+  border-bottom: 1px solid grey;
+}
+
+.thread-title .options ul li{
+  font-size: 11px;
+    font-family: microsoft jhenghei;
+    display: block;
+   //margin-left: 0px;
+    padding: 1.5px 5px 1.5px 5px;
+    text-align: -webkit-match-parent;
+}
+
+
+
+.thread-card .thread-details{
+  margin: 0px 0px 5px 15px;
+}
+.thread-card .thread-details .thread-title {
+  font-size: $olcademy-community-font-size-medium;
+
+  button {
+    background: transparent;
+    outline: none;
+    border: none;
+    float: right;
+    color: $olcademy-community-text-grey;
+  }
+}
+
+
+.thread-title:hover{
+  color: #02a9f2;
+cursor: pointer;
+}
+
+.thread-card .thread-details .thread-author {
+  font-size: $olcademy-community-font-size-small;
+  color: $olcademy-community-text-grey;
+}
+
+.thread-author:hover{
+  color: #02a9f2;
+cursor: pointer;
+}
+
+
+.thread-card .thread-details .thread-desc {
+  font-size: $olcademy-community-font-size-small;
+  text-align: justify;
+  margin-right: 8%;
+  // display: -webkit-box;
+  // -webkit-line-clamp: 2;
+  // -webkit-box-orient: vertical;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+}
+
+
+
+.thread-card .thread-img {
+  border: 1px solid $olcademy-community-text-grey;
+  height: 80px;
+  background: linear-gradient(to right, $olcademy-community-white 0%, $olcademy-community-shadow-grey 100%);
+  margin-right: 30px;
+}
+
+.thread-tags{
+  // margin-top: 22px;
+  overflow: auto;
+}
+.thread-card .thread-tags .tag {
+  background-color: $olcademy-community-body-grey;
+  color: $olcademy-community-text-grey;
+  float: left;
+  margin: 6px;
+  padding: 2px 5px;
+  height: 20px;
+  font-size: 11px;
+  font-family: microsoft jhenghei;
+  border-radius: 100px;
+  display: block;
+}
+
+.thread-card .section {
+  float: right;
+  // margin-top: 8px;
+  margin-right: 30px;
+  display: grid;
+  width: 95%;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  background-color: $olcademy-community-body-grey;
+  border-radius: 25px;
+  text-align: center;
+  color: $olcademy-community-text-grey;
+  font-size: $olcademy-community-font-size-small;
+}
+
+//blogs part
+.blogs-container{
+  font-family: $olcademy-community-font-family;
+  margin-top: 10px;
+}
+
+.category-titlebar{
+  margin-bottom: 20px;
+  display: grid ;
+  grid-template-columns: 10fr 5fr 1fr;
+  background-color: $olcademy-community-white;
+  height: 90px;
+  color: $olcademy-community-text-grey;
+  box-shadow: $olcademy-community-box-shadow !important;
+  border-radius: 5px;
+}
+
+.post-blog-card {
+      // margin-top: -31px;
+  text-align: center;
+  color: $olcademy-community-text-grey;
+  box-shadow: $olcademy-community-box-shadow !important;
+  font-size: $olcademy-community-font-size-medium;
+  font-family: $olcademy-community-font-family;
+}
+
+.post-blog-card button {
+  border: none;
+  outline: none;
+  color: $olcademy-community-white;
+  background-color: $olcademy-community-medium-blue;
+  height: 30px;
+  width: 150px;
+  border-radius: 25px;
+  font-size: $olcademy-community-font-size-medium;
+  font-family: $olcademy-community-font-family;
+}
+
+.comment-reply-count{
+  margin-left: 10px;
+  // margin-right: 10px;
+}
+
+.comment-reply img{
+  margin-top: 15px;
+  height: 25px;
+  width: 25px;
+  border-radius: 12.5px;
+  margin: 10px 0 0 45px;
+}
+.comment-reply-input{
+  position: absolute;
+  margin: 10px 5px 5px 15px;
+  height: 20px;
+  width: 50%;
+}
+.comment-reply .fa{
+  position: absolute;
+  margin: 17px 5px 5px 15px;
+  height: 20px;
+  margin-left: 54%;
+}
+.comment-reply .publish{
+  margin-left: 67%;
+  margin-top: 8px;
+}
+.comment-reply{
+  display: none;
+}
+
+
+//rest are same as forum component
+
+
+//show-blog
+
+
+
+.options ul {
+  padding: 0;
+  // position: fixed;
+  // top: 15.5%;
+  // left: 73.5%;
+  margin-left: 30px;
+  position: absolute;
+  background-color: white;
+  border: grey solid 1px;
+  width: 120px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  padding: 3px 0 3px 0;
+  border: 1px solid grey;
+}
+
+.options ul li {
+  font-size: 11px;
+  font-family: microsoft jhenghei;
+display: block;
+padding: 1.5px 5px 1.5px 5px;
+}
+
+.options ul li:hover{
+  background: rgb(208, 246, 253);
+  border-top: 1px solid grey;
+  padding: 0.5px 5px 0.5px 5px;
+  border-bottom: 1px solid grey;
+}
+.options:hover ul{
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+.options-blog-screen{
+  // margin-top: 10px;
+  font-size: 2px;
+}
+ .options-blog-screen button {
+  background: transparent;
+  outline: none;
+  border: none;
+  float: right;
+  // position: absolute;
+  // margin-top: 2%;
+  // margin-left: 5%;
+  height: 30px;
+  width: 30px;
+  margin-top: 5px;
+  color: #777777;
+}
+.options-blog-screen button:hover {
+  background-color: $olcademy-community-body-grey;
+  border-radius: 25px;
+}
+
+
+//rest are same as forum component
+
+
+//show-blog
+
+  .show-blog-card {
+    background-color: white;
+    font-family: microsoft jhenghei;
+    display: grid;
+    grid-template-columns: 1fr 16fr 1fr;
+    width: 71%;
+    box-shadow: 7px 8px 10px -5px #8f8f8f;
+}
+
+.selected{
+  color:rgb(0, 171, 243)
+}
+.blog-section{
+  color: $olcademy-community-text-grey;
+  font-size: $olcademy-community-font-size-small;
+}
+.thread-des .thread-img {
+  border: 1px solid $olcademy-community-text-grey;
+  height: 150px;
+  background: linear-gradient(to right, $olcademy-community-white 0%, $olcademy-community-shadow-grey 100%);
+  margin:0px 40px 20px 20px;
+}
+.options-ful-screen{
+  margin-top: 10px;
+}
+ .options-ful-screen button {
+  background: transparent;
+  outline: none;
+  border: none;
+  float: right;
+  height: 30px;
+  width: 30px;
+  // position: absolute;
+  margin-top: 2%;
+  margin-right: 20%;
+  // margin-left: 5%;
+  color: #777777;
+}
+.options-ful-screen button:hover {
+  background-color: $olcademy-community-body-grey;
+  border-radius: 25px;
+}
+
+.options-show-blog ul {
+  padding: 0;
+  // position: fixed;
+  // top: 15.5%;
+  // left: 73.5%;
+  // margin-top: -5%;
+  margin-left: 73%;
+  position: absolute;
+  background-color: white;
+  border: grey solid 1px;
+  width: 120px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  padding: 3px 0 3px 0;
+  border: 1px solid grey;
+}
+
+.options-show-blog ul li {
+  font-size: 11px;
+  font-family: microsoft jhenghei;
+display: block;
+padding: 1.5px 5px 1.5px 5px;
+}
+
+.options-show-blog ul li:hover{
+  background: rgb(208, 246, 253);
+  border-top: 1px solid grey;
+  padding: 0.5px 5px 0.5px 5px;
+  border-bottom: 1px solid grey;
+}
+.options-show-blog:hover ul{
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.thread-card-show-blog{
+  padding: 5% 0px 5% 3%;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  width: 93%;
+ }
+ .thread-card-show-blog .profile-picture img {
+   width: 40px;
+   height: 40px;
+   border-radius: 100px;
+ }
+
+ .thread-card-show-blog .thread-details .thread-title {
+   font-size: $olcademy-community-font-size-medium;
+
+   button {
+     background: transparent;
+     outline: none;
+     border: none;
+     float: right;
+     color: $olcademy-community-text-grey;
+   }
+ }
+
+ .thread-card-show-blog .thread-details .thread-author {
+   font-size: $olcademy-community-font-size-small;
+   color: $olcademy-community-text-grey;
+ }
+
+ .thread-card-show-blog .thread-details .thread-desc {
+   font-size: $olcademy-community-font-size-small;
+   text-align: justify;
+   margin-right: 8%;
+   // display: -webkit-box;
+   // -webkit-line-clamp: 2;
+   // -webkit-box-orient: vertical;
+   // overflow: hidden;
+   // text-overflow: ellipsis;
+ }
+
+ .thread-card-show-blog .thread-img {
+   border: 1px solid $olcademy-community-text-grey;
+   height: 80px;
+   background: linear-gradient(to right, $olcademy-community-white 0%, $olcademy-community-shadow-grey 100%);
+   margin-right: 30px;
+ }
+
+ .thread-card-show-blog .thread-tags .tag {
+   background-color: $olcademy-community-body-grey;
+   color: $olcademy-community-text-grey;
+   float: left;
+   margin: 6px;
+   padding: 2px 5px;
+   height: 20px;
+   font-size: 11px;
+   font-family: microsoft jhenghei;
+   border-radius: 100px;
+   display: block;
+ }
+
+ .thread-card-show-blog .section {
+   float: right;
+   margin-top: 8px;
+   margin-right: 30px;
+   display: grid;
+   width: 95%;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   background-color: $olcademy-community-body-grey;
+   border-radius: 25px;
+   text-align: center;
+   color: $olcademy-community-text-grey;
+   font-size: $olcademy-community-font-size-small;
+ }
+ .imageEditdiv{
+   box-shadow: $olcademy-community-box-shadow;
+ }
+//middle screen ends here.
+
+//right-container
+
+.right-container {
+  margin-left: 75%;
+  position: fixed;
+  float: right;
+  height: 380px;
+  width: 23%;
+  margin-top: 1%;
+  max-width: 349.413px;
+  padding: 15px 0px 0px 15px  !important;
+
+
+  .links{
+    margin-left: -7%;
+    font-family: $olcademy-community-font-family;
+
+    .link {
+        margin: 0px;
+        margin-top: 8px;
+        font-size: $olcademy-community-font-size-medium;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 0px;
+        margin-right: 32px;
+      text-align: justify;
+      cursor: context-menu;
+      text-overflow: "[ .. show more]";
+     -webkit-box-orient:vertical;
+     overflow: hidden;
+    }
+    :hover{
+      color: #02a9f2;
+    cursor: pointer;
+    }
+    .link_username{
+      margin-top: 0px;
+        font-size: $olcademy-community-font-size-small;
+        font-weight: bold;
+    }
+  }
+}
+
+@media screen and (min-width: 1519px) {
+  .right-container {
+     margin-left:1149px;
+  }
+}
+
+.title{
+  font-size: $olcademy-community-font-size-large
+}
+button{
+  outline: none !important;
+}
+//right container ends here.
+
+
+
+
+// common styling button
+// .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+//   background-color: #00ABF3;
+// }
+
+// .mat-raised-button {
+//   box-sizing: border-box;
+//   position: relative;
+//   -webkit-user-select: none;
+//   -moz-user-select: none;
+//   -ms-user-select: none;
+//   user-select: none;
+//   cursor: pointer;
+//   outline: none;
+//   border: none;
+//   -webkit-tap-highlight-color: transparent;
+//   display: inline-block;
+//   white-space: nowrap;
+//   text-decoration: none;
+//   vertical-align: baseline;
+//   text-align: center;
+//   margin: 0;
+//   min-width: 64px;
+//   line-height: 30px;
+//   padding: 0 16px;
+//   border-radius: 100px;
+//   width: 160px;
+//   overflow: visible;
+//   margin: 50px 0px 50px 35%;
+//   transform: translate3d(0, 0, 0);
+//   transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1),box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+// }
+
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+  .filter_label {
+    width: 64% !important;
+    margin-left: 1.5rem;
+}
+
+
+#itsoftware-img                           //to display image in the interest component using sprites image.
+{
+    height: 488px;
+    width: 488px;
+    background: -10px -547px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    margin-left: 0px !important;
+    background-repeat: no-repeat;
+    zoom: 0.239;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+    max-width: 100%;
+}
+#business-img
+{
+    height: 403px;
+    width: 404px;
+    background: -10px -1055px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    margin-left: 0px !important;
+    background-repeat: no-repeat;
+    zoom: 0.288;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#personality-development-img{
+    height: 338px;
+    width: 337px;
+    background: -1508px -742px; 
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    margin-left: 0px !important;
+    background-repeat: no-repeat;
+    zoom: 0.345;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#design-img{
+    height: 437px;
+    width: 437px;
+    background: -518px -547px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    background-repeat: no-repeat;
+    zoom: 0.267;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#marketing-img{
+    height: 259px;
+    width: 258px;
+    background: -10px -1478px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    background-repeat: no-repeat;
+    zoom: 0.452;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#lifestyle-img{
+    height: 512px;
+    width: 512px;
+    background: -546px -10px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    background-repeat: no-repeat;
+    zoom:0.228;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#photography-img{
+    height: 344px;
+    width: 344px;
+    background: -1508px -378px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    background-repeat: no-repeat;
+    zoom: 0.34;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#health-and-fitness-img{
+    height: 348px;
+    width: 348px;
+    background: -1508px -10px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    background-repeat: no-repeat;
+    zoom: 0.335;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#teacher-training-img{
+    height: 398px;
+    width: 397px;
+    background: -854px -1055px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    background-repeat: no-repeat;
+    zoom: 0.295;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#music-img{
+    height: 307px;
+    width: 307px;
+    background: -1508px -1100px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    background-repeat: no-repeat;
+    zoom: 0.38;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#academics-img{
+    height: 410px;
+    width: 410px;
+    background: -1078px -10px;
+    margin-top: 0px !important;
+    border: 1px solid hsl(0, 0%, 58%);
+    background-repeat: no-repeat;
+    zoom: 0.285;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#language-img{
+    height: 408px;
+    width: 408px;
+    background: -1078px -440px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    background-repeat: no-repeat;
+    zoom: 0.285;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#examination-img{
+    height: 401px;
+    width: 400px;
+    background: -434px -1055px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    background-repeat: no-repeat;
+    zoom: 0.293;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+}
+#others-img{
+    height: 517px;
+    width: 516px;
+    background: -10px -10px;
+    margin-top: 0px !important;
+    border: 1px solid #949393;
+    margin-left: 0px !important;
+    background-repeat: no-repeat;
+    zoom: 0.226;
+    -moz-transform:scale(0.06);
+    transform: scale(1);
+    -moz-transform-origin: 0 0;
+    transform-origin: (0);
+    margin-left: 120px;
+}
+#myFeed-grid{
+    margin-bottom: -10px;
+    margin-bottom: 10px !important;
+}
+
+.single-interest-box{                 // designing the interest layout like box-shadow and all.
+    width: 118px;
+    height: 185px;
+    box-shadow:  0px 1px 7px -1px #b3b2b2;
+    text-align: center;
+    background-color: white;
+}
+
+.interest-name{                    //designing the name of the interest
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.interest-name-first{                 // first line name design of interest have 2 lines name display
+    margin-top: 0px;
+    text-align: center;
+}
+.interest-name-second{                  // second line of the same
+    margin-top: -2px;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+#interest-apply{
+    text-align: center;
+    border: none;
+    outline: none;
+    height: 30px;
+  width: 150px;
+  border-radius: 25px;
+  background-color: $olcademy-community-medium-blue;
+  color: $olcademy-community-white;
+}
+
+.blog-image{
+  margin-left: 150px;
+}
+

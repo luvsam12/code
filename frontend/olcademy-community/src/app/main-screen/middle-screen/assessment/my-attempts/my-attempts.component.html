@@ -1,0 +1,217 @@
+<mat-card class="my-attempts-card" >
+    <h1 class="main-heading" >My Attempts</h1>
+    <hr class="hr" >
+    <div class="switch-between-mock-practice">
+        <div class="mock-test-switcher active" (click)="switchToMockTest()" >Mock Test</div>
+        <div class="practice-questions" (click)="switchToPracticeMode()" >Practice Questions</div>
+    </div>
+
+    <!-- FILTERS SETTINGS -->
+    <div class="filters">
+        <div class="filter"  mat-button [matMenuTriggerFor]="beforeMenu1">
+            <p class="filter-para" ><mat-icon class="filter-icon" >local_bar</mat-icon>Filter</p>
+            <mat-icon >keyboard_arrow_down</mat-icon>
+            <mat-menu #beforeMenu1="matMenu" xPosition="before">
+                <button mat-menu-item>Percentile</button>
+                <button mat-menu-item>Questions</button>
+                <button mat-menu-item>Total Score</button>
+            </mat-menu>
+        </div>
+        <div class="right-side-filters">
+            <div class="sort-by"><mat-icon class="sort-icon" >sort</mat-icon>Sort By</div>
+            <div class="latest" mat-button [matMenuTriggerFor]="beforeMenu">
+                <p class="filter-para" ><mat-icon class="filter-icon" >local_bar</mat-icon>Latest</p>
+                <mat-icon>keyboard_arrow_down</mat-icon>
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                  <button mat-menu-item>Latest</button>
+                  <button mat-menu-item>Oldest</button>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MOCK AND PRACTICE STATISTICS -->
+    <div class="statistics-bar" *ngIf="currentState === 'mock test'">
+        <div class="first-stat active">
+            <div class="num">4</div>
+            <div class="stat-title">Total Attempts</div>
+        </div>
+        <div class="rest-all-stat">
+            <div class="value">78<span class="percentage-symbol" >%</span></div>
+            <div class="stat-title">Avg. Percentage</div>
+        </div>
+        <div class="rest-all-stat">
+            <div class="value">98<span class="percentage-symbol" >%</span></div>
+            <div class="stat-title">Avg. Percentile</div>
+        </div>
+        <div class="rest-all-stat">
+            <div class="value">95<span class="percentage-symbol" >%</span></div>
+            <div class="stat-title">Avg. Accuracy</div>
+        </div>
+    </div>
+
+    <div class="statistics-bar" *ngIf="currentState === 'practice questions'">
+        <div class="first-stat active">
+            <div class="num">4</div>
+            <div class="stat-title">Total Attempts</div>
+        </div>
+        <div class="rest-all-stat">
+            <div class="value">64<span class="percentage-symbol" >%</span></div>
+            <div class="stat-title">Correct Precentage</div>
+        </div>
+        <div class="rest-all-stat">
+            <div class="value">36<span class="percentage-symbol" >%</span></div>
+            <div class="stat-title">Incorrect Precentage</div>
+        </div>
+        <div class="rest-all-stat">
+            <div class="value">94<span class="percentage-symbol" >%</span></div>
+            <div class="stat-title">Avg. Accuracy</div>
+        </div>
+    </div>
+
+    <!-- UPCOMING MOCK TESTS MENTIONS -->
+    <div class="all-attempted-mock-test" *ngIf="currentState === 'mock test'" >
+        <div class="mock-test" *ngFor="let eachTest of mockTests" >
+            <div class="square" >
+                <div class="blue-square" ></div>
+            </div>
+            <div class="mock-test-details">
+                <p class="test-name" >{{eachTest.testName}}: {{eachTest.date}}</p>
+                <div>
+                    <p class="no-of-questions" ><i class="far fa-question-circle"></i> <strong>{{eachTest.questionsAttempted}}/120</strong> Questions</p>
+                    <p class="total-time" ><i class="fas fa-stopwatch"></i> <strong>{{eachTest.timeSpent}}/90</strong> mins</p>
+                </div>
+                <div>
+                    <p class="no-of-questions" ><i class="fas fa-check"></i> Total Score: <strong>{{eachTest.totalScore}}/200</strong></p>
+                    <p class="total-time" ><i class="fas fa-percentage"></i> Percentile: <strong>{{eachTest.percentile}}</strong>%</p>
+                </div>
+            </div>
+            <div class="btn-div" >
+                <button class="btn">View Report</button>
+            </div>
+        </div>           
+    </div>
+
+    <div class="parent-chart"  *ngIf="currentState === 'practice questions'">
+        <div class="graph-btns">
+            <mat-icon class="graph-left" (click)="moveGraphBack()" >arrow_left</mat-icon>
+            <mat-icon class="graph-right" (click)="moveGraphForward()" >arrow_right</mat-icon>
+        </div>
+        <div class="chartjs-line-chart"  >
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+
+
+    <!-- CODE COPIED FROM SOLVED QUESTIONS PART -->
+    <!-- SHOWING RESULTS FOR PRACTICE QUETIONS -->
+    <!-- CLASSES USED HERE WERE ORIGINALLY MADE FOR SOLVED QUESTIONS -->
+
+
+    <div class="all-results" *ngIf="currentState === 'practice questions'">
+        <div class="each-question" *ngFor="let question of practiceQuestions; let i=index" >
+            <div class="top-row" >
+                <div class="test-type"><mat-icon class="brightness-icon" [ngClass]="{'cat-exam': question.examType === 'CAT', 'gate-exam': question.examType === 'GATE', 'pte-exam': question.examType === 'PTE', 'upsc-exam': question.examType === 'UPSC'}" >brightness_1</mat-icon> <span>{{question.examType}}</span></div>   
+                <div class="more"><mat-icon class="more-option-icon" >more_vert</mat-icon></div>
+            </div>
+            <div class="speaking-skill-info" *ngIf="question.type === 'speakingSkill'">Speak for 1 to 3 minutes about the topic below</div>
+            <div class="question-explanation">
+                {{question.questionsInformations.questionStatement}}                
+            </div>
+
+            <div class="questions-specifications" >
+                <div class="left-side">
+                    <a href="#"><i class="fas fa-link"></i> www.facebook.com</a>
+                    <div><i class="fas fa-dot-circle"></i></div>
+                    <a href="#">Questions Information</a>
+                </div>
+
+                <div class="right-side">
+                    <p class="question-type">Quantitative Ability</p>
+                    <p>{{question.questionsInformations.questionLevel}}</p>
+                </div>
+            </div>
+
+
+            <!-- ANSWERS TO MCQ -->
+            <!-- <div class="answers-to-mcq" *ngIf="eachQuestion.type === 'MCQ'">
+                <div class="each-option-percentage" *ngFor="let answer of eachQuestion.questionsInformations.answerPrecentage" >
+                    <div>{{answer.option}}</div>
+                    <div class="progress">
+                        <progress id="file" [value]="answer.precentage" max="100"> {{answer.percentage}}% </progress>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- MORE CONTENT FOR SUBJECTIVE TYPE QUESTIONS -->
+            <!-- <div class="more-content" *ngIf="eachQuestion.type === 'Subjective' && eachQuestion.questionsInformations.showMoreContent === true"  >
+                <p class="more-question-content" *ngIf="eachQuestion.questionsInformations.moreContentPresent === true">
+                    {{eachQuestion.questionsInformations.moreContent}}
+                </p> -->
+
+                <!-- carousel -->
+                <!-- <div class="parent-div-attachments">
+                    <button class="fas fa-chevron-circle-left" (click)="prevoiusImage()" [disabled]="checkPreviousBtnDisable()"></button>
+                    <button class="fas fa-chevron-circle-right" (click)="nextImage()" [disabled]="checkNextBtnDisable()"></button>
+                    <div class="attachments">
+                        <div class="carousel-slides" #carouselSlides >
+                            <img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1127&q=80" alt="" width="410.891" height="273.922">
+                            <img src="https://images.unsplash.com/photo-1467048206339-21d11f496fd1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80" alt="" width="410.891" height="273.922">
+                            <img src="https://images.unsplash.com/photo-1479030160180-b1860951d696?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80" alt="" width="410.891" height="273.922">
+                            <img src="https://images.unsplash.com/photo-1506261423908-ea2559c1f24c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1524&q=80" alt="" width="410.891" height="273.922">
+                            <img src="https://images.unsplash.com/photo-1491466424936-e304919aada7?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1498&q=80" alt="" width="410.891" height="273.922">
+                            <img src="https://images.unsplash.com/photo-1493760919532-3e33e8212d7c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80" alt="" width="410.891" height="273.922">
+                            <img src="https://images.unsplash.com/photo-1514911382613-36ce480d6895?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80" alt="" width="410.891" height="273.922">
+                        </div>
+                    </div>
+                </div>
+
+
+                <textarea class="input-answer" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" rows="5" placeholder="Type Your Answer Here" ></textarea>
+            </div> -->
+
+            <!-- ACTIONS BUTTONS -->
+            <div class="btn-sections">
+                <div>
+                    <!-- <button class="btn" (click)="showOptions(i)" *ngIf="eachQuestion.questionsInformations.showMoreContent === false" >Answer</button>
+                    <button class="btn" (click)="showOptions(i)" *ngIf="eachQuestion.questionsInformations.showMoreContent === true" >Submit</button> -->
+                    <button class="btn-outline" (click)="toggleResponses(i)" >{{responsesStatus}} Responses</button>
+                </div>
+                <button class="btn-outline" >Discuss in Forum</button>
+            </div>
+
+            <!-- ANSWERS TO MCQ -->
+            <div class="answers-to-mcq" *ngIf="question.type === 'MCQ' && question.questionsInformations.showResponses === true ">
+                <div class="each-option-percentage" *ngFor="let answer of question.questionsInformations.responses.answerpercentage" >
+                    <div class="serial-num" >{{answer.option}}.</div>
+                    <div class="progress-bar">
+                        <div class="percentage-value" ><strong>{{answer.percentage}}%</strong></div>
+                        <progress id="file" [ngClass]="{'correct-answer': answer.correctAnswer === true}" [value]="answer.percentage" max="100"> {{answer.percentage}}% </progress>
+                    </div>
+                </div>
+            </div>    
+
+            <!-- SUBJECTIVE QUESTIONS RESPONSES -->
+            <div class="all-responses" *ngIf="question.type === 'Subjective' && question.questionsInformations.showResponses === true" >
+                <div class="each-response-subjective" *ngFor="let eachResponse of question.questionsInformations.responses" >
+                    <div class="likes">
+                        <mat-icon class="like-icon" >thumb_up</mat-icon>
+                        <span>{{eachResponse.likes}}</span>
+                    </div>
+                    <div class="response">
+                        <div class="user-image-section">
+                            <img class="user-image" src="https://www.emmegi.co.uk/wp-content/uploads/2019/01/User-Icon.jpg" alt="">
+                        </div>
+                        <div class="response-right-side">
+                            <div class="user-details">{{eachResponse.name}}, added an answer, 4 minutes ago</div>
+                            <div class="user-response">
+                                <p>{{eachResponse.answer}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

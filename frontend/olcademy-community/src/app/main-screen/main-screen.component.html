@@ -1,0 +1,25 @@
+<div class="body">
+    <header>
+        <app-header></app-header>
+    </header>
+
+    <body>
+        <div *ngIf="!product">
+            <app-breadcrumb></app-breadcrumb>
+        </div>
+        <div class="flex-align">
+            <div *ngIf="!product">
+                <app-left-screen></app-left-screen>
+            </div>
+            <div>
+                <app-right-screen></app-right-screen>
+            </div>
+            <div *ngIf="product">
+                <app-large-screen></app-large-screen>
+            </div>
+            <div *ngIf="!product" class="middle_screen-align">
+                <app-middle-screen></app-middle-screen>
+            </div>
+        </div>
+    </body>
+</div>

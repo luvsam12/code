@@ -1,0 +1,207 @@
+.blue-highlight {
+    color: #01a9f2;
+}
+
+.my-attempts-card {
+    background: transparent;
+    box-shadow: none;
+}
+
+.main-heading {
+    color: rgb(1, 169, 242);
+    font-size: 18px;
+    text-align: center;
+    font-weight: bolder;
+    margin: 0;
+    font-family: microsoft jhenghei;
+}
+
+.hr {
+    border: none;
+    border-top: 1px solid #dfdfdf;
+    margin: 0.5rem 0 2rem;
+}
+
+.switch-between-mock-practice {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    margin: 1rem auto;
+    padding: 0;
+    font-family: inherit;
+    box-shadow: 0px 2px 3px rgb(246, 246, 246);
+    border-radius: 20px;
+
+    .mock-test-switcher, .practice-questions {
+        width: 50%;
+        font-size: 15px;
+        background-color: white;
+        color: rgb(1, 169, 242);
+        text-align: center;
+        box-sizing: border-box;
+        padding: 0.3rem 0;
+        color: rgb(89, 89, 89);
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        cursor: pointer;
+    }
+
+    .mock-test-switcher {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .practice-questions {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    .active {
+        background-color: rgb(1, 169, 242);
+        color: white;
+    }
+}
+
+//filters 
+
+.filters {
+    margin: 2rem 0 !important;
+}
+
+// STAISTICS
+.statistics-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 0;
+    padding: 0;
+    font-family: microsoft jhenghei;
+    height: 100px;
+    box-shadow: 0px 3px 4px #a8a8a8;
+    border-radius: 10px;
+    cursor: default;
+
+    .first-stat, .rest-all-stat {
+        width: 25%;
+        height: 100%;
+        background-color: white;
+        color: #717171;
+        font-size: 11px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 1.6em;
+        box-sizing: border-box;
+        border-right: 1px solid #e1e1e1;
+    }
+
+    .first-stat {
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+
+    .rest-all-stat:last-child {
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        border-right: none;
+    }
+
+    .num, .value {
+        font-size: 3em;
+        margin-bottom: 0.2em;
+        box-sizing: border-box;
+        font-weight: 500;
+    }
+    .percentage-symbol {
+        font-size: 0.7em;
+    }
+
+    .active {
+        background-color: rgb(1, 169, 242);
+        color: white;
+    }
+    // .rest-all-stat {
+    //     width: 25%;
+
+    // }
+}
+
+// all mock tests
+.all-attempted-mock-test {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0;
+    border: 1px solid #dadada;
+    border-radius: 10px;
+    margin: 2rem 0;
+}
+
+.mock-test {
+    border-radius: 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #dadada !important;
+}
+.mock-test:first-child {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+.mock-test:last-child {
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important; 
+    border: none !important;
+}
+
+.square {
+    width: 11% !important;
+    .blue-square {
+        width: 55px !important;
+        height: 55px !important;
+    }
+}
+
+.mock-test-details {
+    width: 69% !important;
+}
+
+// chart.js line chart
+
+.parent-chart {
+    width: 100%;
+    background: white;
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+    margin: 2.5rem 0 2rem;
+    position: relative;
+
+    .graph-btns {
+        position: absolute;
+        top: 0%;
+        right: 5%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        .graph-left, .graph-right {
+            height: 10px;
+            width: 16px;
+            font-size: 45px;
+            color: grey;
+            cursor: pointer;
+        }
+    }
+
+    .chartjs-line-chart {
+        width: 60%; 
+        background-color: white;
+        margin: auto;
+    }
+}

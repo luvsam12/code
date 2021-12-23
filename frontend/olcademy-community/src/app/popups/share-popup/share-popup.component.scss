@@ -1,0 +1,121 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.far.fa-times-circle {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    font-size: 1.7em;
+    color: rgb(175, 171, 171);
+}
+.heading {
+    color: rgb(89, 89, 89);
+    font-size: 1.9em;
+    letter-spacing: 0.05em;
+    margin: 0;
+    padding: 0.2em;
+    text-align: center;
+}
+
+.inputField {
+    width: 70%;
+    height: 25px;
+    margin: 0.2em auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.inputField input {
+    width: 85%;
+    height: 23px;
+    margin: 0;
+    color: rgb(89, 89, 89);
+    text-align: justify;
+    border: 1px solid rgb(175, 171, 171);
+}
+.inputField input:focus {
+    outline: none;
+}
+.inputField .copyBtn {
+    width: 15%;
+    height: 100%;
+    margin: 0;
+    padding: auto 0.2em;
+    text-align: center;
+    border: 1px solid rgb(175, 171, 171);
+    border-left: none;
+    cursor: pointer;
+}
+
+.socialMedia {
+    text-align: center;
+    // font-size: 1.5em;
+    border-radius: 50%;
+    margin: 1em auto;
+}
+.socialMedia i {
+    margin: 0 0.4em;
+    padding-bottom: 0.2em;
+    border-bottom: 3px solid transparent;
+    font-size: 2.5em;
+}
+.socialMedia .fab.fa-facebook {
+    color: rgb(24, 119, 242);
+}
+.socialMedia .fab.fa-facebook:hover {
+    border-bottom: 3px solid rgb(24, 119, 242);
+}
+.socialMedia .fab.fa-twitter-square {
+    color: rgb(0, 172, 238);
+    // border-radius: 50%;
+}
+.socialMedia .fab.fa-twitter-square:hover {
+    border-bottom: 3px solid rgb(0, 172, 238);
+}
+.socialMedia .fab.fa-linkedin {
+    color: rgb(14, 118, 168);
+}
+.socialMedia .fab.fa-linkedin:hover {
+    border-bottom: 3px solid rgb(14, 118, 168);
+}
+.socialMedia .fab.fa-whatsapp-square {
+    color: rgb(79, 206, 93);
+}
+
+.socialMedia .fab.fa-whatsapp-square:hover {
+    border-bottom: 3px solid rgb(79, 206, 93);
+}
+
+.actionButtons {
+    width: 100%;
+    margin: 0.5em auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.shareBtn, .cancelBtn{
+    padding: 0.2em 1em;
+    margin: 0 0.5em;
+    font-size: 1.1em;
+    border: none;
+    width: 160px;
+    border-radius: 20px;
+}
+.shareBtn:focus, .cancelBtn:focus {
+    outline: none;
+}
+.shareBtn {
+    background-color: rgb(1, 169, 242);
+    color: white;
+}
+.cancelBtn {
+    background-color: rgb(242, 242, 242);
+    color: rgb(89, 89, 89);
+}

@@ -1,0 +1,403 @@
+.fas {
+  cursor: pointer;
+}
+
+
+.search_textarea {
+  width: 90%;
+  border: 2px solid #c9c9c9;
+  font-size: 15px;
+  line-height: 24px;
+  margin-left:5%;
+}
+
+.grey {
+  color: grey;
+}
+
+.astr{
+  font-size:15px;
+}
+.Add_css {
+  float: left;
+  font-family: microsoft jhenghei;
+  border-radius: 100px;
+  display: block;
+  margin-left:5%;
+}
+
+.feed-tags {
+  background-color: RGB(242, 242, 242);
+  color: #808080;
+  float: left;
+  margin: 6px;
+  padding: 2px 5px;
+  height: 20px;
+  font-size: 15px;
+  font-family: microsoft jhenghei;
+  border-radius: 100px;
+  display: block;
+  margin-top: -5px;
+}
+
+.add_tags_category {
+  margin-top: -0.5vh;
+}
+
+.add-tag {
+  float: left;
+  margin-top: -1vh;
+}
+
+.add-tag input {
+  width: 100px;
+  height: 20px;
+  border: 1px solid RGB(242, 242, 242);
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-right: 50px;
+  outline: none;
+}
+::placeholder {
+  color: rgb(206, 203, 203);
+  font-family: microsoft jhenghei;
+}
+
+.add-tag input:focus {
+  background-color: white;
+}
+
+.add-tag button {
+  margin-left: -38.5px;
+  border: none;
+  height: 23px;
+  margin-top: -10px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-left: 1px solid #808080;
+  background: transparent;
+  outline: none;
+  font-size: 11px;
+  width: 37px;
+}
+
+.add-tag button:focus {
+  background-color: #00abf3;
+  color: white;
+  width: 37px;
+  position: absolute;
+  margin-top: 0px;
+  margin-left: -37px;
+}
+
+//Search dropdown
+.select_category_list{
+  position: relative;
+   float: left;
+   width:140px;
+   margin-left:34vw;
+   margin-top:-4vh;
+}
+
+
+// .myfeedbtn_primary button {
+//   border: none;
+//   outline: none;
+//   color: white;
+//   background-color: #00abf3; 
+//   height: 30px;
+//   width: 200px;
+//   border-radius: 25px;
+//   font-size: 15px;
+//   font-family: microsoft jhenghei;
+//   line-height: 10px;
+// }
+
+.Post_button {
+  margin-left: 38%;
+  margin-right: 50%;
+  margin-top: 8px;
+}
+
+//horizontal rule
+
+.defaultmyfeed-filter {
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  color: #808080;
+}
+
+.defaultmyfeed-filter hr {
+  margin: 10px;
+}
+
+.select_category_list_hr1{
+  position: relative;
+   float: left;
+   width:50px;
+
+}
+
+//arrow course
+
+.left_arrow_course {
+  height: 40px;
+  width: 30px;
+  background-color: rgb(160, 158, 158);
+  float: left;
+  border-radius: 0px 100px 100px 0px;
+  text-align: center;
+  margin-top: 16%;
+  margin-right:-3px;
+}
+
+.left_arrow_course_btn {
+  color: white;
+  margin-top: 16%;
+  margin-left: -8px;
+
+}
+#left_course{
+  opacity:0.5;
+}
+
+#right_course{
+  opacity:1;
+}
+
+.right_arrow_course {
+  height: 40px;
+  width: 30px;
+  background-color: rgb(160, 158, 158);
+  float: right;
+  border-radius: 100px 0px 0px 100px;
+  text-align: center;
+  margin-top: 16%;
+}
+
+.right_arrow_course_btn {
+  color: white;
+  margin-top: 16%;
+  margin-left: 4px;
+}
+
+// slider cads for courses
+.card {
+  border: 0.2px solid #f2f2f2;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 33%;
+  font-size: 15px;
+  margin-left: 14px;
+  background-color: white;
+
+}
+
+.container {
+  font-size: 15px;
+  padding: 2px 16px;
+}
+
+.align_course_card {  //class="align_course_card"
+  text-align: center;
+  color:grey;
+}
+
+
+#course_card_4,
+#course_card_5,
+#course_card_6,
+#course_card_7,
+#course_card_8,
+#course_card_9 {
+  display: none;
+}
+
+//Image for the course
+
+.img_course {
+  //class="img_course"
+  background-color: grey;
+  margin-left: -2px;
+  height: 15vh;
+  width: 100%;
+}
+
+.course_card_price {
+  // class="course_card_price"
+  margin-left: 50px;
+}
+.column {
+
+  float: left;
+  width: 28%;
+
+}
+
+.column_arrows {
+  float: left;
+  width: 1.5%;
+  padding: 0 1px;
+  margin-top: 15%;
+}
+
+.column1 {
+  float: left;
+  width: 50%;
+  color:grey;
+}
+
+//Star rating
+
+.checked {
+  color: black;
+}
+
+// User Card
+
+.card_user_card {
+  border: 0.2px solid #f2f2f2;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 21%;
+  font-size: 15px;
+  margin-left: 10px;
+  background-color: white;
+  padding: 20px 0px 10px 0px;
+
+}
+
+.container_user_card {
+  font-size: 15px;
+  padding: 2px 16px 0px 16px;
+  text-align: center;
+  height:20%;
+}
+
+.profile-picture-usercard img {
+
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+}
+
+.mutual_con {
+  color: rgb(206, 203, 203);
+}
+
+// .myfeedbtn button {
+//   border: none;
+//   outline: none;
+//   color: white;
+//   background-color: #00abf3;
+//   height: 30px;
+//   width: 80px;
+//   border-radius: 25px;
+//   font-size: 15px;
+//   font-family: microsoft jhenghei;
+//   line-height: 10px;
+// }
+// .user_btn {
+// }
+
+.spacing_user_card {
+  //class=""
+  line-height: 10px;
+}
+.column_user_card {
+  text-align:center;
+  float: left;
+  width: 17.3%;
+}
+
+#user_card_6,
+#user_card_7,
+#user_card_8,
+#user_card_9,
+#user_card_10,
+#user_card_11,
+#user_card_12,
+#user_card_13,
+#user_card_14,
+#user_card_15 {
+  display: none;
+}
+
+//User slider arrows
+.left_arrow_user {
+  height: 30px;
+  width: 20px;
+  background-color: rgb(160, 158, 158);
+  float: left;
+  border-radius: 0px 100px 100px 0px;
+  text-align: center;
+  margin-top: 15%;
+  margin-right:-3px;
+}
+
+.left_arrow_user_btn {
+  color: white;
+  margin-top: 8px;
+  margin-left: -7px;
+}
+#left_user{
+  opacity:0.5;
+}
+
+#right_user{
+  opacity:1;
+}
+.right_arrow_user {
+  height: 30px;
+  width: 20px;
+  background-color: rgb(160, 158, 158);
+  float: right;
+  border-radius: 100px 0px 0px 100px;
+  text-align: center;
+  margin-top: 15%;
+
+}
+
+.right_arrow_user_btn {
+  color: white;
+  margin-top: 8px;
+  margin-left: 3px;
+}
+
+//options on clicking the three dots
+.options ul {
+  z-index:1;
+  padding: 0;
+  position: relative;
+  left: 100%;
+  background-color: white;
+  border: grey solid 1px;
+  width: 120px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  padding: 3px 0 3px 0;
+  border: 1px solid grey;
+  margin-bottom:-91px;
+}
+
+.options ul li {
+  font-size: 11px;
+  font-family: microsoft jhenghei;
+display: block;
+padding: 1.5px 5px 1.5px 5px;
+}
+.options ul li:hover{
+  background: rgb(208, 246, 253);
+  border-top: 1px solid grey;
+  padding: 0.5px 5px 0.5px 5px;
+  border-bottom: 1px solid grey;
+}
+.options:hover ul{
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}

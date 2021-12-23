@@ -1,0 +1,693 @@
+<div style="margin-top:10px">
+  <mat-card>
+    <input type="text" id="TopicName" name="TopicName" class="search_textarea"
+      placeholder="Topic Name e.g. Microsoft Excel Functions" /><span class="grey"><sup class="astr">
+        *</sup></span><br /><br />
+    <input type="text" id="TopicName" name="TopicName" class="search_textarea"
+      placeholder="Topic Name e.g. Microsoft Excel Functions" /><span class="grey"><sup class="astr">
+        *</sup></span><br /><br />
+    <span class="Add_css">Add:&nbsp;&nbsp;</span><span class="feed-tags ;">Image</span>&emsp;<span
+      class="feed-tags">Video</span>
+    <span class="feed-tags">Document</span>
+    <div class="add-tag">
+      <input type="text" name="hash_tag" #hash_tag id="hash-tag" placeholder="Write Tag" />
+      <button class="search-btn">Add</button>
+    </div>
+
+    <p class="add_tags_category">&emsp;Category:</p>
+    <!--<div class="select_category_list">
+      <select placeholder="select"   required name="category" [(ngModel)]="category_selected">
+        <option value="Select1" >Select1</option>
+        <option value="Select2" >Select2</option>
+        <option value="Select3" >Select3</option>
+      </select>
+      </div>--><span class="select_category_list">
+      <mat-select placeholder="select" required name="category" [(ngModel)]="category_selected">
+        <mat-option value="{{category}}" *ngFor="let category of categories">{{ category }}</mat-option>
+      </mat-select>
+    </span>
+    <br /><br />
+    <div class="myfeedbtn_primary">
+      <button class="md-btn md-btn-feeds md-btn-feeds-post Post_button" routerLink="">Post</button>
+    </div>
+  </mat-card>
+
+  <br />
+</div>
+
+<div class="defaultmyfeed-filter">
+  <div class="sort-by"><span style="float: left;">Category :&nbsp;</span> <span class="select_category_list_hr1">
+      <mat-select placeholder="select" required name="category" [(ngModel)]="category_selected">
+        <mat-option value="{{category}}" *ngFor="let category of categories_1">{{ category }}</mat-option>
+      </mat-select>
+    </span></div>
+  <div>
+    <hr />
+  </div>
+  <div class="sort-by">
+    <span style="float: left;">Sort By :&nbsp;</span> <span class="select_category_list_hr1">
+      <mat-select placeholder="select" required name="category" [(ngModel)]="category_selected">
+        <mat-option value="{{category}}" *ngFor="let category of categories_1">{{ category }}</mat-option>
+      </mat-select>
+    </span>
+  </div>
+</div>
+
+<mat-card class="thread-topic-card">
+  <div class="thread-card">
+    <div class="profile-picture">
+      <img src="./../../../assets/icons/8. User Name.png" />
+    </div>
+    <div class="thread-details">
+      <div class="thread-title">
+        <span>Thread Title</span>
+        <button>
+          <i class="fas fa-ellipsis-v" (click)="toggleDisplay()"></i>
+        </button>
+      </div>
+      <div class="options">
+        <ul [hidden]="isShow" class="options-ul" id="ul">
+          <li routerLink="/blogs">Turn ON Notification</li>
+          <li >Unfollow User</li>
+          <li>Report</li>
+        </ul>
+      </div>
+      <div class="thread-author">HH:MM IST | By Author Name</div>
+
+      <div class="thread-desc">
+        <p>
+          Description of thread topic. Description of thread topic. Description
+          of thread topic. Description of thread topic. Description of thread
+          topic. Description of thread topic. Description of thread topic.
+          Description of thread topic. Description of thread topic. Description
+          of thread topic. Description of thread topic. Description of thread
+          topic. Description of thread topic. Description of thread topic.
+          Description of thread topic. Description of thread topic.
+        </p>
+
+        <div class="thread-img"></div>
+      </div>
+      <div class="thread-tags">
+        <div class="tag"># Tag1</div>
+        <div class="tag"># Tag1</div>
+      </div>
+
+      <div class="section">
+        <div><i class="fas fa-thumbs-up"></i> 222 Kudos</div>
+        <div><i class="fas fa-comment"></i> 22 Comment</div>
+        <div><i class="fas fa-share-alt"></i> Share</div>
+        <div><i class="fas fa-bookmark"></i> Bookmark</div>
+        <div><i class="fas fa-eye"></i> 1222 Views</div>
+      </div>
+    </div>
+  </div>
+</mat-card>
+<br />
+<mat-card class="thread-topic-card">
+  <div class="thread-card">
+    <div class="profile-picture">
+      <img src="./../../../assets/icons/8. User Name.png" />
+    </div>
+    <div class="thread-details">
+      <div class="thread-title">
+        <span>Title of the Blog</span>
+        <button><i class="fas fa-ellipsis-v" (click)="toggleDisplay1()"></i>
+        </button>
+      </div>
+      <div class="options">
+        <ul [hidden]="isShow" class="options-ul" id="ul1">
+          <li routerLink="/blogs">Turn ON Notification</li>
+          <li>Unfollow User</li>
+          <li>Report</li>
+        </ul>
+      </div>
+
+      <div class="thread-author">HH:MM IST | By Author Name</div>
+
+      <div class="thread-desc">
+        <p>
+          Description of thread topic. Description of thread topic. Description
+          of thread topic. Description of thread topic. Description of thread
+          topic. Description of thread topic. Description of thread topic.
+          Description of thread topic. Description of thread topic. Description
+          of thread topic. Description of thread topic. Description of thread
+          topic. Description of thread topic. Description of thread topic.
+          Description of thread topic. Description of thread topic.
+        </p>
+      </div>
+      <div class="thread-tags">
+        <div class="tag"># Tag1</div>
+        <div class="tag"># Tag1</div>
+      </div>
+
+      <div class="section">
+        <div><i class="fas fa-thumbs-up"></i> 222 Kudos</div>
+        <div><i class="fas fa-comment"></i> 22 Comment</div>
+        <div><i class="fas fa-share-alt"></i> Share</div>
+        <div><i class="fas fa-bookmark"></i> Bookmark</div>
+        <div><i class="fas fa-eye"></i> 1222 Views</div>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+<br />
+<div>
+  <div class="row">
+    <div class="left_arrow_course" id="left_course" (click)="prevcardcourse()">
+      <i class="fas fa-chevron-left fa-2x left_arrow_course_btn"></i>
+    </div>
+
+    <div class="column card" id="course_card_1">
+      <div class="img_course">
+        <h1 class="title_image_heading">IMAGE1</h1>
+      </div>
+      <div class="container">
+        <p>Title of the Course- Subtitle of the course</p>
+        <p class="align_course_card">Instructor Name</p>
+        <div class="align_course_card">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="far fa-star"></span>
+          <span class="far fa-star"></span>
+        </div>
+      </div>
+      <br>
+      <div class="column1">
+        <p>Discount</p>
+      </div>
+      <div class="column1">
+        <p class="course_card_price">Price</p>
+      </div>
+    </div>
+    <div class="column card" id="course_card_2">
+      <div class="img_course">
+        <h1 class="title_image_heading">IMAGE2</h1>
+      </div>
+      <div class="container">
+        <p>Title of the Course- Subtitle of the course</p>
+        <p class="align_course_card">Instructor Name</p>
+        <div class="align_course_card">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="far fa-star"></span>
+          <span class="far fa-star"></span>
+        </div>
+      </div>
+      <br />
+      <div class="column1">
+        <p>Discount</p>
+      </div>
+      <div class="column1">
+        <p class="course_card_price">Price</p>
+      </div>
+    </div>
+    <div class="column card" id="course_card_3">
+      <div class="img_course">
+        <h1>IMAGE3</h1>
+      </div>
+      <div class="container">
+        <p>Title of the Course- Subtitle of the course</p>
+        <p class="align_course_card">Instructor Name</p>
+        <div class="align_course_card">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="far fa-star"></span>
+          <span class="far fa-star"></span>
+        </div>
+      </div>
+      <br />
+      <div class="column1">
+        <p>Discount</p>
+      </div>
+      <div class="column1">
+        <p class="course_card_price">Price</p>
+      </div>
+    </div>
+
+    <div class="column card" id="course_card_4">
+      <div class="img_course">
+        <h1>IMAGE4</h1>
+      </div>
+      <div class="container">
+        <p>Title of the Course- Subtitle of the course</p>
+        <p class="align_course_card">Instructor Name</p>
+        <div class="align_course_card">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="far fa-star"></span>
+          <span class="far fa-star"></span>
+        </div>
+      </div>
+      <br />
+      <div class="column1">
+        <p>Discount</p>
+      </div>
+      <div class="column1">
+        <p class="course_card_price">Price</p>
+      </div>
+    </div>
+
+    <div class="column card" id="course_card_5">
+      <div class="img_course">
+        <h1>IMAGE5</h1>
+      </div>
+      <div class="container">
+        <p>Title of the Course- Subtitle of the course</p>
+        <p class="align_course_card">Instructor Name</p>
+        <div class="align_course_card">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="far fa-star"></span>
+          <span class="far fa-star"></span>
+        </div>
+      </div>
+      <br />
+      <div class="column1">
+        <p>Discount</p>
+      </div>
+      <div class="column1">
+        <p class="course_card_price">Price</p>
+      </div>
+    </div>
+
+    <div class="column card" id="course_card_6">
+      <div class="img_course">
+        <h1>IMAGE6</h1>
+      </div>
+      <div class="container">
+        <p>Title of the Course- Subtitle of the course</p>
+        <p class="align_course_card">Instructor Name</p>
+        <div class="align_course_card">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="far fa-star"></span>
+          <span class="far fa-star"></span>
+        </div>
+      </div>
+      <br />
+      <div class="column1">
+        <p>Discount</p>
+      </div>
+      <div class="column1">
+        <p class="course_card_price">Price</p>
+      </div>
+    </div>
+    <div class="column card" id="course_card_7">
+      <div class="img_course">
+        <h1>IMAGE7</h1>
+      </div>
+      <div class="container">
+        <p>Title of the Course- Subtitle of the course</p>
+        <p class="align_course_card">Instructor Name</p>
+        <div class="align_course_card">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="far fa-star"></span>
+          <span class="far fa-star"></span>
+        </div>
+      </div>
+      <br />
+      <div class="column1">
+        <p>Discount</p>
+      </div>
+      <div class="column1">
+        <p class="course_card_price">Price</p>
+      </div>
+    </div>
+    <div class="column card" id="course_card_8">
+      <div class="img_course">
+        <h1>IMAGE8</h1>
+      </div>
+      <div class="container">
+        <p>Title of the Course- Subtitle of the course</p>
+        <p class="align_course_card">Instructor Name</p>
+        <div class="align_course_card">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="far fa-star"></span>
+          <span class="far fa-star"></span>
+        </div>
+      </div>
+      <br />
+      <div class="column1">
+        <p>Discount</p>
+      </div>
+      <div class="column1">
+        <p class="course_card_price">Price</p>
+      </div>
+    </div>
+    <div class="column card" id="course_card_9">
+      <div class="img_course">
+        <h1>IMAGE9</h1>
+      </div>
+      <div class="container">
+        <p>Title of the Course- Subtitle of the course</p>
+        <p class="align_course_card">Instructor Name</p>
+        <div class="align_course_card">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="far fa-star"></span>
+          <span class="far fa-star"></span>
+        </div>
+      </div>
+      <br />
+      <div class="column1">
+        <p>Discount</p>
+      </div>
+      <div class="column1">
+        <p class="course_card_price">Price</p>
+      </div>
+    </div>
+
+    <div class="right_arrow_course" id="right_course" (click)="nextcardcourse()">
+      <i class="fas fa-chevron-right fa-2x right_arrow_course_btn"></i>
+    </div>
+  </div>
+</div>
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+<mat-card class="thread-topic-card">
+  <div class="thread-card">
+    <div class="profile-picture">
+      <img src="./../../../assets/icons/8. User Name.png" />
+    </div>
+    <div class="thread-details">
+      <div class="thread-title">
+        <span> Title </span>
+        <button><i class="fas fa-ellipsis-v" (click)="toggleDisplay2()"></i>
+        </button>
+      </div>
+      <div class="options">
+        <ul [hidden]="isShow" class="options-ul" id="ul2">
+          <li routerLink="/blogs">Turn ON Notification</li>
+          <li>Unfollow User</li>
+          <li>Report</li>
+        </ul>
+      </div>
+      <div class="thread-author">HH:MM IST | By Author Name</div>
+
+      <div class="thread-desc">
+        <p>
+          Description of thread topic. Description of thread topic. Description
+          of thread topic. Description of thread topic. Description of thread
+          topic. Description of thread topic. Description of thread topic.
+          Description of thread topic. Description of thread topic. Description
+          of thread topic. Description of thread topic. Description of thread
+          topic. Description of thread topic. Description of thread topic.
+          Description of thread topic. Description of thread topic.
+        </p>
+      </div>
+      <div class="thread-tags">
+        <div class="tag"># Tag1</div>
+        <div class="tag"># Tag1</div>
+      </div>
+
+      <div class="section">
+        <div><i class="fas fa-thumbs-up"></i> 222 Kudos</div>
+        <div><i class="fas fa-comment"></i> 22 Comment</div>
+        <div><i class="fas fa-share-alt"></i> Share</div>
+        <div><i class="fas fa-bookmark"></i> Bookmark</div>
+        <div><i class="fas fa-eye"></i> 1222 Views</div>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+<br />
+
+<div>
+  <div class="row">
+    <div class="left_arrow_user" id="left_user" (click)="prevcarduser()">
+      <i class="fas fa-chevron-left left_arrow_user_btn"></i>
+    </div>
+    <div class="column_user_card card_user_card" id="user_card_1">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name1</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_2">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name2</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_3">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name3</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_4">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name4</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_5">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name5</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_6">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name6</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_7">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name7</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_8">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name8</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_9">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name9</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_10">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name10</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_11">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name11</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_12">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name12</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_13">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name13</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_14">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name14</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="column_user_card card_user_card" id="user_card_15">
+      <div class="profile-picture-usercard">
+        <img src="./../../../assets/icons/8. User Name.png" />
+      </div>
+
+      <div class="container_user_card">
+        <p>User Name15</p>
+        <p class="mutual_con">N mutual<br />connections</p>
+      </div>
+
+      <div class="myfeedbtn spacing_user_card">
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Post</button><br /><br />
+        <button routerLink="" class="user_btn md-btn md-btn-feeds md-btn-feeds-other">Follow</button>
+      </div>
+
+    </div>
+
+    <div class="right_arrow_user" id="right_user" (click)="nextcarduser()">
+      <i class="fas fa-chevron-right right_arrow_user_btn"></i>
+    </div>
+  </div>
+</div>

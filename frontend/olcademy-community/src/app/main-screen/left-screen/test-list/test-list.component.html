@@ -1,0 +1,16 @@
+<div class="test-list-container">
+    <div id="test-title">
+        Test Categories
+    </div>
+
+    <mat-list >
+        <div style="margin-left: -17px;">
+        <mat-list-item *ngFor="let category of categoryList;let i=index" 
+            id="{{i}}" (click)="selectedCategory(i)" class="test-list"> 
+            <span id="category-icon-div"><i class="{{category.icon}}" id="test-icon-{{i}}">
+            </i></span>
+               <p id="test-category-name"> {{category.name}} </p> 
+        </mat-list-item>
+    </div>
+    </mat-list>
+</div>

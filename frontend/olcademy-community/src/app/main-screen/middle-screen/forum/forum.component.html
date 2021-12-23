@@ -1,0 +1,226 @@
+<div class="forum-container">
+    <mat-card class="ask-question-card">
+        <form (ngSubmit)="onSubmit()" autocomplete="off" spellcheck="false" #f="ngForm">
+            <input class="topicName" [class.invalid]="topicNameError" ngModel name="topicName" type="text" required
+                placeholder="Topic Name" #topicName>
+            <span class="error" [class.errorMessage]="topicNameError">*Enter a valid topic name</span>
+            <textarea class="forum-question" [class.invalid]="questionError" matInput cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" placeholder="Ask Your Question" ngModel
+                name="question" required #question></textarea>
+            <span class="error" [class.errorMessage]="questionError">*Enter a valid question</span>
+
+            <div *ngIf="images_store_array.length > 0">
+                <!-- carousel -->
+                <div class="parent-div-attachments posting-div">
+                    <div class="attachments">
+                        <div class="carousel-slides apostCarousel" #carouselSlidesPost>
+                            <img *ngFor="let image of images_store_array" src={{image}} alt="" height="280">
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-circle-left" *ngIf="images_store_array.length !== 1"
+                        (click)="prevoiusImagePost(carouselSlidesPost)" [disabled]="checkPreviousBtnDisablePost()"></i>
+                    <i class="fas fa-chevron-circle-right" *ngIf="images_store_array.length !== 1"
+                        (click)="nextImagePost(carouselSlidesPost)" [disabled]="checkNextBtnDisablePost()"></i>
+                </div>
+
+                <!-- MINI CAROUSEL -->
+                <div class="mini-carousel-container">
+                    <div class="attachments">
+                        <div class="carousel-slides bpostCarousel" #minicarouselslidesPost>
+                            <img *ngFor="let image of images_store_array; let j=index" src={{image}}
+                                (click)="goToImagePost(j, carouselSlidesPost)" alt="" width="110.891" height="73.922">
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-circle-left" *ngIf="images_store_array.length > 5"
+                        (click)="miniCarouselMoveLeftPost(minicarouselslidesPost)"
+                        [disabled]="checkMiniPreviousBtnDisablePost()"></i>
+                    <i class="fas fa-chevron-circle-right" *ngIf="images_store_array.length > 5"
+                        (click)="miniCarouselMoveRightPost(minicarouselslidesPost)"
+                        [disabled]="checkMiniNextBtnDisablePost()"></i>
+                </div>
+            </div>
+
+
+            <div class="tagArea">
+                <span class="tags" *ngFor="let tag of tags">{{tag}}</span>
+            </div>
+
+            <div class="ask-question-attributes">
+                <span>Add:</span>
+                <ul class="add-attributes">
+                    <li (click)="openuploadDialogue('images')">Image</li>
+                </ul>
+
+                <span class="add-tags">
+                    <input type="text" class="add-tag-input" #tagName placeholder="Add Tag">
+                    <div class="add-tag" (click)="addTag()">Add</div>
+                </span>
+                <div class="add-category">
+                    <span class="category-label">Categories:</span>
+                    <mat-form-field class="select_category_list">
+                        <mat-select placeholder="select" name="category" [(ngModel)]="category_selected">
+                            <mat-option [value]="category.name" *ngFor="let category of categories">{{category.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <span class="categoryError" [class.isInvalid]="category_selected_error">*Category is
+                        required.</span>
+                </div>
+            </div>
+            <button class="ask-question-submit md-btn">Post</button>
+        </form>
+    </mat-card>
+
+    <br>
+
+    <div class="filter">
+        <div>
+            <hr>
+        </div>
+        <div class="sort-by">
+            Sort by:
+            <mat-select placeholder="select" name="Filter" [(ngModel)]="selected_filter" class="filter_label">
+                <mat-option value="{{name}}" *ngFor="let name of filter">{{ name}}</mat-option>
+            </mat-select>
+            <!-- <span (click)="showSortByDropdown()">Popularity <i class="fas fa-caret-down"></i></span>
+            <br>
+            <ul class="sort-by-dropdown" *ngIf="isSortByDropdownHidden()">
+                <li>Popularity</li>
+                <li>Latest</li>
+            </ul> -->
+        </div>
+    </div>
+
+    <mat-card class="forum-all-posts" *ngFor="let forum of forumList; let i=index">
+        <button mat-icon-button (click)="Issame(forum.user_id._id,forum.user_id.followers)" [matMenuTriggerFor]="menu"
+            class="mat-menu-button forum-settings-option">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+            <div>
+                <button mat-menu-item value="{{category}}" *ngFor="let category of forum_option_category"
+                    (click)="option_function(category,forum._id,forum.user_id)">
+                    <span>{{category}}</span>
+                </button>
+            </div>
+        </mat-menu>
+        <!-- USER DETAILS AND TIMEPERIOD OF THE FORUM POST -->
+        <div class="forum-user-half">
+            <div class="forum-userimage-half">
+                <img class="forum-userimage" [src]=author_image_path[i] alt="" (click)="go_to_profile(forum.user_id)">
+            </div>
+            <div class="forum-user-details-half">
+                <div class="forum-user-details-upper-half">
+                    <div class="forum-username" (click)="go_to_profile(forum.user_id)">{{forum.author_name}}</div>
+                    <div class="forum-timeline">{{forum_life(forum.published_on)}}</div>
+                </div>
+                <div class="forum-user-tagline">
+                    Working as a IT consultant
+                </div>
+            </div>
+        </div>
+
+        <!-- FORUM POST TITLE AND CONTENT -->
+        <div class="forum-lower-half">
+            <div class="forum-post-title" (click)="go_to_forum(forum._id)">
+                {{forum.post_title}}
+            </div>
+            <div class="forum-post-description">
+                {{forum.post_content.substring(0, 300)}} ...
+                <span style="color: rgb(1, 169, 242); text-decoration: underline;cursor: pointer;"
+                    *ngIf="check_forum_length(forum.post_content)" (click)="go_to_forum(forum._id)">(Show More)</span>
+            </div>
+
+        </div>
+
+        <div class="" *ngIf="forum.media_tag.length !== 0">
+            <!-- carousel -->
+            <div class="parent-div-attachments">
+                <div class="attachments">
+                    <!-- <div class="carousel-slides {{forum._id}}" id="{{forum._id}}" #carouselSlides > -->
+                    <div class="carousel-slides a{{forum._id}}" #carouselSlides>
+                        <img *ngFor="let image of forum.media_tag" src={{image.slice(15,64)}} alt="" height="280">
+                    </div>
+                </div>
+                <button class="fas fa-chevron-circle-left" *ngIf="forum.media_tag.length !== 1"
+                    (click)="prevoiusImage(forum._id, i, carouselSlides)"
+                    [disabled]="checkPreviousBtnDisable(i)"></button>
+                <button class="fas fa-chevron-circle-right" *ngIf="forum.media_tag.length !== 1"
+                    (click)="nextImage(forum._id, i, carouselSlides)" [disabled]="checkNextBtnDisable(i)"></button>
+            </div>
+
+            <!-- MINI CAROUSEL -->
+            <div class="mini-carousel-container">
+                <div class="attachments">
+                    <div class="carousel-slides b{{forum._id}}" #minicarouselslides>
+                        <img *ngFor="let image of forum.media_tag; let j=index" src={{image.slice(15,64)}}
+                            (click)="goToImage(forum._id, i, j, carouselSlides)" alt="" width="110.891" height="73.922">
+                    </div>
+                </div>
+                <button class="fas fa-chevron-circle-left" *ngIf="forum.media_tag.length > 5"
+                    (click)="miniCarouselMoveLeft(forum._id, i, minicarouselslides)"
+                    [disabled]="checkMiniPreviousBtnDisable(i)"></button>
+                <button class="fas fa-chevron-circle-right" *ngIf="forum.media_tag.length > 5"
+                    (click)="miniCarouselMoveRight(forum._id, i, minicarouselslides)"
+                    [disabled]="checkMiniNextBtnDisable(i)"></button>
+            </div>
+        </div>
+
+
+
+        <!-- TAGS ASSOCIATED WITH THE FORUM POST -->
+        <div class="forum-post-tags-section">
+            <div class="forum-post-tag">
+                #{{forum.category.name}}
+            </div>
+            <div class="forum-post-tag" *ngFor="let tag of forum.hashtags">
+                {{tag}}
+            </div>
+        </div>
+
+        <!-- LIKES COMMENTS SHARE BOOKMARK -->
+        <div class="forum-post-attributes-section">
+            <div class="forum-left-side-attributes">
+                <div class="forum-post-like">
+                    <mat-icon [ngClass]="thumsUp(forum.likes,forum._id)"
+                        (click)="kudos($event,forum._id,forum.likes,forum.likes.length)">thumb_up</mat-icon> &nbsp;<span
+                        id="{{forum._id}}">{{check_number(forum.likes.length)}}</span>
+                </div>
+                <div class="forum-post-comment">
+                    <mat-icon> mode_comment</mat-icon> &nbsp;{{forum.comments}}
+                </div>
+                <div class="forum-post-share">
+                    <mat-icon class="replay-to-share-icon">reply</mat-icon> &nbsp;5
+                </div>
+            </div>
+            <div class="forum-right-side-attributes">
+                <div class="forum-post-bookmark">
+                    <mat-icon [ngClass]="bookmarkCheck(forum.bookmarks)"
+                        (click)="bookmark($event,forum._id,forum.bookmarks,forum.bookmarks.length,forum.user_id)">
+                        turned_in</mat-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADD COMMENT SECTION zz-->
+
+        <div class="forum-add-comment">
+            <!--zz-->
+            <div class="forum-userimage-half">
+                <img class="forum-userimage" src="./../../../assets/icons/8. User Name.png" alt="">
+            </div>
+            <div class="forum-add-comment-input-section">
+                <input type="text" class="forum-add-comment-input">
+            </div>
+            <div class="forum-add-comment-link-section">
+                <i class="fas fa-link"></i>
+            </div>
+            <div class="forum-add-commengt-btn-section">
+                <button class="forum-add-comment-btn md-btn md-btn-comment">Post</button>
+            </div>
+        </div>
+
+    </mat-card>
+</div>

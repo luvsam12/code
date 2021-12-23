@@ -1,0 +1,61 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.inserted-attributes {
+    display: flex;
+    margin: 0.5rem 0;
+}
+
+.ly-img-cropper-class {
+    margin: 0.8rem auto;
+}
+
+.upload-btn-sec {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.view-profile-image {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+}
+
+.btn-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+
+    .btn-bg-white, .btn-bg-blue {
+        border: none;
+        padding: 0.3em 1em;
+        width: 140px;
+        font-size: 15px;
+        font-family: microsoft jhenghei;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+    .btn-bg-white:focus, .btn-bg-blue:focus {
+        outline: none;
+    }
+
+    .btn-bg-white {
+        margin-right: 0.5em;
+    }
+    .btn-bg-blue {
+        margin-left: 0.5em;
+        color: white;
+        background-color: rgb(1, 169, 242);
+    }
+}

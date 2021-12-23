@@ -1,0 +1,78 @@
+
+
+<div class="show-settings setting">
+        <div class="settings-categories">
+            <div id="change-password" class="active" (click)="credentialsSetting()" >Change Password</div>
+            <div id="manage-notifications" (click)="credentialsSetting()">Manage Notifications</div>
+        </div>
+
+        <!-- change password -->
+        <div class="settings-area" *ngIf="currentDisplay === 'credentials'" >
+            <div class="email">
+                <label for="emailaddress">Email Address</label>
+                <input type="email" placeholder="xyz@domain.com" id="emailaddress">
+            </div>
+            <div class="password">
+                <label for="Password">Old Password</label>
+                <input type="password" placeholder="current password" id="Password">
+            </div>
+            <div class="new-password">
+                <label for="newPassword">New Password</label>
+                <input type="password" placeholder="new password" id="newPassword">
+            </div>
+            <div class="confirm-new-password">
+                <label for="confirmNewPassword">New Password</label>
+                <input type="password" placeholder="confirm password" id="confirmNewPassword">
+            </div>
+            <div class="btn-area">
+                <button class="change-btn">Change</button>
+            </div>
+        </div>
+
+        <!-- turn ON/OFF notifications -->
+        <div class="notifications-status" *ngIf="currentDisplay === 'notifications'">
+            <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              
+                <ng-container matColumnDef="name" id="name-container" >
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef class="center" > Push Notifications </th>
+                  <td mat-cell *matCellDef="let element" class="center" > <i id="slide-toggler" class="fas fa-toggle-off" (click)="toggleSlider()" ></i></td>
+                </ng-container>
+              
+                <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef class="center" > Email ALert </th>
+                  <td mat-cell *matCellDef="let element" class="center" ><i class="fas fa-toggle-on"></i> </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table> -->
+
+                <table style="width:100%">
+                    <tr>
+                        <th class="column-1"></th>
+                        <th class="column-23">Push Notifications</th>
+                        <th class="column-23">Email Alert</th>
+                    </tr>
+                    <tr *ngFor="let element of data; let i=index">
+                        <td class="column-1" >{{element.name}}</td>
+                        <td class="column-23">
+                            <section class="example-section">
+                                <mat-slide-toggle [color]="color">
+                                </mat-slide-toggle>
+                              </section>
+                        </td>
+                        <td class="column-23"> 
+                            <section class="example-section">
+                                <mat-slide-toggle [color]="color">
+                                </mat-slide-toggle>
+                              </section>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+</div>

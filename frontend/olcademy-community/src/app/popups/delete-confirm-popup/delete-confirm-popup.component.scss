@@ -1,0 +1,47 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.far.fa-times-circle {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    top: 0;
+    color: rgb(89, 89, 89);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.confirmation{
+    font-size: 1.3em;
+    text-align: center;
+    color: rgb(89, 89, 89);
+}
+
+.yesBtn, .cancelBtn {
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    padding: 0.4em 1em;
+    width: 150px;
+    font-size: 18px;
+}
+
+.yesBtn:focus, .cancelBtn:focus {
+    outline: none;    
+}
+
+.yesBtn {
+    background-color: rgb(1, 169, 242);
+    color: rgb(242, 242, 242);
+    margin-right: 0.5em;
+}
+.cancelBtn {
+    background-color: rgb(242, 242, 242);
+    color: rgb(89, 89, 89);
+    margin-left: 0.5em;
+}

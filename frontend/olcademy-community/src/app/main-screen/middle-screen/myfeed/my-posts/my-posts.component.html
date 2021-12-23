@@ -1,0 +1,299 @@
+<div class="blogs-container">
+  <div class="filter">
+      <div>
+          <hr>
+      </div>
+      <div class="sort-by">
+          Sort by:
+          <mat-select placeholder="select" name="Filter" [(ngModel)]="selected_filter" class="filter_label" >
+            <mat-option value="{{name}}" *ngFor="let name of filter">{{ name}}</mat-option>
+        </mat-select>
+      </div>
+  </div>
+  <div *ngFor="let blog of blogList; let i=index">
+      <div *ngIf="blog.post_type=='Blogs'">
+      <mat-card class="thread-topic-card">
+          <div class="thread-card">
+              <div class="profile-picture" >
+                  <!-- <img [src]= author_image_path[i].profile_image_path (click)="go_to_profile()"> -->
+                  <img [src]= author_image_path[i] (click)="go_to_profile(blog.user_id)">
+
+              </div>
+              <div class="thread-details">
+                  <div class="blog-details">
+                      <div class="blog-text">
+                          <div class="thread-title">
+                              <span (click)=go_to_blog(blog._id)>
+                                  {{blog.post_title}}
+                              </span>
+                          </div>
+
+                          <div class="thread-author" (click)="go_to_profile(blog.user_id)">
+                              {{blog_life(blog.published_on)}} | By {{blog.author_name}}
+                          </div>
+
+                          <div class="thread-desc short-content" id="short-content-{{i}}"> </div>
+                          <div class="show-more" id="post-content-show-more-{{i}}" (click)=go_to_blog(blog._id)>(Show more)</div>
+                      </div>
+                      <div class="blog-image">
+                          <div class=" thread-desc short-content-first-media"  id="short-content-first-media-{{i}}"></div>
+                          <div class="thread-desc" id="thread-desc-{{i}}">{{show_text(blog.media_tag,i)}}
+
+                              <!-- <div > -->
+                                  <div style="display: none;">
+                                  <quill-editor  [styles]="{border: '0px'}" [readOnly]  = "true"
+                                      [modules]   = "{ toolbar: false }" [(ngModel)]="blog.post_content"  disabled>
+                                  </quill-editor>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+
+                  <div class="thread-tags">
+                      <div class="tag">   #{{ blog.category.name }}   </div>
+                      <div *ngIf="blog.hashtags.length != 0">
+                          <div *ngFor="let tag of blog.hashtags | slice:0:4">
+                              <div class="tag"> #{{tag}} </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="section">
+                      <div >
+                          <i [ngClass]="thumsUp(blog.likes,blog._id)"    (click)="kudos($event,blog._id,blog.likes,blog.likes.length)"></i>
+                          <span id="{{blog._id}}">{{check_number(blog.likes.length)}}  Like</span>
+                      </div>
+                      <div (click)="commentDisplay(blog._id,i)">
+                          <i class="fas fa-comment"></i> {{check_number(blog.comments)}}  Comment
+                      </div>
+                      <div>
+                          <i class="fas fa-share-alt"></i>  Share
+                      </div>
+                      <div>
+                          <i [ngClass]="bookmarkCheck(blog.bookmarks)" (click)="bookmark($event,blog._id,blog.bookmarks,blog.bookmarks.length,blog.user_id)"></i><span id="{{blog.user_id}}"> Bookmark</span>
+                      </div>
+                      <div>
+                          <i class="fas fa-eye"></i> {{check_number(blog.num_of_views)}} Views
+                      </div>
+                  </div>
+
+                  <!-- comments -->
+                  <div class="blog-comment" id="comment{{blog._id}}">
+                      <div class="comment-profile-picture">
+                          <img [src]=user_image  routerLink="/user-page"/>
+                          <input id="post-comment{{i}}" type="text" placeholder="Type your comment">
+                          <i class="fa fa-link fa-1x"></i>
+                          <button class="publish"  (click)="postComment(blog._id,i)">Post</button>
+                      </div>
+                      <div *ngIf="blog.commentShow">
+                      <div *ngFor="let comment of blog.comment.comments | slice:0:2" class="comment">
+                          <div  >
+                         <div class="blog-comments" >
+                             <div style="display: flex;">
+                                 <div class="blog-comment-img">
+                                     <img [src]=author_image_path routerLink="/user-page"/>
+                                 </div>
+                                 <div class="comment-user">
+                                     {{comment.full_name}} | {{comment.user_type}}  <span class="comment-time">{{blog_life(comment.published_on)}}</span>
+                                     <br>
+                                     <div >
+                                      <span class="comment-content" id="expand{{comment._id}}" (click)="expand(comment._id)" >{{comment.comment}}</span>
+                                      <span id="expandS{{comment._id}}" *ngIf="checkShow(comment._id)" (click)="expand(comment._id)" class="show-more">Show more</span>
+                                    </div>
+
+
+                                 </div>
+                             </div>
+                             <div class="comment-reply" id="comment-reply{{comment._id}}">
+                              <img [src]=author_image_path routerLink="/user-page"/>
+                              <input class="comment-reply-input" id="post-comment{{comment._id}}" type="text" placeholder="Type your reply">
+                              <i class="fa fa-link fa-1x"></i>
+                              <button class="publish" (click)="postReply(comment._id,blog._id,i)" >Post</button>
+                          </div>
+                         </div>
+                         <div class="blog-section">
+                             <div>
+                              <span (click)="commentLike($event,comment._id,comment.likes,comment.likes.length)">
+                                  <span id="c{{comment._id}}"> {{check_number(comment.likes.length)}}</span>    <i [ngClass]="thumsUp(comment.likes,comment._id)" ></i>
+                              </span>
+                              <span *ngIf="blog.commentShow" class="comment-reply-count" (click)="commentInput(comment._id)">
+                                  {{check_number(comment.num_of_replies)}}  <i class="fas fa-comment"></i>
+                              </span>
+                             </div>
+
+                             <div class="exclamations">
+                                 <i class="fas fa-exclamation" (click)="reportSpam(comment._id,'comment')"></i>
+                             </div>
+                         </div>
+
+                     </div>
+                     </div>
+                  </div>
+                     <!-- <button class="publish view-more "  (click)="postReply(comment._id)" >Post</button> -->
+                     <div class="view-more" *ngIf="blog.comments > 2"  (click)=go_to_blog(blog._id)>
+                         View More
+                     </div>
+                  </div>
+              </div>
+             <div>
+              <button mat-icon-button (click)="Issame(blog.user_id)" [matMenuTriggerFor]="menu"  class="mat-menu-button">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+                <!-- <div *ngIf="Issame(blog.user_id)">
+                    <button mat-menu-item  value="{{category}}" *ngFor="let category of my_blog_category" (click)="option_function(category,blog._id)">
+                        <span>{{category}}</span>
+                    </button>
+                </div> -->
+                <div >
+                  <!-- <div *ngIf="followingCheck(blog.user_id.following)"> -->
+                    <button mat-menu-item value="{{category}}"  *ngFor="let category of blog_options_category" (click)="option_function(category,blog._id,blog.user_id)">
+                        <span>{{category}}</span>
+                    </button>
+                  <!-- </div> -->
+                  <!-- <div *ngIf="!followingCheck(blog.user_id.following)">
+                    <button mat-menu-item value="{{category}}"  *ngFor="let category of follow_user_category" (click)="option_function(category,blog._id)">
+                        <span>{{category}}</span>
+                    </button>
+                  </div> -->
+                </div>
+            </mat-menu>
+              </div>
+          </div>
+      </mat-card>
+    </div>
+    <div *ngIf="blog.post_type=='Forums'">
+        <mat-card class="forum-all-posts" >
+        <!-- <mat-card class="forum-all-posts" *ngFor="let forum of forumList; let i=index"> -->
+
+            <button mat-icon-button (click)="Issame(blog.user_id._id,blog.user_id.followers)" [matMenuTriggerFor]="menu"
+                class="mat-menu-button forum-settings-option">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+    
+            <mat-menu #menu="matMenu">
+                <div>
+                    <button mat-menu-item value="{{category}}" *ngFor="let category of forum_option_category"
+                        (click)="option_function(category,blog._id,blog.user_id)">
+                        <span>{{category}}</span>
+                    </button>
+                </div>
+            </mat-menu>
+            <!-- USER DETAILS AND TIMEPERIOD OF THE FORUM POST -->
+            <div class="forum-user-half">
+                <div class="forum-userimage-half">
+                    <img class="forum-userimage" [src]=author_image_path[i] alt="" (click)="go_to_profile(blog)">
+                </div>
+                <div class="forum-user-details-half">
+                    <div class="forum-user-details-upper-half">
+                        <div class="forum-username" (click)="go_to_profile(blog.user_id)">{{blog.author_name}}</div>
+                        <div class="forum-timeline">{{forum_life(blog.published_on)}}</div>
+                    </div>
+                    <div class="forum-user-tagline">
+                        Working as a IT consultant
+                    </div>
+                </div>
+            </div>
+    
+            <!-- FORUM POST TITLE AND CONTENT -->
+            <div class="forum-lower-half">
+                <div class="forum-post-title" (click)="go_to_forum(blog._id)">
+                    {{blog.post_title}}
+                </div>
+                <div class="forum-post-description">
+                    {{blog.post_content.substring(0, 300)}} ... <span
+                        style="color: rgb(1, 169, 242); text-decoration: underline;cursor: pointer;" *ngIf="check_forum_length(forum.post_content)"
+                        (click)="go_to_forum(blog._id)">(Show More)</span>
+                </div>
+            </div>
+    
+            <div class="" *ngIf="blog.media_tag.length !== 0">
+                <!-- carousel -->
+                <div class="parent-div-attachments">
+                    <div class="attachments">
+                        <!-- <div class="carousel-slides {{forum._id}}" id="{{forum._id}}" #carouselSlides > -->
+                        <div class="carousel-slides a{{blog._id}}" #carouselSlides>
+                            <img *ngFor="let image of blog.media_tag" src={{image.slice(15,64)}} alt="" height="280">
+                        </div>
+                    </div>
+                    <button class="fas fa-chevron-circle-left" *ngIf="blog.media_tag.length !== 1"
+                        (click)="prevoiusImage(blog._id, i, carouselSlides)"
+                        [disabled]="checkPreviousBtnDisable(i)"></button>
+                    <button class="fas fa-chevron-circle-right" *ngIf="blog.media_tag.length !== 1"
+                        (click)="nextImage(blog._id, i, carouselSlides)" [disabled]="checkNextBtnDisable(i)"></button>
+                </div>
+    
+                <!-- MINI CAROUSEL -->
+                <div class="mini-carousel-container">
+                    <div class="attachments">
+                        <div class="carousel-slides b{{blog._id}}" #minicarouselslides>
+                            <img *ngFor="let image of blog.media_tag; let j=index" src={{image.slice(15,64)}}
+                                (click)="goToImage(blog._id, i, j, carouselSlides)" alt="" width="110.891" height="73.922">
+                        </div>
+                    </div>
+                    <button class="fas fa-chevron-circle-left" *ngIf="blog.media_tag.length > 5"
+                        (click)="miniCarouselMoveLeft(blog._id, i, minicarouselslides)"
+                        [disabled]="checkMiniPreviousBtnDisable(i)"></button>
+                    <button class="fas fa-chevron-circle-right" *ngIf="blog.media_tag.length > 5"
+                        (click)="miniCarouselMoveRight(blog._id, i, minicarouselslides)"
+                        [disabled]="checkMiniNextBtnDisable(i)"></button>
+                </div>
+            </div>
+    
+    
+    
+            <!-- TAGS ASSOCIATED WITH THE FORUM POST -->
+            <div class="forum-post-tags-section">
+                <div class="forum-post-tag">
+                    #{{blog.category.name}}
+                </div>
+                <div class="forum-post-tag" *ngFor="let tag of blog.hashtags">
+                    {{tag}}
+                </div>
+            </div>
+    
+            <!-- LIKES COMMENTS SHARE BOOKMARK -->
+            <div class="forum-post-attributes-section">
+                <div class="forum-left-side-attributes">
+                    <div class="forum-post-like">
+                        <mat-icon [ngClass]="thumsUp(blog.likes,blog._id)"
+                            (click)="kudos($event,blog._id,blog.likes,blog.likes.length)"></mat-icon> &nbsp;<span
+                            id="{{blog._id}}">{{check_number(blog.likes.length)}}</span>
+                    </div>
+                    <div class="forum-post-comment">
+                        <mat-icon> mode_comment</mat-icon> &nbsp;{{blog.comments}}
+                    </div>
+                    <div class="forum-post-share">
+                        <mat-icon class="replay-to-share-icon">reply</mat-icon> &nbsp;5
+                    </div>
+                </div>
+                <div class="forum-right-side-attributes">
+                    <div class="forum-post-bookmark">
+                        <mat-icon [ngClass]="bookmarkCheck(blog.bookmarks)"
+                            (click)="bookmark($event,blog._id,blog.bookmarks,blog.bookmarks.length,blog.user_id)">
+                            </mat-icon>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- ADD COMMENT SECTION -->
+            <div class="forum-add-comment">
+                <div class="forum-userimage-half">
+                    <img class="forum-userimage" src="./../../../assets/icons/8. User Name.png" alt="">
+                </div>
+                <div class="forum-add-comment-input-section">
+                    <input type="text" class="forum-add-comment-input">
+                </div>
+                <div class="forum-add-comment-link-section">
+                    <i class="fas fa-link"></i>
+                </div>
+                <div class="forum-add-commengt-btn-section">
+                    <button class="forum-add-comment-btn md-btn md-btn-comment">Post</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+      </div>
+  </div>

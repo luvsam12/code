@@ -1,0 +1,254 @@
+
+<header>
+    <app-header></app-header>
+</header>
+<!-- <i class="far fa-arrow-alt-circle-left"></i> -->
+<div id="show-blog">
+    <app-right-screen></app-right-screen>
+    <div *ngIf="is_data_available">
+        <div class="container" *ngIf="!isEditing" style="display: flex;flex-direction: row;">
+            <i class="far fa-arrow-alt-circle-left" (click)="goBack()" ></i>
+            <mat-card class="example-card">
+                <mat-card-header class="card-header" >
+                    <div mat-card-avatar class="example-header-image">
+                        <img routerLink="/user-page" style="border-radius: 50%;" [src]="author_profile_image_path" alt="">
+                    </div>
+                  <mat-card-title class="post-author-details"><span routerLink="/user-page" >{{forum_post.author_name}}</span> &nbsp; {{forum_life(forum_post.published_on)}}</mat-card-title>
+                  <mat-card-subtitle class="post-details" >Working as IT expert</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content  class="card-content">
+                    <div class="post-title">
+                        {{forum_post.post_title}}
+                    </div>
+                    <div class="post-desc">
+                      <p>{{forum_post.post_content}}</p>
+                    </div>
+
+                    <div *ngIf="forum_post.media_tag.length > 0">
+                        <!-- carousel -->
+                        <div class="parent-div-attachments">
+                            <div class="attachments">
+                                <!-- <div class="carousel-slides {{forum._id}}" id="{{forum._id}}" #carouselSlides > -->
+                                <div class="carousel-slides a{{forum_post._id}}" #carouselSlides >
+                                    <img *ngFor="let image of forum_post.media_tag" src={{image.slice(15,64)}} alt="" height="400px">
+                                </div>
+                            </div>
+                            <button class="fas fa-chevron-circle-left" *ngIf="forum_post.media_tag.length !== 1" (click)="prevoiusImage(forum_post._id, carouselSlides)" [disabled]="checkPreviousBtnDisable()"></button>
+                            <button class="fas fa-chevron-circle-right" *ngIf="forum_post.media_tag.length !== 1" (click)="nextImage(forum_post._id, carouselSlides)" [disabled]="checkNextBtnDisable()"></button>
+
+                        </div>
+
+                        <!-- MINI CAROUSEL -->
+                        <div class="mini-carousel-container">
+                            <div class="attachments">
+                                <div class="carousel-slides b{{forum_post._id}}" #minicarouselslides >
+                                    <img *ngFor="let image of forum_post.media_tag; let j=index" src={{image.slice(15,64)}} (click)="goToImage(forum_post._id, j, carouselSlides)" alt="" width="110.891" height="73.922">
+                                </div>
+                            </div>
+                            <button class="fas fa-chevron-circle-left" *ngIf="forum_post.media_tag.length > 7" (click)="miniCarouselMoveLeft(forum_post._id, minicarouselslides)" [disabled]="checkMiniPreviousBtnDisable()"></button>
+                            <button class="fas fa-chevron-circle-right" *ngIf="forum_post.media_tag.length > 7" (click)="miniCarouselMoveRight(forum_post._id, minicarouselslides)" [disabled]="checkMiniNextBtnDisable()"></button>
+                        </div>
+                    </div>
+    
+                    <!-- TAGS ASSOCIATED WITH THE FORUM POST -->
+                    <div class="forum-post-tags-section">
+                        <div class="forum-post-tag">
+                            #{{forum_post.category.name}}
+                        </div>
+                        <div class="forum-post-tag" *ngFor="let tag of forum_post.hashtags">
+                            {{tag}}
+                        </div>
+                    </div>
+    
+    
+                    <ul class="shareOptions" *ngIf="showShareOptions()" >
+                        <li (click)="openSharePopup()" >Share link on other websites</li>
+                        <li (click)="openShareOnFeedPopup(post.postId)" >Share post on your feed</li>
+                    </ul>
+                    <!-- LIKES COMMENTS SHARE BOOKMARK -->
+                    <div class="forum-post-attributes-section">
+                        <div class="forum-left-side-attributes">
+                            <div class="forum-post-like">
+                                <mat-icon [ngClass]="thumsUp(forum_post.likes,forum_post._id)" (click)="kudos($event,forum_post._id,forum_post.likes,forum_post.likes.length)">thumb_up</mat-icon> &nbsp;<span id="{{forum_post._id}}">{{check_number(forum_post.likes.length)}}</span>
+                            </div>
+                            <div class="forum-post-comment">
+                                <mat-icon> mode_comment</mat-icon> &nbsp;{{forum_post.comments}}
+                            </div>
+                            <div class="forum-post-share">
+                                <mat-icon class="replay-to-share-icon">reply</mat-icon> &nbsp;5
+                            </div>
+                        </div>
+                        <div class="forum-right-side-attributes">
+                            <div class="forum-post-bookmark">
+                                <mat-icon [ngClass]="bookmarkCheck(forum_post.bookmarks)" (click)="bookmark($event,forum_post._id,forum_post.bookmarks,forum_post.bookmarks.length,forum_post.user_id)">turned_in</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <div class="answer-button">
+                    <button class="ansBtn" (click)="toShowComment()" >Answer</button>
+                </div>
+                <div class="answer" *ngIf="isAnswerPanelHidden()" >
+                    <img class="user-image" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="">
+                    <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" class="answer-input" placeholder="Type Your Answer" spellcheck="false"></textarea>
+                    <i class="fas fa-link"></i>
+                    <button class="postBtn">Post</button>
+                </div>
+    
+                <div class="comment-section" *ngFor="let num of nums">
+                    <div class="left-part" ><i class="fas fa-thumbs-up"></i>223</div>
+                    <div class="right-part" >
+                        <!-- original comment -->
+                        <div class="comments">
+                            <div class="profile-pic">
+                                <img src="https://www.kindpng.com/picc/m/78-785975_icon-profile-bio-avatar-person-symbol-chat-icon.png" routerLink="/user-page">
+                            </div>
+                            <div class="comment">
+                                Ankit Biswal | Learner 
+                                <br>
+                                <div class="comment-content">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptates dicta temporibus nam eius iste vero debitis possimus voluptas consectetur!
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="comment-attributes">
+                            <span>
+                                <i class="fas fa-thumbs-up"></i>
+                                <i class="fas fa-comment-alt"></i>
+                            </span>
+                            <span>
+                                <i class="fas fa-exclamation" (click)="reportSpam()"></i>
+                            </span>
+                        </div>
+    
+                        <!-- if there is a reply to the parent comment then this section is shown -->
+    
+                        <!-- Reply comment starts -->
+                        <div class="reply-comment-section">
+                            <div class="parent-comment">
+                                <div class="empty"></div>
+                                <div class="comments">
+                                    <div class="profile-pic">
+                                        <img src="https://www.kindpng.com/picc/m/78-785975_icon-profile-bio-avatar-person-symbol-chat-icon.png" routerLink="/user-page">
+                                    </div>
+                                    <div class="comment">
+                                        Ankit Biswal | Learner 
+                                        <br>
+                                        <div class="comment-content">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptates dicta temporibus nam eius iste vero debitis possimus voluptas consectetur!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reply-comment">
+                                <div class="comments">
+                                    <div class="profile-pic">
+                                        <img src="https://www.kindpng.com/picc/m/78-785975_icon-profile-bio-avatar-person-symbol-chat-icon.png" routerLink="/user-page">
+                                    </div>
+                                    <div class="comment">
+                                        Ankit Biswal | Learner 
+                                        <br>
+                                        <div class="comment-content">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptates dicta temporibus nam eius iste vero debitis possimus voluptas consectetur!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+            <i class="fas fa-ellipsis-v" mat-icon-button (click)="Issame(forum_post.user_id._id,forum_post.user_id.followers)" [matMenuTriggerFor]="menu"></i>
+
+            <mat-menu #menu="matMenu">
+                <div >
+                    <button mat-menu-item value="{{category}}"  *ngFor="let category of forum_option_category" (click)="option_function(category,forum_post._id,forum_post.user_id)">
+                        <span>{{category}}</span>
+                    </button>
+                </div>
+            </mat-menu>
+
+            <div class="backdrop" #backdrop (click)="closeSettings()" ></div>
+        </div>
+
+    </div>
+    
+    <div class="container" *ngIf="isEditing" style="display: flex;flex-direction: row;">
+        <i class="far fa-arrow-alt-circle-left editing-back-arrow" (click)="goBackToShow(forum_post._id)" ></i>
+        <mat-card class="edit-card">
+            <mat-card-header class="card-header" >
+                <div mat-card-avatar class="example-header-image">
+                    <img routerLink="/user-page" style="border-radius: 50%;" [src]="author_profile_image_path" alt="">
+                </div>
+              <mat-card-title class="post-author-details"><span routerLink="/user-page" >{{forum_post.author_name}}</span> &nbsp; {{forum_life(forum_post.published_on)}}</mat-card-title>
+              <mat-card-subtitle class="post-details" >Working as IT expert</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content  class="card-content">
+                
+                <form autocomplete="off" (ngSubmit)="updatePost()" spellcheck="false" #f="ngForm">
+                    <input class="forum-updated-post-title" [class.invalid]="topicNameError" type="text" [ngModel]="forum_post.post_title" name="updated_post_title" required #updated_post_title> 
+                    <span class="error" [class.errorMessage]="topicNameError">*Enter a valid topic name</span>
+                    <textarea class="forum-updated-question" [class.invalid]="questionError" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" name="updated_question" [ngModel]="forum_post.post_content" required #updated_question></textarea>
+                    <span class="error" [class.errorMessage]="questionError">*Enter a valid question</span>
+
+                    <div class="media-section" id="forum-media-section" #forumMediaSecition>
+                        <div class="image-div" *ngFor="let media of media_tag_check_clone; let i=index">
+                            <img src={{media.slice(15,64)}} alt="" height="250px">
+                            <mat-icon (click)="deleteImage(i)" class="delete-image-icon">clear</mat-icon>
+                        </div>
+                    </div>
+
+                    <!-- TAGS ASSOCIATED WITH THE FORUM POST -->
+                    <div class="forum-post-tags-section">
+                        <div class="forum-post-tag">
+                            #{{category_selected}}
+                        </div>
+                        <div class="forum-post-tag" *ngFor="let tag of tags_clone; let i=index">
+                            <div>{{tag}}</div>&nbsp;<i class="far fa-times-circle" (click)="removeTag(i)" ></i>
+                        </div>
+                    </div>
+
+                    <div class="ask-question-attributes">
+                        <span>Add:</span> 
+                        <ul class="add-attributes">
+                            <li (click)="openuploadDialogue('images')" >Image</li>
+                        </ul>
+        
+                        <span class="add-tags">
+                            <input type="text" class="add-tag-input" #tagName placeholder="Add Tag">
+                            <div class="add-tag" (click)="addTag()">Add</div>
+                        </span>
+                        <div class="add-category">
+                            <span class="category-label">Categories: &nbsp;</span>
+                            <mat-form-field class="select_category_list" >
+                                <mat-select  placeholder="select" name="category" [(ngModel)]="category_selected">
+                                    <mat-option [value]="category.name" *ngFor="let category of categories">{{ category.name }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="update-btn-section">
+                        <button class="update-btn" >Update</button>
+                    </div>
+
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+    <br>
+</div>
+<div class="similar-blogs" style="display:flex;flex-direction: row;">
+    
+    <div >
+        Similar Threads:
+        <br>
+        <a routerLink="/blogs">How to Increase Conversion Rates with Effective Squeeze Pages</a><span class="label-a">by Katie Terrel</span>l
+        <br>
+        <a routerLink="/blogs">Top 5 ways to get Inbound Links </a><span class="label-a">by Andre Youkhna</span>l
+    </div>
+</div>
+

@@ -1,0 +1,335 @@
+<mat-card class="test-card">
+    <h1 class="solved-quetions-heading">Solved Questions</h1>
+    <hr class="hr">
+    <div class="category-cards">
+        <div class="cat">
+            <p>CAT</p>
+        </div>
+        <div class="gate">
+            <p>GATE</p>
+        </div>
+        <div class="pte">
+            <p>PTE</p>
+        </div>
+        <div class="upsc">
+            <p>UPSC</p>
+        </div>
+    </div>
+
+    <div class="particular-test-details">
+
+        <!-- UPCOMING MOCK TESTS MENTIONS -->
+        <div class="mock-test">
+            <div class="square">
+                <div class="blue-square"></div>
+            </div>
+            <div class="mock-test-details">
+                <p class="test-name">CAT Mock Test 5</p>
+                <div>
+                    <p class="no-of-questions">
+                        <mat-icon class="help-icon">help_outline</mat-icon> 120 Questions
+                    </p>
+                    <p class="total-time">
+                        <mat-icon class="timer-icon">timer</mat-icon> 90 mins
+                    </p>
+                </div>
+            </div>
+            <div class="btn-div">
+                <button class="btn   md-btn-tests md-btn">Lunch</button>
+            </div>
+        </div>
+        <hr class="hr-second">
+
+        <h2 class="starting-line">Make yourself Mock Test ready. Start practicing below.</h2>
+
+
+        <!-- FILTERS SETTINGS -->
+        <div class="filters">
+            <div class="filter" (click)="toggleMoreFilters()">
+                <p class="filter-para">
+                    <mat-icon class="filter-icon">local_bar</mat-icon>Filter
+                </p>
+                <mat-icon *ngIf="showMoreFilters === false">keyboard_arrow_down</mat-icon>
+                <mat-icon class="blue-highlight" *ngIf="showMoreFilters === true">keyboard_arrow_up</mat-icon>
+            </div>
+            <div class="right-side-filters">
+                <div class="sort-by">
+                    <mat-icon class="sort-icon">sort</mat-icon>Sort By
+                </div>
+                <div class="latest">
+                    <p class="filter-para">
+                        <mat-icon class="filter-icon">local_bar</mat-icon>Latest
+                    </p>
+                    <mat-icon mat-button [matMenuTriggerFor]="beforeMenu">keyboard_arrow_down</mat-icon>
+                    <mat-menu #beforeMenu="matMenu" xPosition="before">
+                        <button mat-menu-item>Item 1</button>
+                        <button mat-menu-item>Item 2</button>
+                    </mat-menu>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- MORE FILTER SETTINGS -->
+        <div class="more-filters" *ngIf="shouldShowMoreFilters()">
+            <div class="left-side">
+                <div class="each-filter" *ngFor="let eachFilter of moreFilter; let i=index"
+                    (click)="toggleSubFilters(i)" mat-button [matMenuTriggerFor]="beforeMenu">
+                    <span class="each-filter-heading">{{eachFilter.filterName}}</span>
+                    <mat-icon *ngIf="eachFilter.showMoreFilters === false">keyboard_arrow_down</mat-icon>
+                    <mat-icon class="blue-highlight" *ngIf="eachFilter.showMoreFilters === true">keyboard_arrow_up
+                    </mat-icon>
+                    <mat-menu #beforeMenu="matMenu" xPosition="before">
+                        <li mat-menu-item *ngFor="let subfilter of eachFilter.subfilterOptions; let j=index">
+                            <mat-checkbox class="example-margin">{{subfilter.name}}({{subfilter.quantity}})
+                            </mat-checkbox>
+                        </li>
+                    </mat-menu>
+                </div>
+            </div>
+            <div class="right-side">
+                <button class="btn   md-btn-tests md-btn">CLear</button>
+            </div>
+        </div>
+
+
+        <!-- ALL THE SOLVED QUESTIONS DISPLAY -->
+        <div class="all-results">
+            <div class="each-question" *ngFor="let eachQuestion of allQuestions; let i=index">
+                <div class="top-row">
+                    <div class="test-type">
+                        <mat-icon class="brightness-icon"
+                            [ngClass]="{'cat-exam': eachQuestion.examType === 'CAT', 'gate-exam': eachQuestion.examType === 'GATE', 'pte-exam': eachQuestion.examType === 'PTE', 'upsc-exam': eachQuestion.examType === 'UPSC'}">
+                            brightness_1</mat-icon> <span>{{eachQuestion.examType}}</span>
+                    </div>
+                    <div class="more">
+                        <mat-icon class="more-option-icon">more_vert</mat-icon>
+                    </div>
+                </div>
+                <div class="speaking-skill-info" *ngIf="eachQuestion.type === 'speakingSkill'">Speak for 1 to 3 minutes
+                    about the topic below</div>
+                <div class="question-explanation">
+                    {{eachQuestion.questionsInformations.questionStatement}}
+                </div>
+
+                <div class="questions-specifications">
+                    <div class="left-side">
+                        <a href="#"><i class="fas fa-link"></i> www.facebook.com</a>
+                        <div><i class="fas fa-dot-circle"></i></div>
+                        <a href="#">Questions Information</a>
+                    </div>
+
+                    <div class="right-side">
+                        <p class="question-type">Quantitative Ability</p>
+                        <p>{{eachQuestion.questionLevel}}</p>
+                    </div>
+                </div>
+
+                <!-- OPTIONS TO MCQ AND MAQ -->
+                <div class="options"
+                    *ngIf="eachQuestion.type === 'MCQ' && eachQuestion.questionsInformations.showMoreContent === true ">
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="radio-group"
+                        [(ngModel)]="eachQuestion.questionsInformations.answerSelected">
+                        <mat-radio-button class="radio-button"
+                            *ngFor="let option of eachQuestion.questionsInformations.options" value="option">
+                            {{option}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                <!-- ANSWERS TO MCQ -->
+                <!-- <div class="answers-to-mcq" *ngIf="eachQuestion.type === 'MCQ'">
+                    <div class="each-option-percentage" *ngFor="let answer of eachQuestion.questionsInformations.answerpercentage" >
+                        <div class="serial-num" >{{answer.option}}.</div>
+                        <div class="progress-bar">
+                            <div class="percentage-value" ><strong>{{answer.percentage}}%</strong></div>
+                            <progress id="file" [value]="answer.percentage" max="100"> {{answer.percentage}}% </progress>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="maq-tagline"
+                    *ngIf="eachQuestion.type === 'MAQ' && eachQuestion.questionsInformations.showMoreContent === true">
+                    Multiple Selections Allowed
+                </div>
+
+                <div class="options"
+                    *ngIf="eachQuestion.type === 'MAQ' && eachQuestion.questionsInformations.showMoreContent === true ">
+                    <mat-checkbox class="maq-checkboxes"
+                        *ngFor="let option of eachQuestion.questionsInformations.options">{{option}}</mat-checkbox>
+                </div>
+
+                <!-- MORE CONTENT FOR SUBJECTIVE TYPE QUESTIONS -->
+                <div class="more-content"
+                    *ngIf="eachQuestion.type === 'Subjective' && eachQuestion.questionsInformations.showMoreContent === true">
+                    <p class="more-question-content"
+                        *ngIf="eachQuestion.questionsInformations.moreContentPresent === true">
+                        {{eachQuestion.questionsInformations.moreContent}}
+                    </p>
+
+                    <!-- carousel -->
+                    <div class="parent-div-attachments">
+                        <button class="fas fa-chevron-circle-left" (click)="prevoiusImage()"
+                            [disabled]="checkPreviousBtnDisable()"></button>
+                        <button class="fas fa-chevron-circle-right" (click)="nextImage()"
+                            [disabled]="checkNextBtnDisable()"></button>
+                        <div class="attachments">
+                            <div class="carousel-slides" #carouselSlides>
+                                <img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1127&q=80"
+                                    alt="" width="410.891" height="273.922">
+                                <img src="https://images.unsplash.com/photo-1467048206339-21d11f496fd1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
+                                    alt="" width="410.891" height="273.922">
+                                <img src="https://images.unsplash.com/photo-1479030160180-b1860951d696?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80"
+                                    alt="" width="410.891" height="273.922">
+                                <img src="https://images.unsplash.com/photo-1506261423908-ea2559c1f24c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1524&q=80"
+                                    alt="" width="410.891" height="273.922">
+                                <img src="https://images.unsplash.com/photo-1491466424936-e304919aada7?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1498&q=80"
+                                    alt="" width="410.891" height="273.922">
+                                <img src="https://images.unsplash.com/photo-1493760919532-3e33e8212d7c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80"
+                                    alt="" width="410.891" height="273.922">
+                                <img src="https://images.unsplash.com/photo-1514911382613-36ce480d6895?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80"
+                                    alt="" width="410.891" height="273.922">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MINI CAROUSEL -->
+                    <div class="mini-carousel-container">
+                        <!-- <button class="fas fa-chevron-circle-left" (click)="miniCarouselMoveleft()"></button> -->
+                        <button class="fas fa-chevron-circle-left"></button>
+                        <button class="fas fa-chevron-circle-right" (click)="miniCarouselMoveRight()"></button>
+                        <div class="attachments">
+                            <div class="carousel-slides" #minicarouselslides>
+                                <img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1127&q=80"
+                                    alt="" width="110.891" height="73.922">
+                                <img src="https://images.unsplash.com/photo-1467048206339-21d11f496fd1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
+                                    alt="" width="110.891" height="73.922">
+                                <img src="https://images.unsplash.com/photo-1479030160180-b1860951d696?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80"
+                                    alt="" width="110.891" height="73.922">
+                                <img src="https://images.unsplash.com/photo-1506261423908-ea2559c1f24c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1524&q=80"
+                                    alt="" width="110.891" height="73.922">
+                                <img src="https://images.unsplash.com/photo-1491466424936-e304919aada7?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1498&q=80"
+                                    alt="" width="110.891" height="73.922">
+                                <img src="https://images.unsplash.com/photo-1493760919532-3e33e8212d7c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80"
+                                    alt="" width="110.891" height="73.922">
+                                <img src="https://images.unsplash.com/photo-1514911382613-36ce480d6895?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80"
+                                    alt="" width="110.891" height="73.922">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <textarea class="input-answer" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1" rows="5" placeholder="Type Your Answer Here"></textarea>
+                </div>
+
+                <!-- COMPREHENSION TYPE QUESTIONS -->
+
+                <div class="comprehension-type"
+                    *ngIf="eachQuestion.type === 'Comprehension' && eachQuestion.questionsInformations.showMoreContent === true">
+                    <div class="each-comprehension-type-question"
+                        *ngFor="let question of eachQuestion.questionsInformations.questions, let j=index">
+                        <hr class="comprehension-hr">
+                        <div class="question-statement">{{question.statement}}</div>
+                        <div class="options-area">
+                            <mat-radio-group aria-labelledby="example-radio-group-label" class="radio-group"
+                                [(ngModel)]="question.answerSelected">
+                                <mat-radio-button class="radio-button" *ngFor="let option of question.options"
+                                    value="option">
+                                    {{option}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UPLOAD BUTTON -->
+                <div class="upload-area" *ngIf="eachQuestion.type === 'speakingSkill'">
+                    <!-- <input type="file" name="audioFile" class="custom-file-input" accept="audio/mpeg, audio/ogg, audio/wav, audio/ogv" > -->
+                    <input type="file" name="audioFile" (change)="fileInserted()" class="custom-file-input"
+                        accept="audio/*" #uploadAudio>
+                    <audio controls *ngIf="audioFile !== ''">
+                        <source [src]="audioFile" [type]="audiofiletype">
+                        <!-- <source [src]="horse.mp3" type="audio/mpeg"> -->
+                        Your browser does not support the audio element.
+                    </audio>
+
+                </div>
+                <hr class="upload-audio-hr" *ngIf="eachQuestion.type === 'speakingSkill'">
+
+                <!-- ACTIONS BUTTONS -->
+                <div class="btn-sections">
+                    <div>
+                        <button class="btn  md-btn-tests md-btn" (click)="showOptions(i)"
+                            *ngIf="eachQuestion.questionsInformations.showMoreContent === false">Answer</button>
+                        <button class="btn   md-btn-tests md-btn" (click)="showOptions(i)"
+                            *ngIf="eachQuestion.questionsInformations.showMoreContent === true">Submit</button>
+                        <button class="btn-outline md-btn-outline-tests md-btn" (click)="showResponses()"
+                            *ngIf="eachQuestion.type === 'Subjective' && eachQuestion.questionsInformations.showMoreContent === true">Show
+                            Responses</button>
+                        <button class="btn-outline md-btn-outline-tests md-btn"
+                            (click)="showResponsesofSpeakingSkills()" *ngIf="eachQuestion.type === 'speakingSkill'">Show
+                            Responses</button>
+                    </div>
+                    <button class="btn-outline md-btn-outline-tests md-btn">Discuss in Forum</button>
+                </div>
+
+                <!-- SUBJECTIVE QUESTIONS RESPONSES -->
+                <div class="all-responses" *ngIf="eachQuestion.type === 'Subjective' && areResponsesHidden === false ">
+                    <div class="each-response-subjective">
+                        <div class="likes">
+                            <mat-icon class="like-icon">thumb_up</mat-icon>
+                            <span>10</span>
+                        </div>
+                        <div class="response">
+                            <div class="user-image-section">
+                                <img class="user-image"
+                                    src="https://www.emmegi.co.uk/wp-content/uploads/2019/01/User-Icon.jpg" alt="">
+                            </div>
+                            <div class="response-right-side">
+                                <div class="user-details">Ankit Biswal, added an answer, 4 minutes ago</div>
+                                <div class="user-response">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, facilis. Odit eius
+                                        quas a laudantium nihil eos iure, enim autem ea architecto, aliquam impedit
+                                        dignissimos accusantium cupiditate. Eveniet, fugiat alias! Omnis porro
+                                        consequuntur inventore doloremque eveniet possimus aliquid assumenda soluta!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SPEAKING SKILLS RESPONSES -->
+                <div class="all-responses"
+                    *ngIf="eachQuestion.type === 'speakingSkill' && areSpeakingSkillsResponsesHidden === false ">
+                    <div class="each-response-subjective">
+                        <div class="likes">
+                            <mat-icon class="like-icon">thumb_up</mat-icon>
+                            <span>10</span>
+                        </div>
+                        <div class="response">
+                            <div class="user-image-section">
+                                <img class="user-image"
+                                    src="https://www.emmegi.co.uk/wp-content/uploads/2019/01/User-Icon.jpg" alt="">
+                            </div>
+                            <div class="response-right-side">
+                                <div class="user-details">Ankit Biswal, added an answer, 4 minutes ago</div>
+                                <div class="user-response">
+                                    <!-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, facilis. Odit eius quas a laudantium nihil eos iure, enim autem ea architecto, aliquam impedit dignissimos accusantium cupiditate. Eveniet, fugiat alias! Omnis porro consequuntur inventore doloremque eveniet possimus aliquid assumenda soluta!</p> -->
+                                    <audio controls>
+                                        <source [src]="audioFile" [type]="audiofiletype">
+                                        <!-- <source [src]="horse.mp3" type="audio/mpeg"> -->
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</mat-card>

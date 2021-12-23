@@ -1,0 +1,68 @@
+
+<header>
+    <app-header></app-header>
+</header>
+
+<div id="show-blog">
+    <app-right-screen></app-right-screen>
+    <div class="container" style="display: flex;flex-direction: row;">
+        <!-- <i class="fas fa-arrow-circle-left" (click)="goBack()" ></i> -->
+        <i class="far fa-arrow-alt-circle-left" (click)="goBack()" ></i>
+        <mat-card class="edit-card">
+            <div class="userImage" >
+                <img src="https://image.freepik.com/free-vector/businessman-avatar-cartoon-character-profile_18591-50141.jpg" alt="">
+            </div>
+            <form (ngSubmit)="onSubmit()" class="edit-form" autocomplete="off" spellcheck="false" #editForm="ngForm" >
+                <input id="topicName" type="text" [ngModel]="post.postTitle" name="editedTopicName" >
+                <h3 class="userDetails" >{{post.date}} | By {{post.postAuthor}}</h3>
+                <!-- <textarea [ngModel]="post.postDescription" id="query" name="editedQuestion" rows="15" required placeholder="Ask Your Question"></textarea> -->
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" placeholder="Ask Your Question"[ngModel]="post.postDescription" id="query" name="editedQuestion" required></textarea>
+                <!-- <input role="textbox" id="query"  role="textbox" contenteditable="true" aria-required="true" aria-multiline="true" > -->
+
+            
+                <mat-card-content  class="card-content">
+                    <mat-grid-list cols="2">
+                        <mat-grid-tile  class="ivd" *ngFor="let img of post.imgs">
+                            <img src={{img}} alt="">
+                            <i class="far fa-times-circle" (click)="deleteImage(post.postId, img)"></i>
+                        </mat-grid-tile>
+                        <mat-grid-tile  class="ivd">
+                            <div>
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </mat-card-content>
+
+                <div class="ask-question-attributes">
+                    <span>Add:</span>
+                    <ul class="add-attributes">
+                        <li>Image</li>
+                        <li>Video</li>
+                        <li>Document</li>
+                    </ul>
+    
+                    <!-- <span class="add-tags">
+                        <input type="text" class="add-tag-input" #tagName placeholder="Add Tag">
+                        <div class="add-tag">Add</div>
+                    </span> -->
+                    <div class="enclosing-div" >
+                        <div class="addingTag">
+                            <input type="text" placeholder="Add Tag" class="addTagInput">
+                            <button class="tagBtn">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="add-category">
+                        <span class="category-label">Categories:</span>
+                        <a href="#">Select <i class="fas fa-caret-down"></i></a>
+                    </div>
+                </div>
+
+                <button class="updateBtn" >Update</button>
+            </form>
+        </mat-card>
+    </div>
+    <br>
+      
+</div>

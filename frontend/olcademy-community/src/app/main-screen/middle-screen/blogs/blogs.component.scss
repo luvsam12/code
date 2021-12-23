@@ -1,0 +1,341 @@
+.thread-desc {
+
+//     input {
+//       opacity: 0;
+//       position: absolute;
+//       pointer-events: none;
+//     }
+//     .thread-desc {
+
+//     input {
+//       opacity: 0;
+//       position: absolute;
+//       pointer-events: none;
+//     }
+
+//     p {
+//       span{
+//       display: -webkit-box;
+//       -webkit-line-clamp: 1;
+//       -webkit-box-orient: vertical;
+//       overflow: hidden;
+//       margin-bottom: 0px;
+//       margin-right: 32px;
+//       }
+//     }
+
+//     input ~ label {
+//       text-decoration: underline;
+//     }
+
+//     input:checked + p {
+//       -webkit-line-clamp: unset;
+//     }
+
+//     input:checked ~ label {
+//       display: none;
+//     }
+
+//   }
+
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  // display: -webkit-box;
+  // -webkit-line-clamp: 2; /* number of lines to show */
+  // -webkit-box-orient: vertical;
+
+
+// .thread-desc img{
+//   height: 300px;
+//   width: 500px;
+// }
+// .thread-desc video{
+//   height: 300px;
+//   width: 500px;
+// }
+
+.thread-desc .document{
+  height: 40px;
+  border: 1px solid black;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.thread-desc {
+  // font-size: 11px;
+  text-align: justify;
+  padding-top: 20px;
+}
+
+.ql-editor p, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote, .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
+  margin: 0;
+  padding: 0;
+  text-align: justify;
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+
+quill-editor{
+  text-align: justify;
+}
+
+.ql-editor {
+  box-sizing: border-box;
+  line-height: 1.42;
+  height: 100%;
+  outline: none;
+  overflow-y: auto;
+  padding: 12px 15px;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  text-align: justify;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+// .ql-editor .ql-video {
+//   display: block;
+//   max-width: 100%;
+//   align-content: center;
+//   text-align: center;
+//   margin-left: 15%;
+// }
+
+
+
+
+    .options{
+      // position: absolute;
+      top:-50px;
+      left: 500px;
+    }
+    .selected{
+      color:rgb(0, 171, 243)
+    }
+    p {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 0px;
+      margin-right: 32px;
+    }
+
+    input ~ label {
+      text-decoration: underline;
+    }
+
+    input:checked + p {
+      -webkit-line-clamp: unset;
+    }
+
+    input:checked ~ label {
+      display: none;
+    }
+
+  }
+
+  .mat-menu-button{
+    padding: 0;
+    min-width: 0;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    line-height: 0px;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-left: 5px;
+    vertical-align: middle;
+    border: none;
+    color: #676565;
+    background-color: white;
+  }
+  .mat-menu-button:hover{
+    background-color: RGB(242, 242, 242);
+      cursor: pointer;
+  }
+  .mat-menu-button:focus {
+    outline: none;
+    background-color: RGB(242,242,242);
+  }
+
+
+
+  .comment-time{
+    float: right;
+  }
+  .blog-comments{
+    width:95%;
+    border:1px solid #b6b5b5;
+  }
+  .blog-comment{
+    // margin-top: 50px;
+    display: none;
+  }
+  .fas{
+    cursor: pointer;
+  }
+
+
+  .show-more{
+    font-size: 11px;
+    float: right;
+    margin-right: 4%;
+    display: none;
+    color: #0070c0;
+    background-color: white;
+    margin-top: -20px;
+    z-index: 2;
+  }
+
+  .show-more:hover{
+    color: #02a9f2;
+    cursor: pointer;
+  }
+
+  .comment-content{
+    width:95%;
+    display:-webkit-box;
+    text-align: justify;
+    cursor: context-menu;
+    -webkit-line-clamp:2;
+    text-overflow: "[ .. show more]";
+   -webkit-box-orient:vertical;
+   overflow: hidden;
+    font-size: 11px;
+    margin:5px 0 5px 3px;
+  }
+  .view-more{
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+    // color: blue;
+  }
+
+  .comment-profile-picture{
+    display: inline;
+  }
+  .comment-profile-picture img{
+    margin-top: 15px;
+    height: 25px;
+    width: 25px;
+    border-radius: 12.5px;
+  }
+  .comment-profile-picture input{
+    position: absolute;
+    margin: 15px 5px 5px 15px;
+    height: 20px;
+    width: 60%;
+  }
+  .comment-profile-picture .fa-link{
+    position: absolute;
+    margin: 22px 5px 5px 15px;
+    height: 20px;
+    margin-left: 64.3%;
+  }
+
+  // .publish {
+  //   position: absolute;
+  //   border: none;
+  //   outline: none;
+  //   color: white;
+  //   background-color: #00ABF3;
+  //   height: 25px;
+  //   width: 8%;
+  //   border-radius: 25px;
+  //   margin: 10px 5px 5px 15px;
+  //   margin-left:58%;
+  // }
+  .comment-user{
+    width: 90%;
+    margin-left: 10px;
+  }
+  .blog-section{
+    padding-left: 5px;
+    display :grid ;
+    grid-template-columns: 9fr 1fr;
+  }
+  .blog-section .fas{
+    margin-left:5px;
+  }
+  .blog-section .fa-thumbs-up{
+    margin-left: 10px;
+  }
+  .comment img{
+    margin-top: 15px;
+    height: 25px;
+    width: 25px;
+    border-radius: 12.5px;
+    margin: 10px 0 0 5px;
+  }
+  .comment-profile-picture input{
+    position: absolute;
+    margin: 15px 5px 5px 15px;
+    height: 20px;
+    width: 60%;
+  }
+  .comment-profile-picture .fa{
+    position: absolute;
+    margin: 20px 5px 5px 15px;
+    height: 20px;
+    margin-left: 64%;
+  }
+  .comment-profile-picture .publish
+  {
+    margin-left: 67.5%;
+    margin-top: 15px;
+  }
+  .comment{
+   margin-top: 10px;
+  //  border: 1px solid #b6b5b5;
+  //  display: none;
+  }
+
+
+  .short-content{
+    display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 0px;
+      margin-right: 32px;
+      font-size: 11px;
+
+
+
+      // width:95%;
+    // display:-webkit-box;
+    text-align: justify;
+    cursor: context-menu;
+    // -webkit-line-clamp:2;
+    text-overflow: "[ .. show more]";
+   -webkit-box-orient:vertical;
+   overflow: hidden;
+    font-size: 11px;
+    // margin:5px 0 5px 3px;
+
+
+
+
+
+  }
+
+
+
+
+  .short-content-first-media{
+    font-size: 11px;
+   text-align: justify;
+   margin-right: 8%;
+   margin-left: 8px;
+  //  background-color: grey;
+  }
+
+
+  .blog-details{
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+  }
+
+
+

@@ -1,0 +1,814 @@
+<hr />
+<br />
+<div class="filters1">
+  <div class="right-side-filters1">
+    <div class="category">Category*</div>
+    <div class="latest1">
+      <p class="filter-para">CAT</p>
+      <mat-icon mat-button [matMenuTriggerFor]="beforeMenutype">keyboard_arrow_down</mat-icon>
+      <mat-menu #beforeMenutype="matMenu" xPosition="before">
+        <button mat-menu-item class="drop">CAT</button>
+        <button mat-menu-item class="drop">GATE</button>
+        <button mat-menu-item class="drop">PTE</button>
+        <button mat-menu-item class="drop">UPSC</button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <div class="right-side-filters1">
+    <div class="diff">Difficulty*</div>
+    <div class="latest1">
+      <p class="filter-para">Expert</p>
+      <mat-icon mat-button [matMenuTriggerFor]="beforeMenulevel">keyboard_arrow_down</mat-icon>
+      <mat-menu #beforeMenulevel="matMenu" xPosition="before">
+        <button mat-menu-item class="drop">Beginner</button>
+        <button mat-menu-item class="drop">Intermediate</button>
+        <button mat-menu-item class="drop">Expert</button>
+      </mat-menu>
+    </div>
+  </div>
+</div>
+
+<div class="filters2">
+  <div class="right-side-filters2">
+    <div class="sec">Section</div>
+    <div class="latest2 section">
+      <p class="filter-para">Quantitative Availability</p>
+      <mat-icon mat-button [matMenuTriggerFor]="beforeMenuAvail">keyboard_arrow_down</mat-icon>
+      <mat-menu #beforeMenuAvail="matMenu" xPosition="before">
+        <button mat-menu-item class="drop_mid">Option 1</button>
+        <button mat-menu-item class="drop_mid">Option 2</button>
+      </mat-menu>
+    </div>
+  </div>
+</div>
+<br />
+<hr />
+<br />
+
+<div class="inrow">
+  <span class="addmedia">Add media file</span>
+  <span class="material-icons add_circle ">add_circle</span>
+  <span class="material-icons add_image">image</span>
+  <span class="image_align size">CAT.jpg</span>
+  <span class="size">0.6Mb</span>
+  <span class="material-icons check_circle">check_circle</span>
+  <span class="material-icons delete_icon">delete</span>
+</div>
+
+<br />
+<hr />
+<br />
+<div class="inrow">
+  <span class="select">Is this a *</span>
+  <input type="radio" id="single" class="singlequesselect" name="option" value="single" />
+  <label for="single">Single Question</label><br />
+  <input type="radio" id="series" name="option" value="series" class="seriesquesselect" />
+  <label for="series">Series</label><br />
+</div>
+<br />
+<div class="inrow">
+  <span class="margintenL">Series Information *</span>
+  <textarea id="Seriesinfo" name="Seriesinfo" class="seriesinfo" rows="5" cols="50">
+  </textarea>
+</div>
+<br />
+
+<div id="card1">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <div class="inrow">
+      <input type="text" name="question_tb" placeholder="Untitled Question" class="border_prop_ques"
+        id="singlechoicecard1" />
+
+      <div class="right-side-filters2 card_dropdown">
+        <div class="latest2 card_dropdown_name">
+          <p class="filter-para"><span
+              class="material-icons drop_icon drop_menu_icon">radio_button_checked</span><span>MCQ</span></p>
+          <mat-icon mat-button [matMenuTriggerFor]="beforeMenu">keyboard_arrow_down</mat-icon>
+          <mat-menu #beforeMenu="matMenu" xPosition="before">
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('1')"><span
+                class="material-icons drop_icon">radio_button_checked</span>MCQ</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('2')"><span
+                class="material-icons drop_icon">title</span>Text Response</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('3')"><span
+                class="material-icons drop_icon">graphic_eq</span>Speaking</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('4')"><span
+                class="material-icons drop_icon">hearing</span>Listening</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+      <div class="inrowcard" id="clear1">
+        <input type="radio" id="single" name="ques1" value="single" />
+        <input type="text" id="option1" name="ques1" placeholder="Add Question" class="border_prop_ans" />
+        <span class="material-icons iconmargin" (click)="clear('clear1')">clear</span>
+      </div>
+
+      <div class="inrowcard" id="clear2">
+        <input type="radio" id="single" name="ques1" value="single" />
+        <input type="text" id="option2" name="ques1" placeholder="Add Question" class="border_prop_ans" />
+        <span class="material-icons iconmargin" (click)="clear('clear2')">clear</span>
+      </div>
+
+      <div class="inrowcard" id="clear3">
+        <input type="radio" id="single" name="ques1" value="single" />
+        <input type="text" id="option3" name="ques1" placeholder="Add Question" class="border_prop_ans" />
+        <span class="material-icons iconmargin" (click)="clear('clear3')">clear</span>
+      </div>
+
+      <div class="inrowcard" id="clear4">
+        <input type="radio" id="single" name="ques1" value="single" />
+        <input type="text" id="option4" name="ques1" placeholder="Add Question" class="border_prop_ans" /><br />
+        <span class="material-icons iconmargin" (click)="clear('clear4')">clear</span>
+      </div>
+      <br />
+      <div class="inrow">
+        <span class="material-icons">task_alt</span>
+        Mark correct response(s)
+      </div>
+
+      <hr />
+
+      <div class="inrow">
+        <br />
+        <span class="margintenL">Add media file</span>
+        <span class="material-icons add_icon_card">add_circle</span>
+        <span class="delete_icon_card material-icons">delete</span>
+        <span class="margintenL">Allow multiple selections</span>
+        <span class="material-icons toggle_icon_card" (click)="toggleonoff()">
+          toggle_off
+        </span>
+      </div>
+    </div>
+  </mat-card>
+
+  <div class="inrow">
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Add Questions</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_left" (click)="questioncopy()">
+        Save
+      </button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Upload</button>
+    </div>
+  </div>
+
+
+  <br />
+</div>
+
+<div id="card2" class="displaynone">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <span class="material-icons">check</span>
+    <span class="chooseanscorrect">&nbsp; Choose correct answers:</span>
+    <hr />
+
+    <p id="put_ques"></p>
+
+    <div>
+      <div class="inrow">
+        <input type="radio" id="put_op11" name="fin_single_1" value="single" (click)="option_correct()" />
+        <label for="fin_single_1" id="put_op1" class="widthset"></label><br />
+        <span class="material-icons iconmargin" id="put_op11_check"></span>
+      </div>
+
+      <div class="inrowcard">
+        <input type="radio" id="put_op12" name="fin_single_1" value="single" (click)="option_correct()" />
+        <label for="fin_single_1" id="put_op2" class="widthset"></label><br />
+        <span class="material-icons iconmargin" id="put_op12_check"></span>
+      </div>
+
+      <div class="inrowcard" id="showornot1">
+        <input type="radio" id="put_op13" name="fin_single_1" value="single" (click)="option_correct()" />
+        <label for="fin_single_1" id="put_op3" class="widthset"></label><br />
+        <span class="material-icons iconmargin" id="put_op13_check"></span>
+      </div>
+
+      <div class="inrowcard" id="showornot2">
+        <input type="radio" id="put_op14" name="fin_single_1" value="single" (click)="option_correct()" />
+        <label for="fin_single_1" id="put_op4" class="widthset"></label><br />
+        <span class="material-icons iconmargin" id="put_op14_check"></span>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="ques marginten">
+      <button class="ques_button done_btn" (click)="questionfinal()">
+        Done
+      </button>
+    </div>
+  </mat-card>
+  <br />
+</div>
+
+<div id="card3" class="displaynone">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <div class="inrow">
+      <p id="put_ques_fin"></p>
+
+      <div class="right-side-filters2 card_dropdown">
+        <div class="latest2 card_dropdown_name">
+          <p class="filter-para"><span
+              class="material-icons drop_icon drop_menu_icon">radio_button_checked</span><span>MCQ</span></p>
+          <mat-icon mat-button [matMenuTriggerFor]="beforeMenu0">keyboard_arrow_down</mat-icon>
+          <mat-menu #beforeMenu0="matMenu" xPosition="before">
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('1')"><span
+                class="material-icons drop_icon">radio_button_checked</span>MCQ</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('2')"><span
+                class="material-icons drop_icon">title</span>Text Response</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('3')"><span
+                class="material-icons drop_icon">graphic_eq</span>Speaking</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('4')"><span
+                class="material-icons drop_icon">hearing</span>Listening</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+      <div>
+        <div class="inrow">
+          <input type="radio" id="put_op11_fin" name="fin_single_1" value="single" />
+          <label for="fin_single_1" id="put_op1_fin" class="widthset"></label><br />
+          <span class="material-icons iconmargin" id="put_op11_check_fin"></span>
+        </div>
+
+        <div class="inrowcard">
+          <input type="radio" id="put_op12_fin" name="fin_single_1" value="single" />
+          <label for="fin_single_1" id="put_op2_fin" class="widthset"></label><br />
+          <span class="material-icons iconmargin" id="put_op12_check_fin"></span>
+        </div>
+
+        <div class="inrowcard" id="showornot1_fin">
+          <input type="radio" id="put_op13_fin" name="fin_single_1" value="single" />
+          <label for="fin_single_1" id="put_op3_fin" class="widthset"></label><br />
+          <span class="material-icons iconmargin" id="put_op13_check_fin"></span>
+        </div>
+
+        <div class="inrowcard" id="showornot2_fin">
+          <input type="radio" id="put_op14_fin" name="fin_single_1" value="single" />
+          <label for="fin_single_1" id="put_op4_fin" class="widthset"></label><br />
+          <span class="material-icons iconmargin" id="put_op14_check_fin"></span>
+        </div>
+      </div>
+      <br />
+      <div class="inrow">
+        <span class="material-icons">task_alt</span>
+        Mark correct response(s)
+      </div>
+
+      <hr />
+
+      <div class="inrow">
+        <br />
+        <span class="margintenL">Add media file</span>
+        <span class="material-icons add_icon_card">add_circle</span>
+        <span class="delete_icon_card material-icons">delete</span>
+        <span class="margintenL">Allow multiple selections</span>
+        <span class="material-icons toggle_icon_card">
+          toggle_off
+        </span>
+      </div>
+    </div>
+  </mat-card>
+
+  <div class="inrow">
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Add Questions</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_left">Save</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Upload</button>
+    </div>
+  </div>
+
+  <br />
+</div>
+
+<div id="card4" class="displaynone">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <div class="inrow">
+      <input type="text" id="question_tb_ques_multi" placeholder="Untitled Question" class="border_prop_ques" />
+
+      <div class="right-side-filters2 card_dropdown">
+        <div class="latest2 card_dropdown_name">
+          <p class="filter-para"><span
+              class="material-icons drop_icon drop_menu_icon">radio_button_checked</span><span>MCQ</span></p>
+          <mat-icon mat-button [matMenuTriggerFor]="beforeMenu1">keyboard_arrow_down</mat-icon>
+          <mat-menu #beforeMenu1="matMenu" xPosition="before">
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('1')"><span
+                class="material-icons drop_icon">radio_button_checked</span>MCQ</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('2')"><span
+                class="material-icons drop_icon">title</span>Text Response</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('3')"><span
+                class="material-icons drop_icon">graphic_eq</span>Speaking</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('4')"><span
+                class="material-icons drop_icon">hearing</span>Listening</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <div>
+      <div class="inrow" id="multi_1">
+        <input type="checkbox" id="multi" name="ques2" value="multi" />
+        <input type="text" id="option1_multi" name="ques1_multi" placeholder="Add Question"
+          class="border_prop_ans" /><br />
+        <span class="material-icons iconmargin" (click)="clear('multi_1')">clear</span>
+      </div>
+
+      <div class="inrowcard" id="multi_2">
+        <input type="checkbox" id="multi" name="ques2" value="multi" />
+        <input type="text" id="option2_multi" name="ques1_multi" placeholder="Add Question"
+          class="border_prop_ans" /><br />
+        <span class="material-icons iconmargin" (click)="clear('multi_2')">clear</span>
+      </div>
+
+      <div class="inrowcard" id="multi_3">
+        <input type="checkbox" id="multi" name="ques2" value="multi" />
+        <input type="text" id="option3_multi" name="ques1_multi" placeholder="Add Question"
+          class="border_prop_ans" /><br />
+        <span class="material-icons iconmargin" (click)="clear('multi_3')">clear</span>
+      </div>
+
+      <div class="inrowcard" id="multi_4">
+        <input type="checkbox" id="multi" name="ques2" value="multi" />
+        <input type="text" id="option4_multi" name="ques1_multi" placeholder="Add Question"
+          class="border_prop_ans" /><br />
+        <span class="material-icons iconmargin" (click)="clear('multi_4')">clear</span>
+      </div>
+
+      <br />
+      <div class="inrow">
+        <span class="material-icons">task_alt</span>
+        Mark correct response(s)
+      </div>
+
+      <hr />
+
+      <div class="inrow">
+        <br />
+        <span class="margintenL">Add media file</span>
+        <span class="material-icons add_icon_card">add_circle</span>
+        <span class="delete_icon_card material-icons">delete</span>
+        <span class="margintenL">Allow multiple selections</span>
+        <span class="material-icons toggle_icon_card" (click)="toggleonoff()"> toggle_on </span>
+      </div>
+    </div>
+  </mat-card>
+
+  <div class="inrow">
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Add Questions</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_left" (click)="questioncopymulti()">
+        Save
+      </button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Upload</button>
+    </div>
+  </div>
+
+  <br />
+</div>
+
+
+<div id="card5" class="displaynone">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <span class="material-icons">check</span>
+    <span class="chooseanscorrect">&nbsp; Choose correct answers:</span>
+    <hr />
+    <br />
+
+    <p id="put_ques_multi"></p>
+    <div>
+      <div class="inrowcard">
+        <input type="checkbox" id="put_op11_multi" name="fin_multi_1" value="single" (click)="multianstoggle('1')" />
+        <label for="fin_multi_1" id="put_op1_multi" class="widthset"></label><br />
+        <span class="material-icons multiselectans" id="put_op11_multi_check">check</span>
+      </div>
+
+      <div class="inrowcard">
+        <input type="checkbox" id="put_op12_multi" name="fin_multi_1" value="single" (click)="multianstoggle('2')" />
+        <label for="fin_multi_1" id="put_op2_multi" class="widthset"></label><br />
+        <span class="material-icons multiselectans" id="put_op12_multi_check">check</span>
+      </div>
+
+      <div class="inrowcard" id="showornot1_multi">
+        <input type="checkbox" id="put_op13_multi" name="fin_multi_1" value="single" (click)="multianstoggle('3')" />
+        <label for="fin_multi_1" id="put_op3_multi" class="widthset"></label><br />
+        <span class="material-icons multiselectans" id="put_op13_multi_check">check</span>
+      </div>
+
+      <div class="inrowcard" id="showornot2_multi">
+        <input type="checkbox" id="put_op14_multi" name="fin_multi_1" value="single" (click)="multianstoggle('4')" />
+        <label for="fin_multi_1" id="put_op4_multi" class="widthset"></label><br />
+        <span class="material-icons multiselectans" id="put_op14_multi_check">check</span>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="ques marginten">
+      <button class="ques_button done_btn" (click)="multicardswap()">Done</button>
+    </div>
+  </mat-card>
+
+  <br />
+</div>
+
+<div id="card6" class="displaynone">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <div class="inrow">
+      <p id="put_ques_fin_multi"></p>
+
+      <div class="right-side-filters2 card_dropdown">
+        <div class="latest2 card_dropdown_name">
+          <p class="filter-para"><span
+              class="material-icons drop_icon drop_menu_icon">radio_button_checked</span><span>MCQ</span></p>
+          <mat-icon mat-button [matMenuTriggerFor]="beforeMenuadd">keyboard_arrow_down</mat-icon>
+          <mat-menu #beforeMenuadd="matMenu" xPosition="before">
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('1')"><span
+                class="material-icons drop_icon">radio_button_checked</span>MCQ</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('2')"><span
+                class="material-icons drop_icon">title</span>Text Response</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('3')"><span
+                class="material-icons drop_icon">graphic_eq</span>Speaking</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('4')"><span
+                class="material-icons drop_icon">hearing</span>Listening</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+      <div>
+        <div class="inrow">
+          <input type="checkbox" id="put_op11_fin_multi" name="fin_single_1_multi" value="single" />
+          <label for="fin_single_1_multi" id="put_op1_fin_multi" class="widthset"></label><br />
+          <span class="material-icons iconmargin displaynone" id="put_op11_check_fin_multi">check</span>
+        </div>
+
+        <div class="inrowcard">
+          <input type="checkbox" id="put_op12_fin_multi" name="fin_single_1_multi" value="single" />
+          <label for="fin_single_1_multi" id="put_op2_fin_multi" class="widthset"></label><br />
+          <span class="material-icons iconmargin displaynone" id="put_op12_check_fin_multi">check</span>
+        </div>
+
+        <div class="inrowcard" id="showornot1_fin_multi">
+          <input type="checkbox" id="put_op13_fin_multi" name="fin_single_1_multi" value="single" />
+          <label for="fin_single_1_multi" id="put_op3_fin_multi" class="widthset"></label><br />
+          <span class="material-icons iconmargin displaynone" id="put_op13_check_fin_multi">check</span>
+        </div>
+
+        <div class="inrowcard" id="showornot2_fin_multi">
+          <input type="checkbox" id="put_op14_fin_multi" name="fin_single_1_multi" value="single" />
+          <label for="fin_single_1_multi" id="put_op4_fin_multi" class="widthset"></label><br />
+          <span class="material-icons iconmargin displaynone" id="put_op14_check_fin_multi">check</span>
+        </div>
+      </div>
+      <br />
+      <div class="inrow">
+        <span class="material-icons">task_alt</span>
+        Mark correct response(s)
+      </div>
+
+      <hr />
+
+      <div class="inrow">
+        <br />
+        <span class="margintenL">Add media file</span>
+        <span class="material-icons add_icon_card">add_circle</span>
+        <span class="delete_icon_card material-icons">delete</span>
+        <span class="margintenL">Allow multiple selections</span>
+        <span class="material-icons toggle_icon_card" id="toggle_button1">
+          toggle_on
+        </span>
+      </div>
+    </div>
+  </mat-card>
+
+  <div class="inrow">
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Add Questions</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_left">Save</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Upload</button>
+    </div>
+  </div>
+
+  <br />
+</div>
+
+<div id="card7" class="displaynone">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <div class="inrow">
+      <input type="text" id="textques" name="question_tb" placeholder="Untitled Question" class="border_prop_ques" />
+
+      <div class="right-side-filters2 card_dropdown">
+        <div class="latest2 card_dropdown_name">
+          <p class="filter-para"><span class="material-icons drop_icon drop_menu_icon">title</span><span>Text
+              Response</span></p>
+          <mat-icon mat-button [matMenuTriggerFor]="beforeMenu2">keyboard_arrow_down</mat-icon>
+          <mat-menu #beforeMenu2="matMenu" xPosition="before">
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('1')"><span
+                class="material-icons drop_icon">radio_button_checked</span>MCQ</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('2')"><span
+                class="material-icons drop_icon">title</span>Text Response</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('3')"><span
+                class="material-icons drop_icon">graphic_eq</span>Speaking</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('4')"><span
+                class="material-icons drop_icon">hearing</span>Listening</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+
+    <input type="text" name="text_reply" placeholder="Text Response" class="textreply" id="textans" />
+    <br />
+
+    <br />
+    <div class="inrow">
+      <span class="material-icons">check</span>
+      List correct response
+    </div>
+
+    <hr />
+
+    <div class="inrow">
+      <br />
+      <span class="margintenL">Add media file</span>
+      <span class="material-icons add_icon_card">add_circle</span>
+      <span class="material-icons delete_icon_card_custom">delete</span>
+    </div>
+  </mat-card>
+
+  <div class="inrow">
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Add Questions</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_left" (click)="questioncopytext()">
+        Save
+      </button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Upload</button>
+    </div>
+  </div>
+
+  <hr />
+
+  <br />
+</div>
+
+<div id="card8" class="displaynone">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <span class="material-icons">check</span>
+    <span class="chooseanscorrect">&nbsp; Choose correct answers:</span>
+    <hr />
+    <br />
+    <div class="inrow">
+      <p id="textques1"></p>
+    </div>
+    <br />
+
+    <p id="textans1" class="border_prop_ans_text"></p>
+    <br />
+
+    <br />
+
+    <hr />
+
+    <div class="inrow">
+      <div class="ques marginten">
+        <button class="ques_button done_btn" (click)="textcardswap()">
+          Done
+        </button>
+      </div>
+    </div>
+  </mat-card>
+  <br />
+</div>
+
+<div id="card9" class="displaynone">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <div class="inrow">
+      <p id="textques2" class="border_prop_ques"></p>
+
+      <div class="right-side-filters2 card_dropdown">
+        <div class="latest2 card_dropdown_name">
+          <p class="filter-para"><span class="material-icons drop_icon drop_menu_icon">title</span><span>Text
+              Response</span></p>
+          <mat-icon mat-button [matMenuTriggerFor]="beforeMenu3">keyboard_arrow_down</mat-icon>
+          <mat-menu #beforeMenu3="matMenu" xPosition="before">
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('1')"><span
+                class="material-icons drop_icon">radio_button_checked</span>MCQ</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('2')"><span
+                class="material-icons drop_icon">title</span>Text Response</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('3')"><span
+                class="material-icons drop_icon">graphic_eq</span>Speaking</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('4')"><span
+                class="material-icons drop_icon">hearing</span>Listening</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+
+    <input type="text" placeholder="Text Response" class="textreply" />
+    <br />
+
+    <br />
+    <span class="correct_response">Correct responses:</span><span id="textans2"> </span>
+    <br />
+    <br />
+    <div class="inrow">
+      <span class="material-icons">check</span>
+      List correct response
+    </div>
+
+    <hr />
+    <br />
+    <div class="inrow">
+      <br />
+      <span class="margintenL">Add media file</span>
+      <span class="material-icons add_icon_card">add_circle</span>
+      <span class="material-icons delete_icon_card_custom">delete</span>
+    </div>
+  </mat-card>
+
+  <div class="inrow">
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Add Questions</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_left">Save</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Upload</button>
+    </div>
+  </div>
+
+  <br />
+</div>
+
+<div id="card10" class="displaynone">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <div class="inrow">
+      <input type="text" id="audioques" name="question_tb" placeholder="Untitled Question" class="border_prop_ques" />
+
+      <div class="right-side-filters2 card_dropdown">
+        <div class="latest2 card_dropdown_name">
+          <p class="filter-para"><span
+              class="material-icons drop_icon drop_menu_icon">graphic_eq</span><span>Speaking</span></p>
+          <mat-icon mat-button [matMenuTriggerFor]="beforeMenu4">keyboard_arrow_down</mat-icon>
+          <mat-menu #beforeMenu4="matMenu" xPosition="before">
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('1')"><span
+                class="material-icons drop_icon">radio_button_checked</span>MCQ</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('2')"><span
+                class="material-icons drop_icon">title</span>Text Response</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('3')"><span
+                class="material-icons drop_icon">graphic_eq</span>Speaking</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('4')"><span
+                class="material-icons drop_icon">hearing</span>Listening</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <div class="ques marginten">
+      <button class="ques_button btn_custom" (click)="openuploadDialogue('images')">
+        Upload Audio
+      </button>
+    </div>
+
+    <br />
+
+    <br />
+    <div class="inrow">
+      <span class="material-icons">check</span>
+      List correct response
+    </div>
+
+    <hr />
+
+    <div class="inrow">
+      <br />
+      <span class="margintenL">Add media file</span>
+      <span class="material-icons add_icon_card">add_circle</span>
+      <span class="material-icons delete_icon_card_custom">delete</span>
+    </div>
+  </mat-card>
+
+  <div class="inrow">
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Add Questions</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_left">Save</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Upload</button>
+    </div>
+  </div>
+  <br />
+</div>
+
+<div id="card13" class="displaynone">
+  <mat-card class="thread-topic-card card_extra_prop">
+    <div class="inrow">
+      <input type="text" id="audioques" name="question_tb" placeholder="Untitled Question" class="border_prop_ques" />
+
+      <div class="right-side-filters2 card_dropdown">
+        <div class="latest2 card_dropdown_name">
+          <p class="filter-para"><span
+              class="material-icons drop_icon drop_menu_icon">hearing</span><span>Listening</span></p>
+          <mat-icon mat-button [matMenuTriggerFor]="beforeMenu4">keyboard_arrow_down</mat-icon>
+          <mat-menu #beforeMenu4="matMenu" xPosition="before">
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('1')"><span
+                class="material-icons drop_icon">radio_button_checked</span>MCQ</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('2')"><span
+                class="material-icons drop_icon">title</span>Text Response</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('3')"><span
+                class="material-icons drop_icon">graphic_eq</span>Speaking</button>
+            <button mat-menu-item class="drop_wide" (click)="Questiontype('4')"><span
+                class="material-icons drop_icon">hearing</span>Listening</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <div class="ques marginten">
+      <button class="ques_button btn_custom" (click)="openuploadDialogue('images')">
+        Upload Audio
+      </button>
+    </div>
+
+    <br />
+
+    <br />
+    <div class="inrow">
+      <span class="material-icons">check</span>
+      List correct response
+    </div>
+
+    <hr />
+
+    <div class="inrow">
+      <br />
+      <span class="margintenL">Add media file</span>
+      <span class="material-icons add_icon_card">add_circle</span>
+      <span class="material-icons delete_icon_card_custom">delete</span>
+    </div>
+  </mat-card>
+
+  <div class="inrow">
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Add Questions</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_left">Save</button>
+    </div>
+
+    <div class="ques marginten">
+      <button class="ques_button button_standard">Upload</button>
+    </div>
+  </div>
+
+  <br />
+  <div>
